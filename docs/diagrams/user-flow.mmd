@@ -1,0 +1,26 @@
+flowchart TD
+    A([QR 스캔 · 사진 · 링크 붙여넣기]) --> B{QR이 2개 이상?}
+    B -- 예 --> B1[겹친 QR 경고<br/>검사할 코드 선택]
+    B -- 아니오 --> C
+    B1 --> C[분석 중<br/>아직 접속하지 않음]
+    C --> C1[/어디서 찍었나요? · 선택/]
+    C1 -.재채점.-> C
+    C --> D{위험 점수}
+    D -- 0–29 --> S[안전<br/>알려진 위험 없음]
+    D -- 30–69 --> W[주의<br/>확인 필요]
+    D -- 70–100 --> X[위험<br/>접속 비권장]
+    D -- 실행 코드·앱 직접 설치 --> Z[차단<br/>열기 버튼 없음]
+    S --> S1[사이트 열기]
+    W --> W1[체크리스트 확인] --> W2[열기]
+    W --> N[열지 않기]
+    X --> X1[열지 않고 닫기]
+    X --> X2[위험을 감수하고 열기<br/>확인 + 길게 누르기]
+    Z --> N
+    S1 & W2 & X2 --> R[(기록: 열었음)]
+    X2 --> G[이미 열었다면?<br/>피해 대응 가이드]
+    classDef safe fill:#E7F6EE,stroke:#12925A,color:#0F1B33
+    classDef caution fill:#FFF3DC,stroke:#B76A00,color:#0F1B33
+    classDef danger fill:#FDECEA,stroke:#D92D20,color:#0F1B33
+    class S,S1 safe
+    class W,W1,W2 caution
+    class X,X1,X2,Z danger

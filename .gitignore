@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/*/.build/
+Package.resolved.bak
+
+# Secrets — never commit API keys
+Config/Secrets.xcconfig
+*.p8
+*.p12
+*.mobileprovision
+
+# Fastlane / screenshots output
+fastlane/report.xml
+fastlane/screenshots/**/*.png
+fastlane/test_output

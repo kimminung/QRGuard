@@ -1,0 +1,15 @@
+flowchart LR
+    F[발동한 규칙들] --> S1["가산점 합계<br/>카테고리 상한 적용<br/>U ≤ 45 · H ≤ 40 · C ≤ 30"]
+    S1 --> S2{"확정 신호?<br/>floor"}
+    S2 -- "블록리스트 적중 → 90<br/>실행 코드·앱 설치 → 95<br/>프로파일 → 85<br/>설치 파일 → 75<br/>송금 정보 → 40" --> S3
+    S2 -- 없음 --> S3["공식 도메인 확인 −20<br/>블록리스트 적중·오픈 리다이렉트 시<br/>적용 안 함"]
+    S3 --> S4["0–100으로 제한"]
+    S4 --> T1([0–29 안전])
+    S4 --> T2([30–69 주의])
+    S4 --> T3([70–100 위험])
+    classDef safe fill:#E7F6EE,stroke:#12925A,color:#0F1B33
+    classDef caution fill:#FFF3DC,stroke:#B76A00,color:#0F1B33
+    classDef danger fill:#FDECEA,stroke:#D92D20,color:#0F1B33
+    class T1 safe
+    class T2 caution
+    class T3 danger

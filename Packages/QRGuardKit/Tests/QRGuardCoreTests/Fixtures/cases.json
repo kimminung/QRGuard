@@ -1,0 +1,1241 @@
+[
+  {
+    "name": "P01 javascript",
+    "input": "javascript:alert(1)",
+    "expect": {
+      "rules": [
+        "P01"
+      ],
+      "blocksOpening": true,
+      "tier": "danger",
+      "scoreMin": 95
+    }
+  },
+  {
+    "name": "P01 data URL",
+    "input": "data:text/html;base64,PGh0bWw+",
+    "expect": {
+      "rules": [
+        "P01"
+      ],
+      "blocksOpening": true,
+      "tier": "danger"
+    }
+  },
+  {
+    "name": "P01 negative",
+    "input": "https://example.test/javascript-guide",
+    "expect": {
+      "notRules": [
+        "P01"
+      ],
+      "blocksOpening": false
+    }
+  },
+  {
+    "name": "P02 itms-services (spec 2.1 #4)",
+    "input": "itms-services://?action=download-manifest&url=https://example.test/app.plist",
+    "expect": {
+      "rules": [
+        "P02"
+      ],
+      "notRules": [
+        "P05",
+        "P05a"
+      ],
+      "score": 95,
+      "tier": "danger",
+      "blocksOpening": true
+    }
+  },
+  {
+    "name": "P02 uppercase scheme",
+    "input": "ITMS-SERVICES://?action=download-manifest",
+    "expect": {
+      "rules": [
+        "P02"
+      ],
+      "blocksOpening": true
+    }
+  },
+  {
+    "name": "P02 negative itms-apps",
+    "input": "itms-apps://apps.apple.com/app/id123",
+    "expect": {
+      "notRules": [
+        "P02"
+      ],
+      "rules": [
+        "P05a"
+      ],
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "P03 mobileconfig",
+    "input": "https://example.test/profile.mobileconfig",
+    "expect": {
+      "rules": [
+        "P03"
+      ],
+      "scoreMin": 85,
+      "tier": "danger",
+      "blocksOpening": false
+    }
+  },
+  {
+    "name": "P03 mobileconfig with query",
+    "input": "https://cdn.example.test/dl/Wifi.MOBILECONFIG?t=1",
+    "expect": {
+      "rules": [
+        "P03"
+      ],
+      "scoreMin": 85
+    }
+  },
+  {
+    "name": "P03 negative",
+    "input": "https://example.test/profile.html",
+    "expect": {
+      "notRules": [
+        "P03"
+      ]
+    }
+  },
+  {
+    "name": "P04 apk",
+    "input": "https://example.test/app.apk",
+    "expect": {
+      "rules": [
+        "P04"
+      ],
+      "scoreMin": 75,
+      "tier": "danger"
+    }
+  },
+  {
+    "name": "P04 exe",
+    "input": "https://example.test/setup.exe",
+    "expect": {
+      "rules": [
+        "P04"
+      ],
+      "scoreMin": 75
+    }
+  },
+  {
+    "name": "P04 negative",
+    "input": "https://example.test/apk/readme.txt",
+    "expect": {
+      "notRules": [
+        "P04"
+      ]
+    }
+  },
+  {
+    "name": "P05 unknown scheme",
+    "input": "foo://bar/baz",
+    "expect": {
+      "rules": [
+        "P05"
+      ],
+      "notRules": [
+        "P05a"
+      ],
+      "score": 20,
+      "tier": "safe",
+      "payloadKind": "appScheme"
+    }
+  },
+  {
+    "name": "P05 unknown scheme 2",
+    "input": "myapp://open?x=1",
+    "expect": {
+      "rules": [
+        "P05"
+      ],
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "P05a kakaotalk",
+    "input": "kakaotalk://open",
+    "expect": {
+      "rules": [
+        "P05a"
+      ],
+      "notRules": [
+        "P05"
+      ],
+      "score": 5,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "P05a supertoss",
+    "input": "supertoss://send",
+    "expect": {
+      "rules": [
+        "P05a"
+      ],
+      "score": 5
+    }
+  },
+  {
+    "name": "P06 nopass (tier boundary 30)",
+    "input": "WIFI:T:nopass;S:FreeCafe;;",
+    "expect": {
+      "rules": [
+        "P06"
+      ],
+      "score": 30,
+      "tier": "caution",
+      "payloadKind": "wifi"
+    }
+  },
+  {
+    "name": "P06 WEP",
+    "input": "WIFI:T:WEP;S:Old;P:1234;;",
+    "expect": {
+      "rules": [
+        "P06"
+      ],
+      "score": 30
+    }
+  },
+  {
+    "name": "P06 negative WPA",
+    "input": "WIFI:T:WPA;S:Home;P:secret;;",
+    "expect": {
+      "notRules": [
+        "P06"
+      ],
+      "score": 0,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "P07 SMSTO with link",
+    "input": "SMSTO:01012345678:방문 https://evil.example.test/login",
+    "expect": {
+      "rules": [
+        "P07",
+        "U10"
+      ],
+      "score": 35,
+      "tier": "caution",
+      "payloadKind": "sms"
+    }
+  },
+  {
+    "name": "P07 sms body link",
+    "input": "sms:01012345678?body=https://example.test/x",
+    "expect": {
+      "rules": [
+        "P07"
+      ],
+      "tierAtLeast": "safe"
+    }
+  },
+  {
+    "name": "P07 negative",
+    "input": "SMSTO:01012345678:안녕하세요",
+    "expect": {
+      "notRules": [
+        "P07",
+        "P08"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "P08 sms 060",
+    "input": "sms:0601234567?body=hi",
+    "expect": {
+      "rules": [
+        "P08"
+      ],
+      "score": 30,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "P08 tel 060",
+    "input": "tel:060-700-1234",
+    "expect": {
+      "rules": [
+        "P08"
+      ],
+      "score": 30,
+      "payloadKind": "phone"
+    }
+  },
+  {
+    "name": "P08 negative tel",
+    "input": "tel:02-1234-5678",
+    "expect": {
+      "notRules": [
+        "P08"
+      ],
+      "score": 0,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "P09 bitcoin",
+    "input": "bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa?amount=0.01",
+    "expect": {
+      "rules": [
+        "P09"
+      ],
+      "scoreMin": 40,
+      "tier": "caution",
+      "payloadKind": "payment"
+    }
+  },
+  {
+    "name": "P09 bank account text",
+    "input": "계좌 국민 123456-78-901234 홍길동",
+    "expect": {
+      "rules": [
+        "P09"
+      ],
+      "scoreMin": 40,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "P09 negative",
+    "input": "https://example.test/pay",
+    "expect": {
+      "notRules": [
+        "P09"
+      ]
+    }
+  },
+  {
+    "name": "P10 text with bare domain",
+    "input": "행사 안내: example.com/event 를 확인하세요",
+    "expect": {
+      "rules": [
+        "P10",
+        "U01"
+      ],
+      "tier": "safe",
+      "payloadKind": "text"
+    }
+  },
+  {
+    "name": "P10 text with https link",
+    "input": "쿠폰 받기 https://example.test/promo",
+    "expect": {
+      "rules": [
+        "P10"
+      ],
+      "notRules": [
+        "U01"
+      ],
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "P10 negative plain text",
+    "input": "그냥 텍스트입니다",
+    "expect": {
+      "notRules": [
+        "P10"
+      ],
+      "score": 0,
+      "payloadKind": "text"
+    }
+  },
+  {
+    "name": "U01 http",
+    "input": "http://example.test/",
+    "expect": {
+      "rules": [
+        "U01"
+      ],
+      "score": 15,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U01 http + ip + bait",
+    "input": "http://192.168.0.1/login",
+    "expect": {
+      "rules": [
+        "U01",
+        "U02",
+        "U10"
+      ],
+      "score": 45,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "U01 negative https",
+    "input": "https://example.test/",
+    "expect": {
+      "notRules": [
+        "U01",
+        "U02",
+        "U03",
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "B01",
+        "B02",
+        "B03"
+      ],
+      "score": 0,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U02 hex ip",
+    "input": "https://0x7f.1/",
+    "expect": {
+      "rules": [
+        "U02"
+      ],
+      "score": 20
+    }
+  },
+  {
+    "name": "U02 integer ip",
+    "input": "https://2130706433/",
+    "expect": {
+      "rules": [
+        "U02"
+      ]
+    }
+  },
+  {
+    "name": "U02 ipv6",
+    "input": "https://[2001:db8::1]/",
+    "expect": {
+      "rules": [
+        "U02"
+      ]
+    }
+  },
+  {
+    "name": "U02 negative numeric label",
+    "input": "https://123.example.test/",
+    "expect": {
+      "notRules": [
+        "U02"
+      ]
+    }
+  },
+  {
+    "name": "U03 spec fixture",
+    "input": "https://naver.com@login.example.test/verify",
+    "context": {
+      "source": "camera",
+      "place": "emailOrMessage"
+    },
+    "expect": {
+      "rules": [
+        "U03",
+        "U10",
+        "C02"
+      ],
+      "tierAtLeast": "caution",
+      "score": 50
+    }
+  },
+  {
+    "name": "U03 user:pass",
+    "input": "https://user:pw@example.test/",
+    "expect": {
+      "rules": [
+        "U03"
+      ],
+      "score": 25,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U03 negative",
+    "input": "https://example.test/?email=a@b.test",
+    "expect": {
+      "notRules": [
+        "U03"
+      ]
+    }
+  },
+  {
+    "name": "U04 port 8443",
+    "input": "https://example.test:8443/",
+    "expect": {
+      "rules": [
+        "U04"
+      ],
+      "score": 10
+    }
+  },
+  {
+    "name": "U04 + U01 (score 25 safe)",
+    "input": "http://example.test:8080/",
+    "expect": {
+      "rules": [
+        "U01",
+        "U04"
+      ],
+      "score": 25,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U04 + U01 + U07 (score 30 caution)",
+    "input": "http://example.test:8080/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expect": {
+      "rules": [
+        "U01",
+        "U04",
+        "U07"
+      ],
+      "score": 30,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "U04 negative default port",
+    "input": "https://example.test:443/",
+    "expect": {
+      "notRules": [
+        "U04"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "U05 mixed script nаver",
+    "input": "https://xn--nver-53d.test/",
+    "expect": {
+      "rules": [
+        "U05",
+        "B02"
+      ],
+      "tierAtLeast": "caution"
+    }
+  },
+  {
+    "name": "U05 mixed script pаypal",
+    "input": "https://xn--pypal-4ve.test/",
+    "expect": {
+      "rules": [
+        "U05"
+      ],
+      "tierAtLeast": "safe"
+    }
+  },
+  {
+    "name": "U05 negative hangul IDN",
+    "input": "https://xn--3e0b707e.test/",
+    "expect": {
+      "notRules": [
+        "U05"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "U06 depth 4",
+    "input": "https://a.b.c.d.example.test/",
+    "expect": {
+      "rules": [
+        "U06"
+      ],
+      "score": 5,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U06 long host",
+    "input": "https://this-is-a-very-long-hostname-for-testing-purposes-only.example.test/",
+    "expect": {
+      "rules": [
+        "U06"
+      ],
+      "score": 5
+    }
+  },
+  {
+    "name": "U06 negative depth 3",
+    "input": "https://a.b.c.example.test/",
+    "expect": {
+      "notRules": [
+        "U06"
+      ]
+    }
+  },
+  {
+    "name": "U07 double encoding",
+    "input": "https://example.test/%252e%252e/x",
+    "expect": {
+      "rules": [
+        "U07"
+      ],
+      "score": 5
+    }
+  },
+  {
+    "name": "U07 ASCII percent encoding",
+    "input": "https://example.test/%2e%2e%2f%61%64%6d%69%6e",
+    "expect": {
+      "rules": [
+        "U07"
+      ]
+    }
+  },
+  {
+    "name": "U07 negative",
+    "input": "https://example.test/short/path?q=1",
+    "expect": {
+      "notRules": [
+        "U07"
+      ]
+    }
+  },
+  {
+    "name": "U08 xyz",
+    "input": "https://event-gift.xyz/coupon",
+    "expect": {
+      "rules": [
+        "U08"
+      ],
+      "score": 10,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U08 top",
+    "input": "https://promo.example.top/",
+    "expect": {
+      "rules": [
+        "U08"
+      ]
+    }
+  },
+  {
+    "name": "U08 negative tld in subdomain",
+    "input": "https://xyz.example.com/",
+    "expect": {
+      "notRules": [
+        "U08"
+      ]
+    }
+  },
+  {
+    "name": "U09 encoded next",
+    "input": "https://example.test/?next=https%3A%2F%2Fevil.example.invalid%2Flogin",
+    "expect": {
+      "rules": [
+        "U09",
+        "U07"
+      ],
+      "score": 20,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U09 url param",
+    "input": "https://example.test/go?url=https://other.example.com/",
+    "expect": {
+      "rules": [
+        "U09"
+      ]
+    }
+  },
+  {
+    "name": "U09 negative same site",
+    "input": "https://example.test/?next=https://sub.example.test/home",
+    "expect": {
+      "notRules": [
+        "U09"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "U09 official domain open redirect (B03 excluded)",
+    "input": "https://www.naver.com/?url=https://evil.example.test/",
+    "expect": {
+      "rules": [
+        "U09"
+      ],
+      "notRules": [
+        "B03"
+      ],
+      "score": 15,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U10 host keyword",
+    "input": "https://secure-login.example.test/",
+    "expect": {
+      "rules": [
+        "U10"
+      ],
+      "score": 10
+    }
+  },
+  {
+    "name": "U10 korean path",
+    "input": "https://example.test/택배/조회",
+    "expect": {
+      "rules": [
+        "U10"
+      ],
+      "notRules": [
+        "U07"
+      ],
+      "score": 10
+    }
+  },
+  {
+    "name": "U10 negative",
+    "input": "https://example.test/products/123",
+    "expect": {
+      "notRules": [
+        "U10"
+      ]
+    }
+  },
+  {
+    "name": "U11 bit.ly",
+    "input": "https://bit.ly/3gH2kQ",
+    "expect": {
+      "rules": [
+        "U11"
+      ],
+      "score": 10,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "U11 tinyurl",
+    "input": "https://tinyurl.com/abc",
+    "expect": {
+      "rules": [
+        "U11"
+      ],
+      "score": 10
+    }
+  },
+  {
+    "name": "U11 negative youtu.be",
+    "input": "https://youtu.be/abc",
+    "expect": {
+      "notRules": [
+        "U11"
+      ]
+    }
+  },
+  {
+    "name": "U cap 45",
+    "input": "http://user@192.168.0.1:8080/login?next=https://evil.example.test/",
+    "expect": {
+      "rules": [
+        "U01",
+        "U02",
+        "U03",
+        "U04",
+        "U09",
+        "U10"
+      ],
+      "score": 45,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "B01 naver-login (spec 2.1 #3 offline part)",
+    "input": "https://naver-login.account-check.xyz/verify",
+    "expect": {
+      "rules": [
+        "B01",
+        "U08",
+        "U10"
+      ],
+      "score": 50,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "B01 kakao in host token",
+    "input": "https://www.kakao-event.example.test/",
+    "expect": {
+      "rules": [
+        "B01"
+      ],
+      "score": 30,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "B01 toss in path",
+    "input": "https://example.test/toss/promo",
+    "expect": {
+      "rules": [
+        "B01"
+      ]
+    }
+  },
+  {
+    "name": "B01 negative official",
+    "input": "https://www.naver.com/login",
+    "expect": {
+      "notRules": [
+        "B01",
+        "B02"
+      ],
+      "rules": [
+        "B03"
+      ]
+    }
+  },
+  {
+    "name": "B02 naverr.com",
+    "input": "https://naverr.com/",
+    "expect": {
+      "rules": [
+        "B02"
+      ],
+      "notRules": [
+        "B03"
+      ],
+      "tierAtLeast": "caution"
+    }
+  },
+  {
+    "name": "B02 cyrillic е navеr.com",
+    "input": "https://xn--navr-x4d.com/",
+    "expect": {
+      "rules": [
+        "B02",
+        "U05"
+      ],
+      "tierAtLeast": "caution"
+    }
+  },
+  {
+    "name": "B02 g00gle",
+    "input": "https://g00gle.com/",
+    "expect": {
+      "rules": [
+        "B02"
+      ],
+      "notRules": [
+        "B01"
+      ],
+      "score": 35,
+      "tier": "caution"
+    }
+  },
+  {
+    "name": "B02 negative unrelated",
+    "input": "https://example.test/",
+    "expect": {
+      "notRules": [
+        "B02"
+      ]
+    }
+  },
+  {
+    "name": "B03 naver (spec 2.1 #1)",
+    "input": "https://www.naver.com/",
+    "expect": {
+      "rules": [
+        "B03"
+      ],
+      "score": 0,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "B03 kakao",
+    "input": "https://m.kakao.com/talk",
+    "expect": {
+      "rules": [
+        "B03"
+      ],
+      "score": 0,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "B03 gov suffix",
+    "input": "https://www.hometax.go.kr/",
+    "expect": {
+      "rules": [
+        "B03"
+      ],
+      "notRules": [
+        "B01"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "B03 negative http",
+    "input": "http://www.naver.com/",
+    "expect": {
+      "notRules": [
+        "B03"
+      ],
+      "rules": [
+        "U01"
+      ],
+      "score": 15
+    }
+  },
+  {
+    "name": "T01 blocklist domain",
+    "input": "https://malware.example.test/x",
+    "expect": {
+      "rules": [
+        "T01"
+      ],
+      "scoreMin": 90,
+      "tier": "danger",
+      "blocksOpening": false
+    }
+  },
+  {
+    "name": "T01 blocklist host",
+    "input": "https://phish.example.test/",
+    "expect": {
+      "rules": [
+        "T01"
+      ],
+      "scoreMin": 90
+    }
+  },
+  {
+    "name": "T01 blocklist prefix",
+    "input": "https://example.test/blocked/page",
+    "expect": {
+      "rules": [
+        "T01"
+      ],
+      "scoreMin": 90
+    }
+  },
+  {
+    "name": "T01 Safe Browsing test host",
+    "input": "https://testsafebrowsing.appspot.com/s/phishing.html",
+    "expect": {
+      "rules": [
+        "T01"
+      ],
+      "tier": "danger"
+    }
+  },
+  {
+    "name": "T01 negative",
+    "input": "https://example.test/unblocked/page",
+    "expect": {
+      "notRules": [
+        "T01"
+      ]
+    }
+  },
+  {
+    "name": "C01 two codes",
+    "input": "https://example.test/",
+    "context": {
+      "source": "camera",
+      "distinctCodesInFrame": 2
+    },
+    "expect": {
+      "rules": [
+        "C01"
+      ],
+      "score": 20,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "C01 three codes photo",
+    "input": "https://example.test/",
+    "context": {
+      "source": "photo",
+      "distinctCodesInFrame": 3
+    },
+    "expect": {
+      "rules": [
+        "C01"
+      ],
+      "score": 20
+    }
+  },
+  {
+    "name": "C01 negative",
+    "input": "https://example.test/",
+    "context": {
+      "source": "camera",
+      "distinctCodesInFrame": 1
+    },
+    "expect": {
+      "notRules": [
+        "C01"
+      ]
+    }
+  },
+  {
+    "name": "C02 message + login",
+    "input": "https://example.test/login",
+    "context": {
+      "source": "camera",
+      "place": "emailOrMessage"
+    },
+    "expect": {
+      "rules": [
+        "U10",
+        "C02"
+      ],
+      "score": 25,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "C02 message + apk",
+    "input": "https://example.test/update.apk",
+    "context": {
+      "source": "photo",
+      "place": "emailOrMessage"
+    },
+    "expect": {
+      "rules": [
+        "P04",
+        "C02"
+      ],
+      "scoreMin": 75,
+      "tier": "danger"
+    }
+  },
+  {
+    "name": "C02 negative other place",
+    "input": "https://example.test/login",
+    "context": {
+      "source": "camera",
+      "place": "storeOrMenu"
+    },
+    "expect": {
+      "rules": [
+        "U10"
+      ],
+      "notRules": [
+        "C02"
+      ]
+    }
+  },
+  {
+    "name": "C02 negative no trigger",
+    "input": "https://example.test/",
+    "context": {
+      "source": "camera",
+      "place": "emailOrMessage"
+    },
+    "expect": {
+      "notRules": [
+        "C02"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "C03 parking unknown",
+    "input": "https://pay.example.test/park",
+    "context": {
+      "source": "camera",
+      "place": "parkingOrPayment"
+    },
+    "expect": {
+      "rules": [
+        "C03"
+      ],
+      "score": 15,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "C03 mobility unknown",
+    "input": "https://scooter.example.test/ride",
+    "context": {
+      "source": "camera",
+      "place": "mobility"
+    },
+    "expect": {
+      "rules": [
+        "C03"
+      ],
+      "score": 15
+    }
+  },
+  {
+    "name": "C03 negative known mobility",
+    "input": "https://kakaomobility.com/pay",
+    "context": {
+      "source": "camera",
+      "place": "mobility"
+    },
+    "expect": {
+      "notRules": [
+        "C03"
+      ],
+      "rules": [
+        "B03"
+      ],
+      "score": 0
+    }
+  },
+  {
+    "name": "C03 negative other place",
+    "input": "https://pay.example.test/park",
+    "context": {
+      "source": "camera",
+      "place": "other"
+    },
+    "expect": {
+      "notRules": [
+        "C03"
+      ]
+    }
+  },
+  {
+    "name": "Boundary 65 caution",
+    "input": "https://naver-login.example.xyz/verify",
+    "context": {
+      "source": "camera",
+      "place": "emailOrMessage"
+    },
+    "expect": {
+      "rules": [
+        "B01",
+        "U08",
+        "U10",
+        "C02"
+      ],
+      "score": 65,
+      "tier": "caution",
+      "scoreMax": 69
+    }
+  },
+  {
+    "name": "Boundary 75 danger via SMS",
+    "input": "SMSTO:01012345678:https://naver-login.example.xyz/verify",
+    "expect": {
+      "rules": [
+        "P07",
+        "B01",
+        "U08",
+        "U10"
+      ],
+      "score": 75,
+      "tier": "danger"
+    }
+  },
+  {
+    "name": "Boundary 80 danger with C01 (C cap 30)",
+    "input": "https://naver-login.example.xyz/verify",
+    "context": {
+      "source": "camera",
+      "place": "emailOrMessage",
+      "distinctCodesInFrame": 2
+    },
+    "expect": {
+      "rules": [
+        "B01",
+        "U08",
+        "U10",
+        "C01",
+        "C02"
+      ],
+      "score": 80,
+      "tier": "danger"
+    }
+  },
+  {
+    "name": "Caution 45 shortener + bait + tld",
+    "input": "https://bit.ly/login-verify-now",
+    "expect": {
+      "rules": [
+        "U11",
+        "U10"
+      ],
+      "score": 20,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "IDN hangul plain is safe",
+    "input": "https://한국.test/",
+    "expect": {
+      "notRules": [
+        "U05",
+        "B02"
+      ],
+      "score": 0,
+      "tier": "safe"
+    }
+  },
+  {
+    "name": "Contact payload",
+    "input": "BEGIN:VCARD\nVERSION:3.0\nFN:홍길동\nEND:VCARD",
+    "expect": {
+      "score": 0,
+      "tier": "safe",
+      "payloadKind": "contact"
+    }
+  },
+  {
+    "name": "Geo payload",
+    "input": "geo:37.5665,126.9780",
+    "expect": {
+      "score": 0,
+      "tier": "safe",
+      "payloadKind": "geo"
+    }
+  },
+  {
+    "name": "Email payload",
+    "input": "mailto:help@example.test?subject=Hi",
+    "expect": {
+      "score": 0,
+      "tier": "safe",
+      "payloadKind": "email"
+    }
+  },
+  {
+    "name": "U07 negative korean path",
+    "input": "https://example.test/%ED%83%9D%EB%B0%B0%EC%A1%B0%ED%9A%8C/%EC%95%88%EB%82%B4",
+    "expect": {
+      "notRules": [
+        "U07"
+      ]
+    }
+  },
+  {
+    "name": "B01 negative official other brand keyword",
+    "input": "https://kakaomobility.com/kakao/pay",
+    "expect": {
+      "notRules": [
+        "B01"
+      ],
+      "rules": [
+        "B03"
+      ],
+      "score": 0
+    }
+  }
+]

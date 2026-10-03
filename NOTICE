@@ -1,0 +1,17 @@
+QR Guard
+Copyright 2026 QR Guard contributors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product bundles or is designed to bundle the following third-party data,
+each distributed under its own license:
+
+- Public Suffix List (https://publicsuffix.org/)
+  Mozilla Public License 2.0 — used to compute registrable domains (eTLD+1).
+- Unicode confusables data (Unicode Technical Standard #39)
+  Unicode License v3 — used to detect look-alike (homoglyph) domains.
+
+Threat-intelligence services that QR Guard can query at runtime (for example,
+Google Safe Browsing or abuse.ch URLhaus) are NOT bundled and are subject to
+their own terms of service. Google Safe Browsing API is for non-commercial use
+only; review each provider's terms before distributing a build.

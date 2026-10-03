@@ -1,0 +1,2 @@
+PK\x03\x04 this is not html at all; served as application/vnd.android.package-archive
+<input type="password"> should never be parsed

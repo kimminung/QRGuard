@@ -1,0 +1,5 @@
+// Base.xcconfig — QR Guard 공통 빌드 설정
+// 기본값은 빈 키이며, Secrets.xcconfig가 있으면 그 값으로 덮어씁니다(없어도 빌드 가능).
+SAFE_BROWSING_API_KEY =
+
+#include? "Secrets.xcconfig"

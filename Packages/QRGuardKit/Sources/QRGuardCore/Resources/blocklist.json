@@ -1,0 +1,7 @@
+{
+  "domains": ["malware.example.test", "blocked.example.test", "testsafebrowsing.appspot.com"],
+  "hosts": ["phish.example.test"],
+  "urlPrefixes": ["https://example.test/blocked/"],
+  "source": "bundled-test",
+  "updatedAt": "2026-10-04"
+}

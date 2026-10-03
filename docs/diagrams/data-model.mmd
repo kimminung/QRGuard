@@ -1,0 +1,28 @@
+erDiagram
+    ScanRecord ||--o{ FindingRecord : has
+    ScanRecord ||--o{ RedirectHopRecord : has
+    ScanRecord {
+        UUID id
+        Date scannedAt
+        String rawPayload
+        String payloadKind
+        String originalURL
+        String finalURL
+        String registrableDomain
+        Int score
+        String tier
+        String source
+        String place
+        String coverage
+        Bool userOpened
+    }
+    FindingRecord {
+        String ruleID
+        Int points
+        String evidenceJSON
+    }
+    RedirectHopRecord {
+        Int order
+        String url
+        Int statusCode
+    }

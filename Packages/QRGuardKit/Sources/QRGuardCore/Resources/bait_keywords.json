@@ -1,0 +1,6 @@
+[
+  "login", "signin", "sign-in", "verify", "verification", "account", "update", "secure", "wallet",
+  "password", "passwd", "bank", "billing", "confirm", "unlock", "reward", "authenticate", "auth-check",
+  "인증", "본인확인", "환급", "과태료", "택배", "배송", "대출",
+  "당첨", "쿠폰", "정산", "미납", "벌금", "세금", "국세청", "건강보험", "결제확인", "본인인증", "계정확인"
+]

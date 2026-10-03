@@ -1,0 +1,25 @@
+flowchart TB
+    subgraph App["QRGuard 앱 (SwiftUI · iOS 18+)"]
+        direction LR
+        Home[홈] --> Scanner[스캐너<br/>DataScanner / AVFoundation]
+        Home --> Import[사진 · 붙여넣기<br/>Vision]
+        Scanner --> Analysis[분석 화면]
+        Import --> Analysis
+        Analysis --> Result[결과 · 상세]
+        Home --> History[기록]
+        Home --> Settings[설정]
+    end
+    Analysis --> Pipeline["AnalysisPipeline (actor)<br/>AsyncStream 이벤트"]
+    subgraph Kit["QRGuardKit (로컬 Swift 패키지)"]
+        Core["QRGuardCore<br/>페이로드 · URL 정규화 · PSL · IDN<br/>규칙 P·U·B·C · 점수 산정"]
+        Net["QRGuardNetwork<br/>리다이렉트 추적 · 평판 조회<br/>RDAP · 페이지 사전 검사"]
+    end
+    Pipeline --> Core
+    Pipeline --> Net
+    Net --> Core
+    History --> DB[(SwiftData<br/>기기 내 저장)]
+    Net -. 해시 프리픽스 .-> GSB[Google Safe Browsing v5]
+    Net -. 도메인명 .-> RDAP[RDAP]
+    Net -. HEAD/GET · 쿠키 없음 .-> Target[스캔한 주소의 서버]
+    Share[공유 확장 · P1] --> Kit
+    Ctrl[제어 센터 · 위젯 · P2] --> Scanner

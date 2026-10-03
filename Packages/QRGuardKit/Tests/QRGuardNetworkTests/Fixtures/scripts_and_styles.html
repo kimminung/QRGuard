@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="description" content="description text must not leak">
+  <title>Scripts</title>
+  <style>
+    body { background: #000; }
+    .hidden { display: none; }
+  </style>
+  <script type="text/javascript">
+    function track() { return "function body"; }
+  </script>
+</head>
+<body>
+  <script>
+    (function () { var x = "function in body"; })();
+  </script>
+  <h1>환영합니다</h1>
+  <p>이 페이지는 평범한 안내 페이지입니다.</p>
+  <style>.late { background: red; }</style>
+  <!-- function comment -->
+</body>
+</html>
