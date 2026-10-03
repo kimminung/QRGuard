@@ -290,7 +290,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyApp/Info.plist;
+				INFOPLIST_FILE = QRGuard/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "QR Guard";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSCameraUsageDescription = "QR 코드를 스캔해 연결된 주소의 위험 요소를 확인하는 데 카메라를 사용해요.";
@@ -336,7 +336,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyApp/Info.plist;
+				INFOPLIST_FILE = QRGuard/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "QR Guard";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSCameraUsageDescription = "QR 코드를 스캔해 연결된 주소의 위험 요소를 확인하는 데 카메라를 사용해요.";

@@ -139,7 +139,8 @@ struct AVMetadataScannerView: UIViewRepresentable {
 
         func setPaused(_ paused: Bool) {
             if paused, session.isRunning {
-                let session = self.session
+                // AVCaptureSession은 Sendable이 아니지만 start/stopRunning은 스레드 안전한 블로킹 호출이다.
+                nonisolated(unsafe) let session = self.session
                 DispatchQueue.global(qos: .userInitiated).async { session.stopRunning() }
             } else if !paused, !session.isRunning, configured {
                 startRunning()
@@ -147,7 +148,7 @@ struct AVMetadataScannerView: UIViewRepresentable {
         }
 
         private func startRunning() {
-            let session = self.session
+            nonisolated(unsafe) let session = self.session
             DispatchQueue.global(qos: .userInitiated).async { session.startRunning() }
         }
 

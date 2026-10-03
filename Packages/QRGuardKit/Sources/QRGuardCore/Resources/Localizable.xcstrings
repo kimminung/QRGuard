@@ -1,2806 +1,2981 @@
 {
-  "sourceLanguage": "ko",
-  "strings": {
-    "rule.B01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{brand} 공식 앱이나 검색으로 직접 찾아 들어가세요."
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "rule.B01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go through the official {brand} app or a search instead."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Go through the official {brand} app or a search instead."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{brand} 공식 앱이나 검색으로 직접 찾아 들어가세요."
           }
         }
       }
     },
-    "rule.B01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 {host}에 '{keyword}'이(가) 들어 있지만 {brand}의 공식 도메인이 아니에요."
+    "rule.B01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address {host} contains '{keyword}' but is not an official {brand} domain."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address {host} contains '{keyword}' but is not an official {brand} domain."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 {host}에 '{keyword}'이(가) 들어 있지만 {brand}의 공식 도메인이 아니에요."
           }
         }
       }
     },
-    "rule.B01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "브랜드 이름을 흉내 낸 흔적이 없어요"
+    "rule.B01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No sign of brand impersonation"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No sign of brand impersonation"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "브랜드 이름을 흉내 낸 흔적이 없어요"
           }
         }
       }
     },
-    "rule.B01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{brand}을(를) 사칭하는 주소일 수 있어요"
+    "rule.B01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This address may be impersonating {brand}"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This address may be impersonating {brand}"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{brand}을(를) 사칭하는 주소일 수 있어요"
           }
         }
       }
     },
-    "rule.B02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 앱이나 검색으로 직접 찾아 들어가세요."
+    "rule.B02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go through the official app or a search instead."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Go through the official app or a search instead."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 앱이나 검색으로 직접 찾아 들어가세요."
           }
         }
       }
     },
-    "rule.B02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain}은(는) 공식 주소 {official}과(와) 한두 글자만 달라요."
+    "rule.B02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain} differs from the official address {official} by only a character or two."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain} differs from the official address {official} by only a character or two."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain}은(는) 공식 주소 {official}과(와) 한두 글자만 달라요."
           }
         }
       }
     },
-    "rule.B02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 주소와 혼동되는 도메인이 아니에요"
+    "rule.B02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a look-alike of an official domain"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a look-alike of an official domain"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 주소와 혼동되는 도메인이 아니에요"
           }
         }
       }
     },
-    "rule.B02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 주소와 한두 글자만 달라요"
+    "rule.B02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only a character or two off from an official address"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Only a character or two off from an official address"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 주소와 한두 글자만 달라요"
           }
         }
       }
     },
-    "rule.B03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "그래도 접속 후 로그인·결제를 요구하면 페이지 주소를 한 번 더 확인하세요."
+    "rule.B03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Still, if the page asks you to sign in or pay, check the address once more."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Still, if the page asks you to sign in or pay, check the address once more."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래도 접속 후 로그인·결제를 요구하면 페이지 주소를 한 번 더 확인하세요."
           }
         }
       }
     },
-    "rule.B03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain}은(는) {brand}의 공식 도메인이고, 암호화된 연결(HTTPS)로 접속해요."
+    "rule.B03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain} is an official {brand} domain and uses an encrypted (HTTPS) connection."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain} is an official {brand} domain and uses an encrypted (HTTPS) connection."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain}은(는) {brand}의 공식 도메인이고, 암호화된 연결(HTTPS)로 접속해요."
           }
         }
       }
     },
-    "rule.B03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 도메인으로 확인됐어요"
+    "rule.B03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmed as an official domain"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Confirmed as an official domain"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 도메인으로 확인됐어요"
           }
         }
       }
     },
-    "rule.B03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 도메인으로 확인됐어요"
+    "rule.B03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmed as an official domain"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Confirmed as an official domain"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 도메인으로 확인됐어요"
           }
         }
       }
     },
-    "rule.C01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "QR 코드 주변을 손으로 만져 덧붙인 흔적이 없는지 확인하세요."
+    "rule.C01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run a finger over the code to check for a sticker on top."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Run a finger over the code to check for a sticker on top."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR 코드 주변을 손으로 만져 덧붙인 흔적이 없는지 확인하세요."
           }
         }
       }
     },
-    "rule.C01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "한 화면에서 서로 다른 QR 코드가 {count}개 보였어요. 진짜 코드 위에 스티커를 덧붙이는 수법이 알려져 있어요."
+    "rule.C01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{count} different QR codes were seen in one frame. Sticking a fake code over the real one is a known trick."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{count} different QR codes were seen in one frame. Sticking a fake code over the real one is a known trick."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한 화면에서 서로 다른 QR 코드가 {count}개 보였어요. 진짜 코드 위에 스티커를 덧붙이는 수법이 알려져 있어요."
           }
         }
       }
     },
-    "rule.C01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "한 화면에 QR 코드가 하나예요"
+    "rule.C01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only one QR code in the frame"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Only one QR code in the frame"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한 화면에 QR 코드가 하나예요"
           }
         }
       }
     },
-    "rule.C01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "QR 코드가 겹쳐 붙어 있을 수 있어요"
+    "rule.C01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR codes may be layered on top of each other"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "QR codes may be layered on top of each other"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR 코드가 겹쳐 붙어 있을 수 있어요"
           }
         }
       }
     },
-    "rule.C02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "보낸 쪽에 공식 번호로 직접 확인하세요."
+    "rule.C02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact the sender directly using an official number."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contact the sender directly using an official number."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보낸 쪽에 공식 번호로 직접 확인하세요."
           }
         }
       }
     },
-    "rule.C02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "메일이나 문자로 받은 QR인데 로그인·인증 또는 설치를 요구하는 신호({because})가 있어요. 정상 기관은 이런 방식으로 요구하지 않아요."
+    "rule.C02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This QR came from an email or message and shows signs of a login or install request ({because}). Legitimate organizations don't do this."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This QR came from an email or message and shows signs of a login or install request ({because}). Legitimate organizations don't do this."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메일이나 문자로 받은 QR인데 로그인·인증 또는 설치를 요구하는 신호({because})가 있어요. 정상 기관은 이런 방식으로 요구하지 않아요."
           }
         }
       }
     },
-    "rule.C02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "메일·문자로 받은 QR이지만 로그인·설치 요구가 없어요"
+    "rule.C02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From a message, but no login or install request"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "From a message, but no login or install request"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메일·문자로 받은 QR이지만 로그인·설치 요구가 없어요"
           }
         }
       }
     },
-    "rule.C02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "메일·문자로 받은 QR이 로그인·설치를 요구해요"
+    "rule.C02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A QR from a message is asking you to sign in or install"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A QR from a message is asking you to sign in or install"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메일·문자로 받은 QR이 로그인·설치를 요구해요"
           }
         }
       }
     },
-    "rule.C03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "기기나 안내문에 적힌 공식 앱으로 결제하세요."
+    "rule.C03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pay through the official app printed on the machine or sign."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pay through the official app printed on the machine or sign."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기나 안내문에 적힌 공식 앱으로 결제하세요."
           }
         }
       }
     },
-    "rule.C03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주차·결제·대여용으로 찍은 QR인데 {domain}은(는) 알려진 결제·모빌리티 서비스 주소가 아니에요."
+    "rule.C03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You scanned this as a parking, payment or rental QR, but {domain} is not a known payment or mobility service address."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You scanned this as a parking, payment or rental QR, but {domain} is not a known payment or mobility service address."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주차·결제·대여용으로 찍은 QR인데 {domain}은(는) 알려진 결제·모빌리티 서비스 주소가 아니에요."
           }
         }
       }
     },
-    "rule.C03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "알려진 결제·대여 서비스 주소예요"
+    "rule.C03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Known payment or rental service address"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Known payment or rental service address"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알려진 결제·대여 서비스 주소예요"
           }
         }
       }
     },
-    "rule.C03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "결제·대여용 QR치고 낯선 주소예요"
+    "rule.C03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unfamiliar address for a payment or rental QR"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "An unfamiliar address for a payment or rental QR"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "결제·대여용 QR치고 낯선 주소예요"
           }
         }
       }
     },
-    "rule.D01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "오래된 공식 서비스라고 주장한다면 의심하세요."
+    "rule.D01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Be suspicious if it claims to be a long-established service."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Be suspicious if it claims to be a long-established service."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오래된 공식 서비스라고 주장한다면 의심하세요."
           }
         }
       }
     },
-    "rule.D01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain}은(는) 등록된 지 {days}일밖에 안 됐어요. 피싱 사이트는 대부분 만든 지 얼마 안 된 도메인을 써요."
+    "rule.D01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain} was registered only {days} days ago. Most phishing sites use very recently created domains."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain} was registered only {days} days ago. Most phishing sites use very recently created domains."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain}은(는) 등록된 지 {days}일밖에 안 됐어요. 피싱 사이트는 대부분 만든 지 얼마 안 된 도메인을 써요."
           }
         }
       }
     },
-    "rule.D01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최근에 만들어진 도메인이 아니에요"
+    "rule.D01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a recently created domain"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a recently created domain"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근에 만들어진 도메인이 아니에요"
           }
         }
       }
     },
-    "rule.D01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "생긴 지 한 달도 안 된 도메인이에요"
+    "rule.D01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This domain is less than a month old"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This domain is less than a month old"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "생긴 지 한 달도 안 된 도메인이에요"
           }
         }
       }
     },
-    "rule.D02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "낯선 서비스라면 공식 채널로 확인하세요."
+    "rule.D02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the service is unfamiliar, verify through an official channel."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "If the service is unfamiliar, verify through an official channel."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "낯선 서비스라면 공식 채널로 확인하세요."
           }
         }
       }
     },
-    "rule.D02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain}은(는) 등록된 지 {days}일 됐어요. 아직 신뢰 기록이 쌓이지 않은 도메인이에요."
+    "rule.D02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain} was registered {days} days ago and hasn't built up much of a track record yet."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain} was registered {days} days ago and hasn't built up much of a track record yet."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain}은(는) 등록된 지 {days}일 됐어요. 아직 신뢰 기록이 쌓이지 않은 도메인이에요."
           }
         }
       }
     },
-    "rule.D02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "도메인 등록 기간이 충분해요"
+    "rule.D02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain has been registered long enough"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domain has been registered long enough"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도메인 등록 기간이 충분해요"
           }
         }
       }
     },
-    "rule.D02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "비교적 최근에 만들어진 도메인이에요"
+    "rule.D02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A relatively new domain"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A relatively new domain"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비교적 최근에 만들어진 도메인이에요"
           }
         }
       }
     },
-    "rule.D03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다른 항목을 기준으로 판단하세요."
+    "rule.D03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rely on the other findings to decide."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rely on the other findings to decide."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 항목을 기준으로 판단하세요."
           }
         }
       }
     },
-    "rule.D03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{domain}의 등록 정보를 조회할 수 없었어요. 일부 국가 도메인은 조회를 지원하지 않아요."
+    "rule.D03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registration data for {domain} wasn't available. Some country-code domains don't support lookups."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Registration data for {domain} wasn't available. Some country-code domains don't support lookups."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{domain}의 등록 정보를 조회할 수 없었어요. 일부 국가 도메인은 조회를 지원하지 않아요."
           }
         }
       }
     },
-    "rule.D03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "도메인 생성일을 확인했어요"
+    "rule.D03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain creation date checked"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domain creation date checked"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도메인 생성일을 확인했어요"
           }
         }
       }
     },
-    "rule.D03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "도메인 생성일을 확인하지 못했어요"
+    "rule.D03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't check when the domain was created"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn't check when the domain was created"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도메인 생성일을 확인하지 못했어요"
           }
         }
       }
     },
-    "rule.H01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "로그인이 꼭 필요하면 공식 앱이나 즐겨찾기로 접속하세요."
+    "rule.H01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you really need to sign in, use the official app or a bookmark."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "If you really need to sign in, use the official app or a bookmark."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인이 꼭 필요하면 공식 앱이나 즐겨찾기로 접속하세요."
           }
         }
       }
     },
-    "rule.H01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 페이지는 비밀번호를 입력받아요. QR로 연결된 로그인 요구는 대표적인 피싱 신호예요."
+    "rule.H01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This page has a password field. Login prompts reached via QR code are a classic phishing signal."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This page has a password field. Login prompts reached via QR code are a classic phishing signal."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 페이지는 비밀번호를 입력받아요. QR로 연결된 로그인 요구는 대표적인 피싱 신호예요."
           }
         }
       }
     },
-    "rule.H01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "비밀번호 입력란이 없어요"
+    "rule.H01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No password field"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No password field"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비밀번호 입력란이 없어요"
           }
         }
       }
     },
-    "rule.H01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "비밀번호를 입력받는 페이지예요"
+    "rule.H01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This page asks for a password"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This page asks for a password"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비밀번호를 입력받는 페이지예요"
           }
         }
       }
     },
-    "rule.H02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 페이지에 아무것도 입력하지 마세요."
+    "rule.H02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't enter anything on this page."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Don't enter anything on this page."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 페이지에 아무것도 입력하지 마세요."
           }
         }
       }
     },
-    "rule.H02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "페이지의 입력 양식이 {site}이(가) 아닌 {host}(으)로 전송돼요."
+    "rule.H02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The page's form submits to {host} rather than {site}."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The page's form submits to {host} rather than {site}."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지의 입력 양식이 {site}이(가) 아닌 {host}(으)로 전송돼요."
           }
         }
       }
     },
-    "rule.H02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "입력 양식이 같은 사이트로 전송돼요"
+    "rule.H02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forms submit to the same site"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forms submit to the same site"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입력 양식이 같은 사이트로 전송돼요"
           }
         }
       }
     },
-    "rule.H02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "입력한 정보가 다른 사이트로 전송돼요"
+    "rule.H02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What you enter is sent to a different site"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "What you enter is sent to a different site"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입력한 정보가 다른 사이트로 전송돼요"
           }
         }
       }
     },
-    "rule.H03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{brand} 공식 앱이나 검색으로 직접 찾아 들어가세요."
+    "rule.H03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go through the official {brand} app or a search instead."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Go through the official {brand} app or a search instead."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{brand} 공식 앱이나 검색으로 직접 찾아 들어가세요."
           }
         }
       }
     },
-    "rule.H03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "페이지 제목이나 본문에 '{keyword}'이(가) 있지만 주소 {host}는 {brand}의 공식 도메인이 아니에요."
+    "rule.H03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The title or body mentions '{keyword}', but the address {host} is not an official {brand} domain."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The title or body mentions '{keyword}', but the address {host} is not an official {brand} domain."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지 제목이나 본문에 '{keyword}'이(가) 있지만 주소 {host}는 {brand}의 공식 도메인이 아니에요."
           }
         }
       }
     },
-    "rule.H03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "브랜드를 흉내 낸 페이지가 아니에요"
+    "rule.H03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a brand-impersonating page"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a brand-impersonating page"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "브랜드를 흉내 낸 페이지가 아니에요"
           }
         }
       }
     },
-    "rule.H03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "페이지가 {brand}처럼 꾸며져 있어요"
+    "rule.H03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The page is dressed up to look like {brand}"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The page is dressed up to look like {brand}"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지가 {brand}처럼 꾸며져 있어요"
           }
         }
       }
     },
-    "rule.H05.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "열지 마세요."
+    "rule.H05.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not open it."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do not open it."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열지 마세요."
           }
         }
       }
     },
-    "rule.H05.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{host}의 TLS 인증서를 확인할 수 없었어요. 가짜 사이트이거나 연결이 가로채이고 있을 수 있어요."
+    "rule.H05.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The TLS certificate for {host} couldn't be verified. The site may be fake or the connection intercepted."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The TLS certificate for {host} couldn't be verified. The site may be fake or the connection intercepted."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{host}의 TLS 인증서를 확인할 수 없었어요. 가짜 사이트이거나 연결이 가로채이고 있을 수 있어요."
           }
         }
       }
     },
-    "rule.H05.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "보안 인증서가 정상이에요"
+    "rule.H05.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security certificate is valid"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Security certificate is valid"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보안 인증서가 정상이에요"
           }
         }
       }
     },
-    "rule.H05.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "사이트 보안 인증서에 문제가 있어요"
+    "rule.H05.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There's a problem with the site's security certificate"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "There's a problem with the site's security certificate"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사이트 보안 인증서에 문제가 있어요"
           }
         }
       }
     },
-    "rule.P01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "열지 마세요. 원문을 복사해 두고 어디서 받은 코드인지 확인하세요."
+    "rule.P01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not open it. Copy the raw content if needed and check where the code came from."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do not open it. Copy the raw content if needed and check where the code came from."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열지 마세요. 원문을 복사해 두고 어디서 받은 코드인지 확인하세요."
           }
         }
       }
     },
-    "rule.P01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 QR에는 웹 주소 대신 {scheme}: 형식의 실행 코드가 들어 있어요. 브라우저가 열자마자 코드를 실행할 수 있어요."
+    "rule.P01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instead of a web address, this QR holds {scheme}: code that a browser could run as soon as it opens."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Instead of a web address, this QR holds {scheme}: code that a browser could run as soon as it opens."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 QR에는 웹 주소 대신 {scheme}: 형식의 실행 코드가 들어 있어요. 브라우저가 열자마자 코드를 실행할 수 있어요."
           }
         }
       }
     },
-    "rule.P01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "실행 코드 형식이 아니에요"
+    "rule.P01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not an executable-code format"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not an executable-code format"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실행 코드 형식이 아니에요"
           }
         }
       }
     },
-    "rule.P01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "웹 주소가 아닌 실행 코드가 들어 있어요"
+    "rule.P01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This contains executable code, not a web address"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This contains executable code, not a web address"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "웹 주소가 아닌 실행 코드가 들어 있어요"
           }
         }
       }
     },
-    "rule.P02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "설치하지 마세요. 필요한 앱은 App Store에서 직접 검색하세요."
+    "rule.P02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not install it. Search the App Store directly for the app you need."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do not install it. Search the App Store directly for the app you need."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설치하지 마세요. 필요한 앱은 App Store에서 직접 검색하세요."
           }
         }
       }
     },
-    "rule.P02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "앱스토어 심사를 거치지 않은 앱을 설치하게 하는 링크예요."
+    "rule.P02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This link installs an app that has not gone through App Store review."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This link installs an app that has not gone through App Store review."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱스토어 심사를 거치지 않은 앱을 설치하게 하는 링크예요."
           }
         }
       }
     },
-    "rule.P02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "앱스토어 우회 설치 링크가 아니에요"
+    "rule.P02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not an out-of-store install link"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not an out-of-store install link"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱스토어 우회 설치 링크가 아니에요"
           }
         }
       }
     },
-    "rule.P02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "앱스토어를 거치지 않는 앱 설치 링크예요"
+    "rule.P02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This link installs an app without the App Store"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This link installs an app without the App Store"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱스토어를 거치지 않는 앱 설치 링크예요"
           }
         }
       }
     },
-    "rule.P03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "회사나 학교에서 직접 안내받은 경우가 아니면 설치하지 마세요."
+    "rule.P03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not install it unless your organization or school told you to directly."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do not install it unless your organization or school told you to directly."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회사나 학교에서 직접 안내받은 경우가 아니면 설치하지 마세요."
           }
         }
       }
     },
-    "rule.P03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "구성 프로파일(.mobileconfig)은 Wi-Fi, VPN, 인증서 등 기기 설정을 통째로 바꿀 수 있어요."
+    "rule.P03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A configuration profile (.mobileconfig) can change Wi-Fi, VPN, certificates and other device settings at once."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A configuration profile (.mobileconfig) can change Wi-Fi, VPN, certificates and other device settings at once."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구성 프로파일(.mobileconfig)은 Wi-Fi, VPN, 인증서 등 기기 설정을 통째로 바꿀 수 있어요."
           }
         }
       }
     },
-    "rule.P03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "기기 설정 프로파일이 아니에요"
+    "rule.P03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a device configuration profile"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a device configuration profile"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기 설정 프로파일이 아니에요"
           }
         }
       }
     },
-    "rule.P03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "기기 설정을 바꾸는 프로파일 설치 파일이에요"
+    "rule.P03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This installs a profile that changes device settings"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This installs a profile that changes device settings"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기 설정을 바꾸는 프로파일 설치 파일이에요"
           }
         }
       }
     },
-    "rule.P04.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "내려받지 마세요. 앱은 App Store에서, 프로그램은 제조사 공식 사이트에서 받으세요."
+    "rule.P04.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not download it. Get apps from the App Store and programs from the maker's official site."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do not download it. Get apps from the App Store and programs from the maker's official site."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내려받지 마세요. 앱은 App Store에서, 프로그램은 제조사 공식 사이트에서 받으세요."
           }
         }
       }
     },
-    "rule.P04.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "링크가 .{ext} 설치 파일로 이어져요. 메일·문자로 받은 QR의 설치 파일은 악성 앱인 경우가 많아요."
+    "rule.P04.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The link leads to a .{ext} installer. Installers from QR codes in messages are often malicious apps."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The link leads to a .{ext} installer. Installers from QR codes in messages are often malicious apps."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "링크가 .{ext} 설치 파일로 이어져요. 메일·문자로 받은 QR의 설치 파일은 악성 앱인 경우가 많아요."
           }
         }
       }
     },
-    "rule.P04.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "설치 파일을 내려받지 않아요"
+    "rule.P04.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does not download an installer"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Does not download an installer"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설치 파일을 내려받지 않아요"
           }
         }
       }
     },
-    "rule.P04.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "앱·프로그램 설치 파일을 내려받아요"
+    "rule.P04.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This downloads an app or program installer"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This downloads an app or program installer"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱·프로그램 설치 파일을 내려받아요"
           }
         }
       }
     },
-    "rule.P05.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "어떤 앱이 열리는지 확실하지 않으면 열지 마세요."
+    "rule.P05.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't open it unless you know exactly which app it launches."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Don't open it unless you know exactly which app it launches."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어떤 앱이 열리는지 확실하지 않으면 열지 마세요."
           }
         }
       }
     },
-    "rule.P05.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{scheme}: 형식은 알려지지 않은 앱을 바로 실행하려는 링크예요. 어떤 앱이 열릴지 미리 알 수 없어요."
+    "rule.P05.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The {scheme}: format tries to launch an unknown app. You can't tell in advance which app will open."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The {scheme}: format tries to launch an unknown app. You can't tell in advance which app will open."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{scheme}: 형식은 알려지지 않은 앱을 바로 실행하려는 링크예요. 어떤 앱이 열릴지 미리 알 수 없어요."
           }
         }
       }
     },
-    "rule.P05.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "알 수 없는 앱 실행 링크가 아니에요"
+    "rule.P05.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not an unknown app-launch link"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not an unknown app-launch link"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알 수 없는 앱 실행 링크가 아니에요"
           }
         }
       }
     },
-    "rule.P05.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다른 앱을 바로 실행하는 링크예요"
+    "rule.P05.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This link launches another app directly"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This link launches another app directly"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 앱을 바로 실행하는 링크예요"
           }
         }
       }
     },
-    "rule.P05a.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{app} 앱이 열리면 결제·송금·로그인 요구가 있는지 살펴보세요."
+    "rule.P05a.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When {app} opens, watch for requests to pay, transfer money or sign in."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "When {app} opens, watch for requests to pay, transfer money or sign in."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{app} 앱이 열리면 결제·송금·로그인 요구가 있는지 살펴보세요."
           }
         }
       }
     },
-    "rule.P05a.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 링크는 {app} 앱을 바로 열어요. 앱이 열린 뒤 요구하는 내용을 다시 확인하세요."
+    "rule.P05a.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This link opens the {app} app directly. Check what the app asks for after it opens."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This link opens the {app} app directly. Check what the app asks for after it opens."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 링크는 {app} 앱을 바로 열어요. 앱이 열린 뒤 요구하는 내용을 다시 확인하세요."
           }
         }
       }
     },
-    "rule.P05a.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "알려진 앱 실행 링크가 아니에요"
+    "rule.P05a.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a known app-launch link"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a known app-launch link"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알려진 앱 실행 링크가 아니에요"
           }
         }
       }
     },
-    "rule.P05a.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{app} 앱을 실행하는 링크예요"
+    "rule.P05a.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This link opens the {app} app"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This link opens the {app} app"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{app} 앱을 실행하는 링크예요"
           }
         }
       }
     },
-    "rule.P06.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 네트워크에서는 로그인이나 결제를 하지 마세요."
+    "rule.P06.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avoid signing in or paying while on this network."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Avoid signing in or paying while on this network."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 네트워크에서는 로그인이나 결제를 하지 마세요."
           }
         }
       }
     },
-    "rule.P06.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "'{ssid}' 네트워크는 {security} 방식이라 주고받는 데이터가 다른 사람에게 노출될 수 있어요."
+    "rule.P06.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The '{ssid}' network uses {security}, so data you send could be exposed to others."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The '{ssid}' network uses {security}, so data you send could be exposed to others."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'{ssid}' 네트워크는 {security} 방식이라 주고받는 데이터가 다른 사람에게 노출될 수 있어요."
           }
         }
       }
     },
-    "rule.P06.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "암호화된 와이파이 설정이에요"
+    "rule.P06.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypted Wi-Fi settings"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encrypted Wi-Fi settings"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "암호화된 와이파이 설정이에요"
           }
         }
       }
     },
-    "rule.P06.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "암호화되지 않은 와이파이에 연결해요"
+    "rule.P06.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This connects to unencrypted Wi-Fi"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This connects to unencrypted Wi-Fi"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "암호화되지 않은 와이파이에 연결해요"
           }
         }
       }
     },
-    "rule.P07.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "문자를 보내지 말고, 본문의 링크도 열지 마세요."
+    "rule.P07.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't send the message and don't open the link in it."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Don't send the message and don't open the link in it."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자를 보내지 말고, 본문의 링크도 열지 마세요."
           }
         }
       }
     },
-    "rule.P07.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{number}(으)로 보낼 문자에 {link} 링크가 미리 적혀 있어요. 스미싱 링크를 퍼뜨리는 데 쓰이는 방식이에요."
+    "rule.P07.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The message to {number} is pre-filled with the link {link}. This technique is used to spread smishing links."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The message to {number} is pre-filled with the link {link}. This technique is used to spread smishing links."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{number}(으)로 보낼 문자에 {link} 링크가 미리 적혀 있어요. 스미싱 링크를 퍼뜨리는 데 쓰이는 방식이에요."
           }
         }
       }
     },
-    "rule.P07.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "문자 본문에 링크가 없어요"
+    "rule.P07.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No link in the message body"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No link in the message body"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자 본문에 링크가 없어요"
           }
         }
       }
     },
-    "rule.P07.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "문자 본문에 링크가 미리 들어 있어요"
+    "rule.P07.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The text message already contains a link"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The text message already contains a link"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자 본문에 링크가 미리 들어 있어요"
           }
         }
       }
     },
-    "rule.P08.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "전화하거나 문자를 보내지 마세요."
+    "rule.P08.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't call or text this number."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Don't call or text this number."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전화하거나 문자를 보내지 마세요."
           }
         }
       }
     },
-    "rule.P08.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{number}은(는) 060으로 시작하는 유료 정보서비스 번호예요. 통화·문자 요금이 비싸게 청구될 수 있어요."
+    "rule.P08.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{number} starts with 060, a Korean premium-rate service prefix. Calls and texts may be billed at high rates."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{number} starts with 060, a Korean premium-rate service prefix. Calls and texts may be billed at high rates."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{number}은(는) 060으로 시작하는 유료 정보서비스 번호예요. 통화·문자 요금이 비싸게 청구될 수 있어요."
           }
         }
       }
     },
-    "rule.P08.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유료 정보서비스 번호가 아니에요"
+    "rule.P08.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a premium-rate number"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a premium-rate number"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유료 정보서비스 번호가 아니에요"
           }
         }
       }
     },
-    "rule.P08.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유료 전화번호로 연결돼요"
+    "rule.P08.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This connects to a premium-rate number"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This connects to a premium-rate number"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유료 전화번호로 연결돼요"
           }
         }
       }
     },
-    "rule.P09.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "받는 사람이 맞는지 가게나 상대방에게 직접 확인한 뒤 보내세요."
+    "rule.P09.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm the recipient directly with the shop or person before sending."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Confirm the recipient directly with the shop or person before sending."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "받는 사람이 맞는지 가게나 상대방에게 직접 확인한 뒤 보내세요."
           }
         }
       }
     },
-    "rule.P09.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 QR에는 {scheme} 송금 정보({address})가 들어 있어요. 가게 QR 위에 가짜 송금 QR을 붙이는 수법이 알려져 있어요."
+    "rule.P09.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This QR holds {scheme} payment details ({address}). Fake payment QRs pasted over a shop's real code are a known scam."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This QR holds {scheme} payment details ({address}). Fake payment QRs pasted over a shop's real code are a known scam."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 QR에는 {scheme} 송금 정보({address})가 들어 있어요. 가게 QR 위에 가짜 송금 QR을 붙이는 수법이 알려져 있어요."
           }
         }
       }
     },
-    "rule.P09.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "송금·결제 정보가 아니에요"
+    "rule.P09.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not payment or transfer information"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not payment or transfer information"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "송금·결제 정보가 아니에요"
           }
         }
       }
     },
-    "rule.P09.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "돈을 보내는 정보가 들어 있어요"
+    "rule.P09.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This contains payment information"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This contains payment information"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "돈을 보내는 정보가 들어 있어요"
           }
         }
       }
     },
-    "rule.P10.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "글 내용과 링크 주소가 서로 맞는지 확인하세요."
+    "rule.P10.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check that the link matches what the text says."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check that the link matches what the text says."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "글 내용과 링크 주소가 서로 맞는지 확인하세요."
           }
         }
       }
     },
-    "rule.P10.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일반 텍스트 안에 링크 {count}개가 있어요. 첫 번째 링크({link})를 기준으로 주소를 검사했어요."
+    "rule.P10.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This plain text contains {count} link(s). The address check was run on the first one ({link})."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This plain text contains {count} link(s). The address check was run on the first one ({link})."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반 텍스트 안에 링크 {count}개가 있어요. 첫 번째 링크({link})를 기준으로 주소를 검사했어요."
           }
         }
       }
     },
-    "rule.P10.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "글 속에 링크가 없어요"
+    "rule.P10.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No link inside the text"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No link inside the text"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "글 속에 링크가 없어요"
           }
         }
       }
     },
-    "rule.P10.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "글 속에 링크가 들어 있어요"
+    "rule.P10.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The text contains a link"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The text contains a link"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "글 속에 링크가 들어 있어요"
           }
         }
       }
     },
-    "rule.R01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최종 도착 주소를 확인한 뒤 여세요."
+    "rule.R01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the final destination before opening."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check the final destination before opening."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최종 도착 주소를 확인한 뒤 여세요."
           }
         }
       }
     },
-    "rule.R01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "도착할 때까지 {count}번 다른 주소를 거쳐요. 여러 사이트를 연쇄로 거치는 방식은 추적을 어렵게 하려는 경우가 있어요."
+    "rule.R01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It redirects {count} times before arriving. Chaining through many sites is sometimes used to make tracing harder."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "It redirects {count} times before arriving. Chaining through many sites is sometimes used to make tracing harder."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도착할 때까지 {count}번 다른 주소를 거쳐요. 여러 사이트를 연쇄로 거치는 방식은 추적을 어렵게 하려는 경우가 있어요."
           }
         }
       }
     },
-    "rule.R01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "리다이렉트 횟수가 적어요"
+    "rule.R01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Few redirects"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Few redirects"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "리다이렉트 횟수가 적어요"
           }
         }
       }
     },
-    "rule.R01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "여러 번 다른 주소를 거쳐 가요"
+    "rule.R01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passes through several addresses"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passes through several addresses"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 번 다른 주소를 거쳐 가요"
           }
         }
       }
     },
-    "rule.R02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "도착 주소 {final}이(가) 믿을 만한지 확인하세요."
+    "rule.R02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check whether the destination {final} is trustworthy."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check whether the destination {final} is trustworthy."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도착 주소 {final}이(가) 믿을 만한지 확인하세요."
           }
         }
       }
     },
-    "rule.R02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "스캔한 주소는 {first}이지만 실제로는 {final}에 도착해요."
+    "rule.R02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You scanned {first}, but it actually lands on {final}."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You scanned {first}, but it actually lands on {final}."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스캔한 주소는 {first}이지만 실제로는 {final}에 도착해요."
           }
         }
       }
     },
-    "rule.R02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "스캔한 주소와 도착 주소가 같아요"
+    "rule.R02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scanned and final addresses match"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scanned and final addresses match"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스캔한 주소와 도착 주소가 같아요"
           }
         }
       }
     },
-    "rule.R02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "처음 보인 주소와 실제 도착 주소가 달라요"
+    "rule.R02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address you saw differs from where it lands"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address you saw differs from where it lands"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "처음 보인 주소와 실제 도착 주소가 달라요"
           }
         }
       }
     },
-    "rule.R03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "로그인이나 개인정보 입력을 요구하면 멈추세요."
+    "rule.R03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop if it asks you to sign in or enter personal information."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop if it asks you to sign in or enter personal information."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인이나 개인정보 입력을 요구하면 멈추세요."
           }
         }
       }
     },
-    "rule.R03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{hop}번째 이동에서 HTTPS가 http://{host}로 바뀌어요. 그 뒤로는 입력한 내용이 암호화 없이 전송돼요."
+    "rule.R03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At redirect {hop} the connection changes from HTTPS to http://{host}. From there, what you enter is sent unencrypted."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "At redirect {hop} the connection changes from HTTPS to http://{host}. From there, what you enter is sent unencrypted."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{hop}번째 이동에서 HTTPS가 http://{host}로 바뀌어요. 그 뒤로는 입력한 내용이 암호화 없이 전송돼요."
           }
         }
       }
     },
-    "rule.R03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "연결이 끝까지 암호화돼요"
+    "rule.R03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypted all the way through"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encrypted all the way through"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연결이 끝까지 암호화돼요"
           }
         }
       }
     },
-    "rule.R03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "중간에 암호화되지 않은 연결로 바뀌어요"
+    "rule.R03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switches to an unencrypted connection midway"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Switches to an unencrypted connection midway"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중간에 암호화되지 않은 연결로 바뀌어요"
           }
         }
       }
     },
-    "rule.R04.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다른 경로로 주소를 확인하거나 열지 마세요."
+    "rule.R04.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify the address another way, or don't open it."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verify the address another way, or don't open it."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 경로로 주소를 확인하거나 열지 마세요."
           }
         }
       }
     },
-    "rule.R04.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{service} 단축 주소가 어디로 가는지 확인하는 데 실패했어요({outcome}). 목적지를 모르는 상태예요."
+    "rule.R04.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resolving the {service} short link failed ({outcome}). The destination is unknown."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Resolving the {service} short link failed ({outcome}). The destination is unknown."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{service} 단축 주소가 어디로 가는지 확인하는 데 실패했어요({outcome}). 목적지를 모르는 상태예요."
           }
         }
       }
     },
-    "rule.R04.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "단축 주소의 목적지를 확인했어요"
+    "rule.R04.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short link destination resolved"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Short link destination resolved"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축 주소의 목적지를 확인했어요"
           }
         }
       }
     },
-    "rule.R04.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "단축 주소의 실제 목적지를 확인하지 못했어요"
+    "rule.R04.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't resolve where the short link goes"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn't resolve where the short link goes"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축 주소의 실제 목적지를 확인하지 못했어요"
           }
         }
       }
     },
-    "rule.R05.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최종 도착 주소를 확인한 뒤 여세요."
+    "rule.R05.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the final destination before opening."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check the final destination before opening."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최종 도착 주소를 확인한 뒤 여세요."
           }
         }
       }
     },
-    "rule.R05.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "페이지 안의 자동 이동(meta refresh) 코드로 {target}(으)로 보내요. 보안 검사를 피하려는 기법으로 쓰이기도 해요."
+    "rule.R05.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An automatic redirect (meta refresh) in the page sends you to {target}. This is sometimes used to evade security checks."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "An automatic redirect (meta refresh) in the page sends you to {target}. This is sometimes used to evade security checks."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지 안의 자동 이동(meta refresh) 코드로 {target}(으)로 보내요. 보안 검사를 피하려는 기법으로 쓰이기도 해요."
           }
         }
       }
     },
-    "rule.R05.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "페이지 안 자동 이동이 없어요"
+    "rule.R05.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No automatic redirect inside the page"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No automatic redirect inside the page"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지 안 자동 이동이 없어요"
           }
         }
       }
     },
-    "rule.R05.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "페이지가 열리자마자 다른 곳으로 보내요"
+    "rule.R05.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The page forwards you as soon as it opens"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The page forwards you as soon as it opens"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페이지가 열리자마자 다른 곳으로 보내요"
           }
         }
       }
     },
-    "rule.T01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "열지 마세요. 이미 열었다면 비밀번호를 바꾸고 결제 내역을 확인하세요."
+    "rule.T01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not open it. If you already did, change your passwords and check your payment history."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do not open it. If you already did, change your passwords and check your payment history."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열지 마세요. 이미 열었다면 비밀번호를 바꾸고 결제 내역을 확인하세요."
           }
         }
       }
     },
-    "rule.T01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{provider}에서 {url} 주소가 위험({threats})으로 등록돼 있어요."
+    "rule.T01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{provider} lists {url} as dangerous ({threats})."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{provider} lists {url} as dangerous ({threats})."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{provider}에서 {url} 주소가 위험({threats})으로 등록돼 있어요."
           }
         }
       }
     },
-    "rule.T01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "악성 사이트 데이터베이스에 없어요"
+    "rule.T01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not in the malicious-site database"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not in the malicious-site database"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "악성 사이트 데이터베이스에 없어요"
           }
         }
       }
     },
-    "rule.T01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "악성 사이트 데이터베이스에서 발견됐어요"
+    "rule.T01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Found in a malicious-site database"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Found in a malicious-site database"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "악성 사이트 데이터베이스에서 발견됐어요"
           }
         }
       }
     },
-    "rule.U01.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "로그인이나 개인정보 입력을 요구하면 멈추세요."
+    "rule.U01.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop if it asks you to sign in or enter personal information."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop if it asks you to sign in or enter personal information."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인이나 개인정보 입력을 요구하면 멈추세요."
           }
         }
       }
     },
-    "rule.U01.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "http:// 주소라 입력한 내용이 암호화 없이 전송돼요."
+    "rule.U01.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is an http:// address, so anything you enter is sent without encryption."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This is an http:// address, so anything you enter is sent without encryption."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "http:// 주소라 입력한 내용이 암호화 없이 전송돼요."
           }
         }
       }
     },
-    "rule.U01.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "암호화된 연결(HTTPS)이에요"
+    "rule.U01.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypted connection (HTTPS)"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encrypted connection (HTTPS)"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "암호화된 연결(HTTPS)이에요"
           }
         }
       }
     },
-    "rule.U01.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "암호화되지 않은 연결이에요"
+    "rule.U01.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The connection is not encrypted"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The connection is not encrypted"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "암호화되지 않은 연결이에요"
           }
         }
       }
     },
-    "rule.U02.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "어디로 연결되는지 알 수 없으니 열지 않는 것이 좋아요."
+    "rule.U02.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can't tell where this leads, so it's best not to open it."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You can't tell where this leads, so it's best not to open it."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어디로 연결되는지 알 수 없으니 열지 않는 것이 좋아요."
           }
         }
       }
     },
-    "rule.U02.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "사이트 이름 대신 IP 주소({ip})로 바로 접속해요. 정상 서비스는 보통 이런 주소를 쓰지 않아요."
+    "rule.U02.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It connects straight to the IP address {ip} instead of a site name. Legitimate services rarely do this."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "It connects straight to the IP address {ip} instead of a site name. Legitimate services rarely do this."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사이트 이름 대신 IP 주소({ip})로 바로 접속해요. 정상 서비스는 보통 이런 주소를 쓰지 않아요."
           }
         }
       }
     },
-    "rule.U02.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "숫자(IP) 주소가 아니에요"
+    "rule.U02.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a numeric (IP) address"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a numeric (IP) address"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숫자(IP) 주소가 아니에요"
           }
         }
       }
     },
-    "rule.U02.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "도메인 대신 숫자 주소를 써요"
+    "rule.U02.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses a numeric address instead of a domain"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uses a numeric address instead of a domain"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도메인 대신 숫자 주소를 써요"
           }
         }
       }
     },
-    "rule.U03.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "보이는 이름이 아니라 {hidden_host}가 맞는지 확인하세요."
+    "rule.U03.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check whether {hidden_host}, not the visible name, is where you want to go."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check whether {hidden_host}, not the visible name, is where you want to go."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보이는 이름이 아니라 {hidden_host}가 맞는지 확인하세요."
           }
         }
       }
     },
-    "rule.U03.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소의 @ 앞부분은 무시되고, 실제로는 @ 뒤의 {hidden_host}로 접속해요."
+    "rule.U03.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything before the @ is ignored; you would actually connect to {hidden_host} after the @."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Everything before the @ is ignored; you would actually connect to {hidden_host} after the @."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소의 @ 앞부분은 무시되고, 실제로는 @ 뒤의 {hidden_host}로 접속해요."
           }
         }
       }
     },
-    "rule.U03.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소에 숨겨진 목적지(@)가 없어요"
+    "rule.U03.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hidden destination (@) in the address"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No hidden destination (@) in the address"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소에 숨겨진 목적지(@)가 없어요"
           }
         }
       }
     },
-    "rule.U03.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 앞부분이 진짜 목적지를 가리고 있어요"
+    "rule.U03.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The start of the address hides the real destination"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The start of the address hides the real destination"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 앞부분이 진짜 목적지를 가리고 있어요"
           }
         }
       }
     },
-    "rule.U04.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 서비스 주소인지 다시 확인하세요."
+    "rule.U04.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double-check that this is the official service address."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Double-check that this is the official service address."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 서비스 주소인지 다시 확인하세요."
           }
         }
       }
     },
-    "rule.U04.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일반 웹 포트(80/443) 대신 {port} 포트를 써요. 임시로 띄운 서버일 가능성이 있어요."
+    "rule.U04.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It uses port {port} instead of the standard web ports (80/443). This may be a temporary server."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "It uses port {port} instead of the standard web ports (80/443). This may be a temporary server."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반 웹 포트(80/443) 대신 {port} 포트를 써요. 임시로 띄운 서버일 가능성이 있어요."
           }
         }
       }
     },
-    "rule.U04.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "표준 포트를 써요"
+    "rule.U04.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses a standard port"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uses a standard port"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표준 포트를 써요"
           }
         }
       }
     },
-    "rule.U04.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일반적이지 않은 포트를 써요"
+    "rule.U04.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses an unusual port"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uses an unusual port"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반적이지 않은 포트를 써요"
           }
         }
       }
     },
-    "rule.U05.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공식 앱이나 검색으로 직접 찾아 들어가세요."
+    "rule.U05.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to the site through the official app or a search instead."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Go to the site through the official app or a search instead."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공식 앱이나 검색으로 직접 찾아 들어가세요."
           }
         }
       }
     },
-    "rule.U05.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 {host}에 {scripts} 문자가 섞여 있어요. 실제 주소는 {punycode}예요. 알파벳과 똑같이 보이는 글자로 공식 주소를 흉내 내는 수법이에요."
+    "rule.U05.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address {host} mixes {scripts} scripts. The real address is {punycode}. Letters that look identical to Latin ones are used to imitate official addresses."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address {host} mixes {scripts} scripts. The real address is {punycode}. Letters that look identical to Latin ones are used to imitate official addresses."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 {host}에 {scripts} 문자가 섞여 있어요. 실제 주소는 {punycode}예요. 알파벳과 똑같이 보이는 글자로 공식 주소를 흉내 내는 수법이에요."
           }
         }
       }
     },
-    "rule.U05.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "혼동되는 문자 체계가 섞여 있지 않아요"
+    "rule.U05.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No confusable scripts mixed in"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No confusable scripts mixed in"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "혼동되는 문자 체계가 섞여 있지 않아요"
           }
         }
       }
     },
-    "rule.U05.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "비슷하게 보이는 다른 나라 문자가 섞여 있어요"
+    "rule.U05.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look-alike characters from another alphabet are mixed in"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Look-alike characters from another alphabet are mixed in"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비슷하게 보이는 다른 나라 문자가 섞여 있어요"
           }
         }
       }
     },
-    "rule.U06.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 맨 뒤의 실제 도메인이 어디인지 확인하세요."
+    "rule.U06.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the actual domain at the end of the address."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check the actual domain at the end of the address."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 맨 뒤의 실제 도메인이 어디인지 확인하세요."
           }
         }
       }
     },
-    "rule.U06.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "호스트 {host}는 서브도메인이 {depth}단계이고 길이가 {length}자예요. 진짜 도메인을 눈에 띄지 않게 하려는 구조일 수 있어요."
+    "rule.U06.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The host {host} has {depth} subdomain levels and is {length} characters long. This structure can hide the real domain."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The host {host} has {depth} subdomain levels and is {length} characters long. This structure can hide the real domain."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "호스트 {host}는 서브도메인이 {depth}단계이고 길이가 {length}자예요. 진짜 도메인을 눈에 띄지 않게 하려는 구조일 수 있어요."
           }
         }
       }
     },
-    "rule.U06.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 구조가 단순해요"
+    "rule.U06.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simple address structure"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Simple address structure"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 구조가 단순해요"
           }
         }
       }
     },
-    "rule.U06.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소가 지나치게 길고 복잡해요"
+    "rule.U06.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address is unusually long and complex"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address is unusually long and complex"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소가 지나치게 길고 복잡해요"
           }
         }
       }
     },
-    "rule.U07.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소를 복사해 어디로 가는지 확인한 뒤 여세요."
+    "rule.U07.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy the address and check where it leads before opening."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copy the address and check where it leads before opening."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소를 복사해 어디로 가는지 확인한 뒤 여세요."
           }
         }
       }
     },
-    "rule.U07.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 길이가 {length}자이고 인코딩 비율이 {ratio}예요. 사람이 읽기 어렵게 만든 주소는 필터를 피하려는 경우가 있어요."
+    "rule.U07.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address is {length} characters with {ratio} percent-encoding. Hard-to-read addresses are sometimes made that way to evade filters."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address is {length} characters with {ratio} percent-encoding. Hard-to-read addresses are sometimes made that way to evade filters."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 길이가 {length}자이고 인코딩 비율이 {ratio}예요. 사람이 읽기 어렵게 만든 주소는 필터를 피하려는 경우가 있어요."
           }
         }
       }
     },
-    "rule.U07.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소가 읽기 쉬운 형태예요"
+    "rule.U07.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address is in a readable form"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address is in a readable form"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소가 읽기 쉬운 형태예요"
           }
         }
       }
     },
-    "rule.U07.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소 일부가 알아보기 어렵게 감춰져 있어요"
+    "rule.U07.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Part of the address is obscured"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Part of the address is obscured"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소 일부가 알아보기 어렵게 감춰져 있어요"
           }
         }
       }
     },
-    "rule.U08.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "낯선 사이트라면 공식 채널로 다시 확인하세요."
+    "rule.U08.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the site is unfamiliar, verify through an official channel."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "If the site is unfamiliar, verify through an official channel."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "낯선 사이트라면 공식 채널로 다시 확인하세요."
           }
         }
       }
     },
-    "rule.U08.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{tld} 확장자는 피싱 사이트에 자주 쓰여요. 그 자체로 위험한 건 아니지만 다른 신호와 함께 보면 의미가 있어요."
+    "rule.U08.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The {tld} extension is frequently used by phishing sites. Not dangerous on its own, but meaningful alongside other signals."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The {tld} extension is frequently used by phishing sites. Not dangerous on its own, but meaningful alongside other signals."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{tld} 확장자는 피싱 사이트에 자주 쓰여요. 그 자체로 위험한 건 아니지만 다른 신호와 함께 보면 의미가 있어요."
           }
         }
       }
     },
-    "rule.U08.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "악용이 잦은 확장자가 아니에요"
+    "rule.U08.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a frequently abused extension"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a frequently abused extension"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "악용이 잦은 확장자가 아니에요"
           }
         }
       }
     },
-    "rule.U08.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "악용이 잦은 도메인 확장자예요"
+    "rule.U08.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A domain extension that is often abused"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A domain extension that is often abused"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "악용이 잦은 도메인 확장자예요"
           }
         }
       }
     },
-    "rule.U09.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "실제 도착지인 {target}이(가) 믿을 만한지 확인하세요."
+    "rule.U09.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check whether the real destination, {target}, is trustworthy."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check whether the real destination, {target}, is trustworthy."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실제 도착지인 {target}이(가) 믿을 만한지 확인하세요."
           }
         }
       }
     },
-    "rule.U09.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{site} 주소의 {param} 값에 다른 사이트({target})가 들어 있어요. 믿을 만한 주소처럼 보이게 한 뒤 다른 곳으로 보내는 방식이에요."
+    "rule.U09.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The {param} value on {site} points to a different site ({target}). This makes a link look trustworthy before sending you elsewhere."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The {param} value on {site} points to a different site ({target}). This makes a link look trustworthy before sending you elsewhere."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{site} 주소의 {param} 값에 다른 사이트({target})가 들어 있어요. 믿을 만한 주소처럼 보이게 한 뒤 다른 곳으로 보내는 방식이에요."
           }
         }
       }
     },
-    "rule.U09.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다른 사이트로 넘기는 파라미터가 없어요"
+    "rule.U09.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No parameter forwarding to another site"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No parameter forwarding to another site"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 사이트로 넘기는 파라미터가 없어요"
           }
         }
       }
     },
-    "rule.U09.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "믿을 만한 사이트를 거쳐 다른 곳으로 보내요"
+    "rule.U09.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Routes you to another site through a trusted-looking one"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Routes you to another site through a trusted-looking one"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "믿을 만한 사이트를 거쳐 다른 곳으로 보내요"
           }
         }
       }
     },
-    "rule.U10.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "로그인이 꼭 필요하면 공식 앱이나 즐겨찾기로 접속하세요."
+    "rule.U10.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you really need to sign in, use the official app or a bookmark."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "If you really need to sign in, use the official app or a bookmark."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인이 꼭 필요하면 공식 앱이나 즐겨찾기로 접속하세요."
           }
         }
       }
     },
-    "rule.U10.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주소에 '{keyword}' 같은 미끼 단어가 들어 있어요. 정상 기관은 메일·문자 속 QR로 로그인이나 인증을 요구하지 않아요."
+    "rule.U10.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address contains a bait word like '{keyword}'. Legitimate organizations don't ask you to sign in or verify through QR codes in messages."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address contains a bait word like '{keyword}'. Legitimate organizations don't ask you to sign in or verify through QR codes in messages."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주소에 '{keyword}' 같은 미끼 단어가 들어 있어요. 정상 기관은 메일·문자 속 QR로 로그인이나 인증을 요구하지 않아요."
           }
         }
       }
     },
-    "rule.U10.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "미끼 키워드가 없어요"
+    "rule.U10.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No bait keywords"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No bait keywords"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미끼 키워드가 없어요"
           }
         }
       }
     },
-    "rule.U10.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "로그인·인증을 요구하는 주소 형태예요"
+    "rule.U10.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The address looks like a login or verification prompt"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The address looks like a login or verification prompt"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인·인증을 요구하는 주소 형태예요"
           }
         }
       }
     },
-    "rule.U11.advice": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "실제 도착 주소를 확인한 뒤 여세요."
+    "rule.U11.advice" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the final destination before opening."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check the final destination before opening."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실제 도착 주소를 확인한 뒤 여세요."
           }
         }
       }
     },
-    "rule.U11.detail": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{service}은(는) 단축 URL 서비스라 실제 목적지를 미리 알 수 없어요."
+    "rule.U11.detail" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{service} is a URL-shortening service, so the real destination can't be seen in advance."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "{service} is a URL-shortening service, so the real destination can't be seen in advance."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "{service}은(는) 단축 URL 서비스라 실제 목적지를 미리 알 수 없어요."
           }
         }
       }
     },
-    "rule.U11.pass": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "단축 URL 서비스가 아니에요"
+    "rule.U11.pass" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not a URL-shortening service"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not a URL-shortening service"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축 URL 서비스가 아니에요"
           }
         }
       }
     },
-    "rule.U11.title": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "실제 주소를 가리는 단축 주소예요"
+    "rule.U11.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A shortened address that hides the real one"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A shortened address that hides the real one"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실제 주소를 가리는 단축 주소예요"
           }
         }
       }
     },
-    "source.S1.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "한국인터넷진흥원(KISA)"
+    "source.general.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General security principles"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Korea Internet & Security Agency (KISA)"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반 보안 원칙"
           }
         }
       }
     },
-    "source.S10.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CaptainDNS"
+    "source.S1.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korea Internet & Security Agency (KISA)"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CaptainDNS"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한국인터넷진흥원(KISA)"
           }
         }
       }
     },
-    "source.S2.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "관계부처 합동(과기정통부·방통위·금융위·경찰청)"
+    "source.S2.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joint government advisory (MSIT, KCC, FSC, KNPA)"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Joint government advisory (MSIT, KCC, FSC, KNPA)"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "관계부처 합동(과기정통부·방통위·금융위·경찰청)"
           }
         }
       }
     },
-    "source.S3.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "경찰청·신용보증재단중앙회"
+    "source.S3.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korean National Police Agency / KOREG"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Korean National Police Agency / KOREG"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경찰청·신용보증재단중앙회"
           }
         }
       }
     },
-    "source.S4.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "KISA 큐싱 예방수칙"
+    "source.S4.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KISA quishing prevention guidelines"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "KISA quishing prevention guidelines"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KISA 큐싱 예방수칙"
           }
         }
       }
     },
-    "source.S5.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "미국 연방거래위원회(FTC)"
+    "source.S5.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U.S. Federal Trade Commission (FTC)"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "U.S. Federal Trade Commission (FTC)"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미국 연방거래위원회(FTC)"
           }
         }
       }
     },
-    "source.S6.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "미국 연방수사국(FBI)"
+    "source.S6.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U.S. Federal Bureau of Investigation (FBI)"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "U.S. Federal Bureau of Investigation (FBI)"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미국 연방수사국(FBI)"
           }
         }
       }
     },
-    "source.S7.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Perception Point·Cyber Defense Magazine"
+    "source.S7.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perception Point / Cyber Defense Magazine"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Perception Point / Cyber Defense Magazine"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perception Point·Cyber Defense Magazine"
           }
         }
       }
     },
-    "source.S8.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Google Safe Browsing"
+    "source.S8.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Google Safe Browsing"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Google Safe Browsing"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Google Safe Browsing"
           }
         }
       }
     },
-    "source.S9.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "KB국민카드"
+    "source.S9.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KB Kookmin Card"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "KB Kookmin Card"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KB국민카드"
           }
         }
       }
     },
-    "source.general.org": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일반 보안 원칙"
+    "source.S10.org" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CaptainDNS"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "General security principles"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CaptainDNS"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

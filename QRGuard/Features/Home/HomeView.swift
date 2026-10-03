@@ -189,8 +189,8 @@ struct HomeView: View {
     }
 }
 
-/// 홈의 빠른 동작 카드 라벨.
-struct QuickActionLabel: View {
+/// 홈의 빠른 동작 카드 라벨. PhotosPicker의 라벨 클로저는 nonisolated라 이 뷰도 nonisolated로 둔다.
+nonisolated struct QuickActionLabel: View {
     let symbol: String
     let title: LocalizedStringKey
 
