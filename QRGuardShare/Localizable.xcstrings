@@ -1,312 +1,327 @@
 {
-  "sourceLanguage": "ko",
-  "strings": {
-    "이 이미지에서는 QR 코드를 찾지 못했어요. QR이 선명하게 보이는 이미지를 공유해 주세요.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No QR code was found in this image. Share an image where the QR code is clearly visible."
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "/ 100" : {
+      "shouldTranslate" : false
+    },
+    "%lld" : {
+
+    },
+    "%lld개 발견" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld found"
           }
         }
       }
     },
-    "분석할 이미지·링크·텍스트가 없어요.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "There is no image, link, or text to analyze."
+    "QR Guard" : {
+      "shouldTranslate" : false
+    },
+    "QR Guard에서 열기" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in QR Guard"
           }
         }
       }
     },
-    "내용을 읽는 중…": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading content…"
+    "건너뜀" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skipped"
           }
         }
       }
     },
-    "QR Guard": {
-      "shouldTranslate": false
-    },
-    "닫기": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Close"
+    "검사 %lld개 항목 모두 통과" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All %lld checks passed"
           }
         }
       }
     },
-    "QR Guard에서 열기": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open in QR Guard"
+    "내용을 읽는 중…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading content…"
           }
         }
       }
     },
-    "위험 요소를 살펴보는 중": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Checking for risk signals"
+    "닫기" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
     },
-    "아직 사이트에 접속하지 않았어요.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The site has not been contacted yet."
+    "도메인 생성일 확인" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domain age"
           }
         }
       }
     },
-    "위험 점수": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Risk score"
+    "분석할 이미지·링크·텍스트가 없어요." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no image, link, or text to analyze."
           }
         }
       }
     },
-    "/ 100": {
-      "shouldTranslate": false
-    },
-    "확정": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Confirmed"
+    "시간 초과" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timed out"
           }
         }
       }
     },
-    "주소 구조 분석": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL structure"
+    "실제 도착 주소" : {
+
+    },
+    "실제 도착 주소 확인" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Final destination"
           }
         }
       }
     },
-    "실제 도착 주소 확인": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Final destination"
+    "아직 사이트에 접속하지 않았어요." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The site has not been contacted yet."
           }
         }
       }
     },
-    "도메인 생성일 확인": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domain age"
+    "악성 사이트 조회" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Threat lookup"
           }
         }
       }
     },
-    "악성 사이트 조회": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Threat lookup"
+    "안전" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safe"
           }
         }
       }
     },
-    "페이지 미리 검사": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Page precheck"
+    "알려진 위험 요소가 발견되지 않았어요" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No known risk signals were found"
           }
         }
       }
     },
-    "확인 중": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Checking"
+    "위험" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Danger"
           }
         }
       }
     },
-    "통과": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passed"
+    "위험 요소를 살펴보는 중" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for risk signals"
           }
         }
       }
     },
-    "건너뜀": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skipped"
+    "위험 점수" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risk score"
           }
         }
       }
     },
-    "시간 초과": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Timed out"
+    "위험 점수 %lld점, 100점 만점" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risk score %lld out of 100"
           }
         }
       }
     },
-    "확인 못 함": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not checked"
+    "이 이미지에서는 QR 코드를 찾지 못했어요. QR이 선명하게 보이는 이미지를 공유해 주세요." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No QR code was found in this image. Share an image where the QR code is clearly visible."
           }
         }
       }
     },
-    "차단": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blocked"
+    "이 코드는 열 수 없어요" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This code can't be opened"
           }
         }
       }
     },
-    "이 코드는 열 수 없어요": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This code can't be opened"
+    "자세한 근거와 열기 여부는 QR Guard 앱에서 결정하세요. 여기서는 주소를 열지 않아요." : {
+
+    },
+    "접속 전에 확인이 필요해요" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check before you connect"
           }
         }
       }
     },
-    "안전": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Safe"
+    "접속하지 않는 것을 권장해요" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We recommend not connecting"
           }
         }
       }
     },
-    "알려진 위험 요소가 발견되지 않았어요": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No known risk signals were found"
+    "주소" : {
+
+    },
+    "주소 구조 분석" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL structure"
           }
         }
       }
     },
-    "주의": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Caution"
+    "주의" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caution"
           }
         }
       }
     },
-    "접속 전에 확인이 필요해요": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Check before you connect"
+    "차단" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blocked"
           }
         }
       }
     },
-    "위험": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Danger"
+    "통과" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passed"
           }
         }
       }
     },
-    "접속하지 않는 것을 권장해요": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We recommend not connecting"
+    "페이지 미리 검사" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page precheck"
           }
         }
       }
     },
-    "위험 점수 %lld점, 100점 만점": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Risk score %lld out of 100"
+    "확인 못 함" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not checked"
           }
         }
       }
     },
-    "검사 %lld개 항목 모두 통과": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "All %lld checks passed"
+    "확인 범위가 제한적이에요. 자세한 근거와 열기 여부는 QR Guard 앱에서 결정하세요." : {
+
+    },
+    "확인 중" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking"
           }
         }
       }
     },
-    "%lld개 발견": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld found"
+    "확정" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmed"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
