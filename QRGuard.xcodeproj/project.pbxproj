@@ -7,12 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68BBD9153071E5B6009E649E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BBD9143071E5B6009E649E /* WidgetKit.framework */; };
+		68BBD9173071E5B6009E649E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BBD9163071E5B6009E649E /* SwiftUI.framework */; };
+		68BBD9223071E5B7009E649E /* QRGuardWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 68BBD9123071E5B6009E649E /* QRGuardWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		68BBD9363071E65F009E649E /* QRGuardShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 68BBD92C3071E65F009E649E /* QRGuardShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C05A0000000000000000A004 /* QRGuardCore in Frameworks */ = {isa = PBXBuildFile; productRef = C05A0000000000000000A002 /* QRGuardCore */; };
 		C05A0000000000000000A005 /* QRGuardNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = C05A0000000000000000A003 /* QRGuardNetwork */; };
+		C05A0000000000000000A009 /* QRGuardCore in Frameworks */ = {isa = PBXBuildFile; productRef = C05A0000000000000000A007 /* QRGuardCore */; };
+		C05A0000000000000000A00A /* QRGuardNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = C05A0000000000000000A008 /* QRGuardNetwork */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68BBD9203071E5B7009E649E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68BBD9113071E5B6009E649E;
+			remoteInfo = QRGuardWidgetsExtension;
+		};
+		68BBD9343071E65F009E649E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68BBD92B3071E65F009E649E;
+			remoteInfo = QRGuardShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		68BBD9273071E5B7009E649E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				68BBD9223071E5B7009E649E /* QRGuardWidgetsExtension.appex in Embed Foundation Extensions */,
+				68BBD9363071E65F009E649E /* QRGuardShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* QRGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BBD9123071E5B6009E649E /* QRGuardWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QRGuardWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BBD9143071E5B6009E649E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
+		68BBD9163071E5B6009E649E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		68BBD92C3071E65F009E649E /* QRGuardShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QRGuardShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05A0000000000000000A006 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Base.xcconfig; path = Config/Base.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -23,6 +63,20 @@
 				Info.plist,
 			);
 			target = 000000000000000100000000 /* QRGuard */;
+		};
+		68BBD9263071E5B7009E649E /* Exceptions for "QRGuardWidgets" folder in "QRGuardWidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 68BBD9113071E5B6009E649E /* QRGuardWidgetsExtension */;
+		};
+		68BBD93A3071E65F009E649E /* Exceptions for "QRGuardShare" folder in "QRGuardShare" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 68BBD92B3071E65F009E649E /* QRGuardShare */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -35,6 +89,22 @@
 			path = QRGuard;
 			sourceTree = "<group>";
 		};
+		68BBD9183071E5B6009E649E /* QRGuardWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				68BBD9263071E5B7009E649E /* Exceptions for "QRGuardWidgets" folder in "QRGuardWidgetsExtension" target */,
+			);
+			path = QRGuardWidgets;
+			sourceTree = "<group>";
+		};
+		68BBD92D3071E65F009E649E /* QRGuardShare */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				68BBD93A3071E65F009E649E /* Exceptions for "QRGuardShare" folder in "QRGuardShare" target */,
+			);
+			path = QRGuardShare;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +115,20 @@
 				C05A0000000000000000A005 /* QRGuardNetwork in Frameworks */,
 			);
 		};
+		68BBD90F3071E5B6009E649E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				68BBD9173071E5B6009E649E /* SwiftUI.framework in Frameworks */,
+				68BBD9153071E5B6009E649E /* WidgetKit.framework in Frameworks */,
+			);
+		};
+		68BBD9293071E65F009E649E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				C05A0000000000000000A009 /* QRGuardCore in Frameworks */,
+				C05A0000000000000000A00A /* QRGuardNetwork in Frameworks */,
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -52,6 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000010 /* QRGuard */,
+				68BBD9183071E5B6009E649E /* QRGuardWidgets */,
+				68BBD92D3071E65F009E649E /* QRGuardShare */,
+				68BBD9133071E5B6009E649E /* Frameworks */,
 				000000000000000000000020 /* Products */,
 				C05A0000000000000000A006 /* Base.xcconfig */,
 			);
@@ -61,8 +148,19 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000120 /* QRGuard.app */,
+				68BBD9123071E5B6009E649E /* QRGuardWidgetsExtension.appex */,
+				68BBD92C3071E65F009E649E /* QRGuardShare.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68BBD9133071E5B6009E649E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68BBD9143071E5B6009E649E /* WidgetKit.framework */,
+				68BBD9163071E5B6009E649E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,8 +173,13 @@
 				000000000000000120000000 /* Sources */,
 				000000000000000130000000 /* Frameworks */,
 				000000000000000140000000 /* Resources */,
+				68BBD9273071E5B7009E649E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				68BBD9213071E5B7009E649E /* PBXTargetDependency */,
+				68BBD9353071E65F009E649E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				000000000000000000000010 /* QRGuard */,
@@ -90,6 +193,46 @@
 			productReference = 000000000000000000000120 /* QRGuard.app */;
 			productType = "com.apple.product-type.application";
 		};
+		68BBD9113071E5B6009E649E /* QRGuardWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68BBD9233071E5B7009E649E /* Build configuration list for PBXNativeTarget "QRGuardWidgetsExtension" */;
+			buildPhases = (
+				68BBD90E3071E5B6009E649E /* Sources */,
+				68BBD90F3071E5B6009E649E /* Frameworks */,
+				68BBD9103071E5B6009E649E /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				68BBD9183071E5B6009E649E /* QRGuardWidgets */,
+			);
+			name = QRGuardWidgetsExtension;
+			productName = QRGuardWidgetsExtension;
+			productReference = 68BBD9123071E5B6009E649E /* QRGuardWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		68BBD92B3071E65F009E649E /* QRGuardShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68BBD9373071E65F009E649E /* Build configuration list for PBXNativeTarget "QRGuardShare" */;
+			buildPhases = (
+				68BBD9283071E65F009E649E /* Sources */,
+				68BBD9293071E65F009E649E /* Frameworks */,
+				68BBD92A3071E65F009E649E /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				68BBD92D3071E65F009E649E /* QRGuardShare */,
+			);
+			name = QRGuardShare;
+			packageProductDependencies = (
+				C05A0000000000000000A007 /* QRGuardCore */,
+				C05A0000000000000000A008 /* QRGuardNetwork */,
+			);
+			productName = QRGuardShare;
+			productReference = 68BBD92C3071E65F009E649E /* QRGuardShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,11 +240,17 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					000000000000000100000000 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					68BBD9113071E5B6009E649E = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					68BBD92B3071E65F009E649E = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
@@ -124,12 +273,24 @@
 			projectRoot = "";
 			targets = (
 				000000000000000100000000 /* QRGuard */,
+				68BBD9113071E5B6009E649E /* QRGuardWidgetsExtension */,
+				68BBD92B3071E65F009E649E /* QRGuardShare */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		000000000000000140000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		68BBD9103071E5B6009E649E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		68BBD92A3071E65F009E649E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -142,7 +303,30 @@
 			files = (
 			);
 		};
+		68BBD90E3071E5B6009E649E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		68BBD9283071E65F009E649E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68BBD9213071E5B7009E649E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68BBD9113071E5B6009E649E /* QRGuardWidgetsExtension */;
+			targetProxy = 68BBD9203071E5B7009E649E /* PBXContainerItemProxy */;
+		};
+		68BBD9353071E65F009E649E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68BBD92B3071E65F009E649E /* QRGuardShare */;
+			targetProxy = 68BBD9343071E65F009E649E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000011000000 /* Debug configuration for PBXProject "QRGuard" */ = {
@@ -283,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QRGuard/QRGuard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5Z8G42AVKD;
@@ -329,6 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QRGuard/QRGuard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5Z8G42AVKD;
@@ -369,6 +555,141 @@
 			};
 			name = Release;
 		};
+		68BBD9243071E5B7009E649E /* Debug configuration for PBXNativeTarget "QRGuardWidgetsExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QRGuardWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QRGuardWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coulson.QRGuard.QRGuardWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68BBD9253071E5B7009E649E /* Release configuration for PBXNativeTarget "QRGuardWidgetsExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QRGuardWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QRGuardWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coulson.QRGuard.QRGuardWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		68BBD9383071E65F009E649E /* Debug configuration for PBXNativeTarget "QRGuardShare" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QRGuardShare/QRGuardShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				INFOPLIST_FILE = QRGuardShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QRGuardShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coulson.QRGuard.QRGuardShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68BBD9393071E65F009E649E /* Release configuration for PBXNativeTarget "QRGuardShare" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QRGuardShare/QRGuardShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				INFOPLIST_FILE = QRGuardShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QRGuardShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coulson.QRGuard.QRGuardShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -388,6 +709,22 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		68BBD9233071E5B7009E649E /* Build configuration list for PBXNativeTarget "QRGuardWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68BBD9243071E5B7009E649E /* Debug configuration for PBXNativeTarget "QRGuardWidgetsExtension" */,
+				68BBD9253071E5B7009E649E /* Release configuration for PBXNativeTarget "QRGuardWidgetsExtension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		68BBD9373071E65F009E649E /* Build configuration list for PBXNativeTarget "QRGuardShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68BBD9383071E65F009E649E /* Debug configuration for PBXNativeTarget "QRGuardShare" */,
+				68BBD9393071E65F009E649E /* Release configuration for PBXNativeTarget "QRGuardShare" */,
+			);
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -403,6 +740,14 @@
 			productName = QRGuardCore;
 		};
 		C05A0000000000000000A003 /* QRGuardNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QRGuardNetwork;
+		};
+		C05A0000000000000000A007 /* QRGuardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QRGuardCore;
+		};
+		C05A0000000000000000A008 /* QRGuardNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = QRGuardNetwork;
 		};

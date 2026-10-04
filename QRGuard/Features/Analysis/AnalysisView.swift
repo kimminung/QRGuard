@@ -121,6 +121,7 @@ struct AnalysisView: View {
                 Text("어디서 찍은 QR인가요?")
                     .font(.headline)
                     .foregroundStyle(Palette.ink)
+                    .accessibilityAddTraits(.isHeader)
                 Text("선택")
                     .font(.caption)
                     .foregroundStyle(Palette.inkSecondary)
@@ -149,7 +150,9 @@ struct PlaceChipGrid: View {
                 Button { onSelect(place) } label: {
                     Text(place.title)
                         .font(.subheadline.weight(selected ? .semibold : .regular))
-                        .foregroundStyle(selected ? Color.white : Palette.ink)
+                        // Dark에서 ink는 밝은색이라 흰 글자는 보이지 않는다 → onInk
+                        .foregroundStyle(selected ? Palette.onInk : Palette.ink)
+                        .multilineTextAlignment(.center)
                         .padding(.horizontal, Spacing.m)
                         .padding(.vertical, Spacing.s)
                         .frame(maxWidth: .infinity)
@@ -158,6 +161,7 @@ struct PlaceChipGrid: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(selected ? .isSelected : [])
+                .accessibilityHint(selected ? Text("선택 해제") : Text("이 장소 기준으로 다시 판단해요"))
             }
         }
     }
@@ -167,22 +171,40 @@ private struct StepRow: View {
     let step: AnalysisStep
     let state: AnalysisSession.StepState
     let report: RiskReport?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        HStack(spacing: Spacing.m) {
+        let isAX = dynamicTypeSize.isAccessibilitySize
+        HStack(alignment: isAX ? .top : .center, spacing: Spacing.m) {
             icon
                 .frame(width: 28, height: 28)
-            Text(step.title)
-                .font(.subheadline)
-                .foregroundStyle(isPending ? Palette.inkSecondary : Palette.ink)
-            Spacer()
-            Text(trailingText)
-                .font(.caption)
-                .foregroundStyle(trailingColor)
+                .accessibilityHidden(true)
+            if isAX {
+                // 접근성 글자 크기에서는 상태 문구를 제목 아래로 내린다.
+                VStack(alignment: .leading, spacing: Spacing.xs) {
+                    Text(step.title)
+                        .font(.subheadline)
+                        .foregroundStyle(isPending ? Palette.inkSecondary : Palette.ink)
+                    if !trailingText.isEmpty {
+                        Text(trailingText)
+                            .font(.caption)
+                            .foregroundStyle(trailingColor)
+                    }
+                }
+            } else {
+                Text(step.title)
+                    .font(.subheadline)
+                    .foregroundStyle(isPending ? Palette.inkSecondary : Palette.ink)
+                Spacer()
+                Text(trailingText)
+                    .font(.caption)
+                    .foregroundStyle(trailingColor)
+            }
         }
         .padding(.horizontal, Spacing.m)
         .padding(.vertical, Spacing.m)
         .accessibilityElement(children: .combine)
+        .accessibilityValue(Text(isPending ? String(localized: "대기 중") : trailingText))
     }
 
     private var isPending: Bool { if case .pending = state { return true } else { return false } }

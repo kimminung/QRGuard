@@ -78,9 +78,14 @@ public extension RuleID {
     static let C01: RuleID = "C01"
     static let C02: RuleID = "C02"
     static let C03: RuleID = "C03"
+    // V — 비전·입력 정제 (AI 없이, AI_ONDEVICE_DEFENSE.md 4.2 · T-8.1). floor 없음.
+    static let V01: RuleID = "V01"
+    static let V02: RuleID = "V02"
+    static let V03: RuleID = "V03"
+    static let V09: RuleID = "V09"
 }
 
-/// 규칙 계열. 카테고리 상한(U 45 · H 40 · C 30)은 `RiskScorer`가 적용한다.
+/// 규칙 계열. 카테고리 상한(U 45 · H 40 · C 30 · V 25)은 `RiskScorer`가 적용한다.
 public enum RuleCategory: String, Codable, Sendable, CaseIterable {
     case payload = "P"
     case urlStructure = "U"
@@ -90,6 +95,8 @@ public enum RuleCategory: String, Codable, Sendable, CaseIterable {
     case reputation = "T"
     case domain = "D"
     case page = "H"
+    /// 비전·입력 정제(분할·중첩·ASCII QR, 불가시 문자). 결정적 신호만, floor 없음.
+    case vision = "V"
 
     /// 같은 계열 가산점 합계의 상한. nil이면 상한 없음.
     public var pointCap: Int? {
@@ -97,6 +104,7 @@ public enum RuleCategory: String, Codable, Sendable, CaseIterable {
         case .urlStructure: return 45
         case .page: return 40
         case .context: return 30
+        case .vision: return 25
         default: return nil
         }
     }
@@ -125,6 +133,8 @@ public enum CheckID: String, Codable, Sendable, CaseIterable, Hashable {
 /// 근거 출처 ID (`RISK_RULES.md` 7장).
 public enum SourceID: String, Codable, Sendable, CaseIterable, Hashable {
     case S1, S2, S3, S4, S5, S6, S7, S8, S9, S10
+    /// Barracuda Threat Spotlight 2025-08 — 분할·중첩·ASCII QR (V01–V03)
+    case S11
     /// 일반 보안 원칙 · 일반 피싱 지표처럼 특정 출처가 없는 경우
     case general
 

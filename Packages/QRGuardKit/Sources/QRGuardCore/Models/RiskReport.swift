@@ -214,6 +214,11 @@ public struct PagePrecheckResult: Codable, Sendable, Hashable {
     public var contentType: String?
     public var tlsFailed: Bool
     public var bytesRead: Int
+    /// `display:none`·`font-size:0`·`aria-hidden` 등 사용자에게 보이지 않는 요소의 텍스트(V09, 최대 수 KB).
+    /// 메모리에서만 다루고 기록에는 빈 문자열로 저장해도 된다.
+    public var hiddenText: String
+    /// HTML 본문에서 발견된 불가시 문자(`Cf`·BOM·양방향 제어 문자) 수(V09).
+    public var invisibleCharacterCount: Int
 
     public init(
         hasPasswordInput: Bool = false,
@@ -223,7 +228,9 @@ public struct PagePrecheckResult: Codable, Sendable, Hashable {
         metaRefreshTarget: URL? = nil,
         contentType: String? = nil,
         tlsFailed: Bool = false,
-        bytesRead: Int = 0
+        bytesRead: Int = 0,
+        hiddenText: String = "",
+        invisibleCharacterCount: Int = 0
     ) {
         self.hasPasswordInput = hasPasswordInput
         self.formActionHosts = formActionHosts
@@ -233,6 +240,28 @@ public struct PagePrecheckResult: Codable, Sendable, Hashable {
         self.contentType = contentType
         self.tlsFailed = tlsFailed
         self.bytesRead = bytesRead
+        self.hiddenText = hiddenText
+        self.invisibleCharacterCount = invisibleCharacterCount
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hasPasswordInput, formActionHosts, title, leadingText, metaRefreshTarget, contentType, tlsFailed, bytesRead
+        case hiddenText, invisibleCharacterCount
+    }
+
+    /// T-8.1 이전에 저장된 기록에는 `hiddenText`·`invisibleCharacterCount` 키가 없으므로 관대하게 읽는다.
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        hasPasswordInput = try c.decodeIfPresent(Bool.self, forKey: .hasPasswordInput) ?? false
+        formActionHosts = try c.decodeIfPresent([String].self, forKey: .formActionHosts) ?? []
+        title = try c.decodeIfPresent(String.self, forKey: .title)
+        leadingText = try c.decodeIfPresent(String.self, forKey: .leadingText) ?? ""
+        metaRefreshTarget = try c.decodeIfPresent(URL.self, forKey: .metaRefreshTarget)
+        contentType = try c.decodeIfPresent(String.self, forKey: .contentType)
+        tlsFailed = try c.decodeIfPresent(Bool.self, forKey: .tlsFailed) ?? false
+        bytesRead = try c.decodeIfPresent(Int.self, forKey: .bytesRead) ?? 0
+        hiddenText = try c.decodeIfPresent(String.self, forKey: .hiddenText) ?? ""
+        invisibleCharacterCount = try c.decodeIfPresent(Int.self, forKey: .invisibleCharacterCount) ?? 0
     }
 }
 

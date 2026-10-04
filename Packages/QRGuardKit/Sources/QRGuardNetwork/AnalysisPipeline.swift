@@ -84,10 +84,11 @@ public actor AnalysisPipeline {
     }
 
     /// 분석을 시작하고 이벤트 스트림을 돌려준다. 소비자가 취소하지 않는 한 항상 `.finished`로 끝난다.
-    public nonisolated func analyze(_ raw: String, context: AnalysisContext) -> AsyncStream<AnalysisEvent> {
+    /// - Parameter vision: 입력 단계(스캐너·사진·공유 확장)에서 계산한 비전 신호(V 계열). 없으면 nil.
+    public nonisolated func analyze(_ raw: String, context: AnalysisContext, vision: VisionSignals? = nil) -> AsyncStream<AnalysisEvent> {
         AsyncStream { continuation in
             let task = Task {
-                await self.run(raw: raw, context: context, continuation: continuation)
+                await self.run(raw: raw, context: context, vision: vision, continuation: continuation)
                 continuation.finish()
             }
             continuation.onTermination = { _ in task.cancel() }
@@ -96,12 +97,13 @@ public actor AnalysisPipeline {
 
     // MARK: - 실행
 
-    private func run(raw: String, context: AnalysisContext, continuation: AsyncStream<AnalysisEvent>.Continuation) async {
+    private func run(raw: String, context: AnalysisContext, vision: VisionSignals?, continuation: AsyncStream<AnalysisEvent>.Continuation) async {
         let options = context.options
 
         // 1. 구조 분석 (오프라인)
         continuation.yield(.stepStarted(.structure))
         var snapshot = engine.offlineSnapshot(for: raw)
+        snapshot.vision = vision
         let preliminary = engine.report(snapshot: snapshot, context: context)
         let offlineRisks = preliminary.riskFindings.count
         continuation.yield(.stepFinished(.structure, offlineRisks == 0 ? .passed : .flagged(offlineRisks)))

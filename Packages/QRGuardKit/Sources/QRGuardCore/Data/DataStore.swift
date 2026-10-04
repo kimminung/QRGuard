@@ -94,6 +94,15 @@ public struct DataStore: Sendable {
     /// 미끼 키워드(U10). 데이터 파일이 없으면 RISK_RULES의 기본 목록.
     public var baitKeywords: [String]
 
+    /// 데이터 출처 식별자(로그·설정 화면용, 현지화 전 원문). `"bundled"` 또는 `"remote #<sequence> <publishedAt>"` (T-6.3).
+    public var sourceDescription: String
+    /// 원격 데이터가 덮어씌워진 경우 그 발행 시각. 번들만 쓰면 nil.
+    public var updatedAt: Date?
+    /// 적용된 원격 데이터 순번. 번들만 쓰면 nil.
+    public var remoteSequence: Int?
+
+    public static let bundledSourceDescription = "bundled"
+
     public init(
         brands: [BrandEntry] = [],
         shorteners: Set<String> = [],
@@ -103,7 +112,10 @@ public struct DataStore: Sendable {
         blocklist: Blocklist = .empty,
         confusables: [Character: String] = [:],
         publicSuffixRules: [String] = [],
-        baitKeywords: [String] = DataStore.defaultBaitKeywords
+        baitKeywords: [String] = DataStore.defaultBaitKeywords,
+        sourceDescription: String = DataStore.bundledSourceDescription,
+        updatedAt: Date? = nil,
+        remoteSequence: Int? = nil
     ) {
         self.brands = brands
         self.shorteners = shorteners
@@ -114,7 +126,13 @@ public struct DataStore: Sendable {
         self.confusables = confusables
         self.publicSuffixRules = publicSuffixRules
         self.baitKeywords = baitKeywords
+        self.sourceDescription = sourceDescription
+        self.updatedAt = updatedAt
+        self.remoteSequence = remoteSequence
     }
+
+    /// 원격 데이터가 하나라도 적용되어 있는지.
+    public var isRemotelyUpdated: Bool { remoteSequence != nil }
 
     public static let defaultBaitKeywords: [String] = [
         "login", "signin", "verify", "account", "update", "secure", "wallet",

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "publishedAt": "2026-10-04T00:00:00Z",
+  "sequence": 2,
+  "brands": [
+    { "brand": "테스트은행", "keywords": ["testbank"], "domains": ["testbank.example.test"] }
+  ],
+  "blocklist": {
+    "domains": ["overlay-blockex.example.test"],
+    "hosts": [],
+    "urlPrefixes": [],
+    "source": "fixture",
+    "updatedAt": "2026-10-04"
+  }
+}

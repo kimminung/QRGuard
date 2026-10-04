@@ -5,6 +5,7 @@ import QRGuardCore
 /// 설정 (TASKS T-5.3). 검사 항목 토글마다 "무엇이 어디로 전송되는지"를 함께 적는다 (TECH_PRD 6.1).
 struct SettingsView: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         @Bindable var settings = app.settings
@@ -60,13 +61,34 @@ struct SettingsView: View {
             }
 
             Section {
-                LabeledContent("블록리스트 업데이트", value: DataStore.bundled.blocklist.updatedAt ?? "—")
-                LabeledContent("브랜드 공식 도메인", value: "\(DataStore.bundled.brands.count)개")
-                LabeledContent("단축 URL 서비스", value: "\(DataStore.bundled.shorteners.count)개")
+                LabeledContent("데이터 출처", value: app.securityData.sourceDescription == DataStore.bundledSourceDescription
+                               ? String(localized: "앱 내장") : String(localized: "원격 업데이트 #\(app.securityData.appliedSequence ?? 0)"))
+                LabeledContent("마지막 확인", value: app.securityData.lastCheckedAt.map { $0.formatted(date: .abbreviated, time: .shortened) } ?? "—")
+                LabeledContent("블록리스트 갱신일", value: app.engine.data.blocklist.updatedAt ?? "—")
+                LabeledContent("브랜드 공식 도메인", value: "\(app.engine.data.brands.count)개")
+                LabeledContent("단축 URL 서비스", value: "\(app.engine.data.shorteners.count)개")
+                Toggle("자동 업데이트", isOn: $settings.securityAutoUpdate)
+                    .disabled(!app.securityData.isConfigured)
+                Button {
+                    Task { await app.refreshSecurityData(force: true) }
+                } label: {
+                    HStack {
+                        Text("지금 확인")
+                        Spacer()
+                        if app.securityData.isChecking { ProgressView() }
+                    }
+                }
+                .disabled(!app.securityData.isConfigured || app.securityData.isChecking)
             } header: {
                 Text("보안 데이터")
             } footer: {
-                Text("앱에 포함된 데이터예요. 자동 업데이트는 추후 지원 예정이에요.")
+                if !app.securityData.isConfigured {
+                    Text("업데이트 서버가 설정되지 않아 앱에 포함된 데이터를 써요. 서명이 검증된 데이터만 적용돼요.")
+                } else if let message = app.securityData.lastMessage {
+                    Text(message)
+                } else {
+                    Text("하루 한 번, Ed25519 서명이 검증된 데이터만 내려받아 적용해요. 실패하면 앱에 포함된 데이터로 계속 검사해요.")
+                }
             }
 
             Section("정보") {
@@ -92,16 +114,25 @@ struct SettingsView: View {
     }
 
     private func row(_ title: LocalizedStringKey, systemImage: String, detail: LocalizedStringKey?) -> some View {
-        HStack {
-            Label(title, systemImage: systemImage)
-                .foregroundStyle(Palette.ink)
-            Spacer()
-            if let detail {
-                Text(detail).font(.footnote).foregroundStyle(Palette.inkSecondary)
+        // 접근성 글자 크기에서는 설명 문구를 제목 아래로 내린다. 셰브런은 장식이라 VoiceOver에서 숨긴다.
+        let isAX = dynamicTypeSize.isAccessibilitySize
+        let layout = isAX
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.xs))
+            : AnyLayout(HStackLayout())
+        return HStack {
+            layout {
+                Label(title, systemImage: systemImage)
+                    .foregroundStyle(Palette.ink)
+                if !isAX { Spacer() }
+                if let detail {
+                    Text(detail).font(.footnote).foregroundStyle(Palette.inkSecondary)
+                }
             }
+            if isAX { Spacer() }
             Image(systemName: "chevron.right")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(Palette.inkSecondary)
+                .accessibilityHidden(true)
         }
     }
 }

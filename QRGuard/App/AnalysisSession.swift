@@ -9,6 +9,8 @@ struct ScanInput: Hashable, Sendable {
     var source: ScanSource
     /// 한 프레임/사진에서 감지된 서로 다른 QR 수 (C01)
     var distinctCodes: Int = 1
+    /// 입력 단계에서 계산한 비전 신호 (V 계열: 중첩·분할·문자 QR)
+    var vision: VisionSignals? = nil
 }
 
 /// 한 번의 분석 세션. 분석 중 화면과 결과 화면이 공유한다.
@@ -73,7 +75,7 @@ final class AnalysisSession: Identifiable {
 
     func start(pipeline: AnalysisPipeline, onFinished: @escaping @MainActor (AnalysisSession) -> Void) {
         guard task == nil else { return }
-        let stream = pipeline.analyze(input.raw, context: context)
+        let stream = pipeline.analyze(input.raw, context: context, vision: input.vision)
         task = Task { [weak self] in
             for await event in stream {
                 guard let self, !Task.isCancelled else { break }

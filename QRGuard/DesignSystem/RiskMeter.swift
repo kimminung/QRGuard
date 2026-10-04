@@ -8,11 +8,16 @@ struct RiskMeter: View {
     var showsLabels: Bool = true
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var displayed: Double = 0
 
     private var tier: RiskTier { RiskTier(score: score) }
 
     var body: some View {
+        // 접근성 글자 크기에서는 구간 라벨 3개가 한 줄에 들어가지 않으므로 세로로 쌓는다.
+        let labelLayout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.xs))
+            : AnyLayout(HStackLayout())
         VStack(alignment: .leading, spacing: Spacing.s) {
             GeometryReader { geo in
                 let width = geo.size.width
@@ -34,11 +39,11 @@ struct RiskMeter: View {
             .frame(height: 18)
 
             if showsLabels {
-                HStack {
+                labelLayout {
                     Text("안전 0–29")
-                    Spacer()
+                    Spacer(minLength: 0)
                     Text("주의 30–69")
-                    Spacer()
+                    Spacer(minLength: 0)
                     Text("위험 70–100")
                 }
                 .font(.caption2)
@@ -98,26 +103,36 @@ struct MiniRiskMeter: View {
 struct RiskScoreCard: View {
     let score: Int
     var animated: Bool = true
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var tier: RiskTier { RiskTier(score: score) }
 
     var body: some View {
+        let headerLayout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.xs))
+            : AnyLayout(HStackLayout(alignment: .firstTextBaseline))
         VStack(alignment: .leading, spacing: Spacing.m) {
-            HStack(alignment: .firstTextBaseline) {
+            headerLayout {
                 Text("위험 점수")
                     .font(.subheadline)
                     .foregroundStyle(Palette.inkSecondary)
-                Spacer()
-                Text("\(score)")
-                    .font(.system(.largeTitle, design: .rounded).weight(.bold))
-                    .monospacedDigit()
-                    .foregroundStyle(RiskTier(score: score).color)
-                Text("/ 100")
-                    .font(.subheadline)
-                    .foregroundStyle(Palette.inkSecondary)
+                Spacer(minLength: 0)
+                HStack(alignment: .firstTextBaseline, spacing: Spacing.xs) {
+                    Text("\(score)")
+                        .font(.system(.largeTitle, design: .rounded).weight(.bold))
+                        .monospacedDigit()
+                        .foregroundStyle(tier.color)
+                    Text("/ 100")
+                        .font(.subheadline)
+                        .foregroundStyle(Palette.inkSecondary)
+                }
             }
             RiskMeter(score: score, animated: animated)
         }
         .card()
-        .accessibilityElement(children: .combine)
+        // 자식을 합치면 "위험 점수, 45, / 100, 위험 점수 45점…"처럼 중복되므로 한 문장으로 직접 읽어 준다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("위험 점수 \(score)점, 100점 만점, \(tier.label) 구간"))
     }
 }
 

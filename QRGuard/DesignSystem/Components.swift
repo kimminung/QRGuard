@@ -64,6 +64,7 @@ struct AddressCard: View {
             if let official {
                 HStack(spacing: Spacing.xs) {
                     Image(systemName: "checkmark.seal.fill")
+                        .accessibilityHidden(true)
                     Text(RuleText.title(for: official))
                 }
                 .font(.caption.weight(.semibold))
@@ -80,6 +81,8 @@ struct AddressCard: View {
                 Button(action: onCopy) { Label("주소 복사", systemImage: "doc.on.doc") }
             }
         }
+        // 길게 누르기(컨텍스트 메뉴) 대신 VoiceOver 로터 동작으로도 복사할 수 있게 한다.
+        .accessibilityAction(named: Text("주소 복사")) { onCopy?() }
     }
 
     private func labeled<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
@@ -160,6 +163,7 @@ struct FindingRow: View {
                 Image(systemName: "chevron.right")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(Palette.inkSecondary)
+                    .accessibilityHidden(true)
             }
         }
         .accessibilityElement(children: .combine)
@@ -194,10 +198,13 @@ enum ActionTone { case brand, neutral, danger, secondary }
 
 struct PrimaryActionButtonStyle: ButtonStyle {
     var tone: ActionTone = .brand
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.isEnabled) private var isEnabled
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.body.weight(.semibold))
+            .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 15)
             .padding(.horizontal, Spacing.l)
@@ -207,23 +214,25 @@ struct PrimaryActionButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: Radius.button, style: .continuous)
                     .strokeBorder(tone == .secondary ? Palette.line : .clear, lineWidth: 1)
             )
-            .opacity(configuration.isPressed ? 0.8 : 1)
-            .scaleEffect(configuration.isPressed ? 0.985 : 1)
-            .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
+            // 비활성 버튼은 흐리게 — 입력란이 비었을 때 "분석하기"가 눌러지는 것처럼 보이지 않도록
+            .opacity(!isEnabled ? 0.45 : configuration.isPressed ? 0.8 : 1)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.985 : 1)
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.12), value: configuration.isPressed)
     }
 
     private var foreground: Color {
         switch tone {
-        case .brand, .neutral, .danger: .white
+        case .brand, .danger: .white
+        case .neutral: Palette.onInk   // Dark에서 ink는 밝은색이라 흰 글자는 보이지 않는다
         case .secondary: Palette.ink
         }
     }
 
     private var background: Color {
         switch tone {
-        case .brand: Palette.brand
+        case .brand: Palette.brandFill
         case .neutral: Palette.ink
-        case .danger: Palette.danger
+        case .danger: Palette.dangerFill
         case .secondary: Palette.card
         }
     }
@@ -247,6 +256,7 @@ struct TipCard: View {
                 .foregroundStyle(Palette.caution)
                 .frame(width: 24, height: 24)
                 .background(Palette.cautionBg, in: Circle())
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: Spacing.xs) {
                 Text(title)
                     .font(.subheadline.weight(.semibold))
@@ -272,6 +282,7 @@ struct CoverageBadge: View {
         if coverage.isLimited {
             HStack(spacing: Spacing.xs) {
                 Image(systemName: "wifi.exclamationmark")
+                    .accessibilityHidden(true)
                 Text(text)
             }
             .font(.caption.weight(.medium))
@@ -279,6 +290,7 @@ struct CoverageBadge: View {
             .padding(.horizontal, Spacing.m)
             .padding(.vertical, Spacing.xs)
             .background(Palette.cautionBg, in: Capsule())
+            .accessibilityElement(children: .combine)
         }
     }
 

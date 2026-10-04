@@ -1,6 +1,6 @@
 import Foundation
 
-/// 모든 규칙의 목록. 규칙은 파일 하나에 하나(`Rules/<ID>_<Name>.swift`). 순서: P → U → B → R → T → D → H → C.
+/// 모든 규칙의 목록. 규칙은 파일 하나에 하나(`Rules/<ID>_<Name>.swift`). 순서: P → U → B → R → T → D → H → V → C.
 ///
 /// TODO(release): `brands.json`·`payment_mobility.json`의 공식 도메인과 `shorteners.json`·`suspicious_tlds.json`은
 /// 출시 전 각 기관 공식 안내로 재검증한다(TECH_PRD 10장 체크리스트).
@@ -25,6 +25,8 @@ public enum RuleCatalog {
             VeryNewDomainRule(), RecentDomainRule(), DomainAgeUnavailableRule(),
             // H — 페이지 사전 검사
             PasswordInputRule(), CrossSiteFormRule(), BrandLookalikePageRule(), TLSFailureRule(),
+            // V — 비전·입력 정제 (AI 없이, floor 없음)
+            SplitQRRule(), NestedQRRule(), TextArtQRRule(), HiddenTextEvasionRule(),
             // C — 스캔 상황
             MultipleCodesRule(), MessageDemandsActionRule(), UnknownPaymentDomainRule(),
         ]

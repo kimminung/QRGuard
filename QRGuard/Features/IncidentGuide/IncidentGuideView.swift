@@ -3,6 +3,9 @@ import SwiftUI
 /// 피해 대응 가이드 (TASKS T-5.4, TECH_PRD 7.7). 이미 열었거나 정보를 입력했을 때의 조치 + 신고 전화.
 struct IncidentGuideView: View {
     @Environment(\.openURL) private var openURL
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    /// 단계 번호 원이 글자 크기와 함께 커지도록 (고정 28pt면 AX 크기에서 숫자가 잘린다)
+    @ScaledMetric(relativeTo: .subheadline) private var stepBadgeSize: CGFloat = 28
 
     private struct Step: Identifiable {
         let id: Int
@@ -18,18 +21,26 @@ struct IncidentGuideView: View {
     ]
 
     var body: some View {
+        // 접근성 글자 크기에서는 전화 버튼 3개를 세로로 쌓는다.
+        let phoneLayout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: Spacing.m))
+            : AnyLayout(HStackLayout(spacing: Spacing.m))
+        let stepLayout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.s))
+            : AnyLayout(HStackLayout(alignment: .top, spacing: Spacing.m))
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.l) {
                 Text("당황하지 말고 아래 순서대로 확인하세요.")
                     .font(.subheadline)
                     .foregroundStyle(Palette.inkSecondary)
                 ForEach(steps) { step in
-                    HStack(alignment: .top, spacing: Spacing.m) {
+                    // 접근성 글자 크기에서는 번호 원이 커져 본문 폭을 잡아먹으므로 번호를 위로 올린다.
+                    stepLayout {
                         Text("\(step.id)")
                             .font(.subheadline.bold())
                             .foregroundStyle(.white)
-                            .frame(width: 28, height: 28)
-                            .background(Palette.brand, in: Circle())
+                            .frame(width: stepBadgeSize, height: stepBadgeSize)
+                            .background(Palette.brandFill, in: Circle())
                         VStack(alignment: .leading, spacing: Spacing.xs) {
                             Text(step.title).font(.headline).foregroundStyle(Palette.ink)
                             Text(step.body).font(.subheadline).foregroundStyle(Palette.inkSecondary)
@@ -39,7 +50,7 @@ struct IncidentGuideView: View {
                     .card()
                     .accessibilityElement(children: .combine)
                 }
-                HStack(spacing: Spacing.m) {
+                phoneLayout {
                     phoneButton("112", String(localized: "경찰청"))
                     phoneButton("1332", String(localized: "금융감독원"))
                     phoneButton("118", String(localized: "인터넷진흥원"))
@@ -67,12 +78,14 @@ struct IncidentGuideView: View {
                 Text(name)
                     .font(.caption)
                     .foregroundStyle(Palette.inkSecondary)
+                    .multilineTextAlignment(.center)
             }
             .frame(maxWidth: .infinity)
             .card(padding: Spacing.m)
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text("\(name) \(number) 전화 걸기"))
+        .accessibilityAddTraits(.isLink)
     }
 }
 

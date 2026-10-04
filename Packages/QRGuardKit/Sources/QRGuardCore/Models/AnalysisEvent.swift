@@ -52,6 +52,9 @@ public struct AnalysisSnapshot: Codable, Sendable, Hashable {
     public var domainInfo: DomainInfo?
     public var reputation: [ReputationLookup]
     public var page: PagePrecheckResult?
+    /// 이미지·텍스트 디코딩 단계의 결정적 신호(분할·중첩·ASCII QR, V 계열). 없으면 nil.
+    /// 합성 Codable의 옵셔널이므로 키가 없는 옛 기록도 nil로 읽힌다.
+    public var vision: VisionSignals?
     public var coverage: AnalysisCoverage
     public var analyzedAt: Date
 
@@ -64,6 +67,7 @@ public struct AnalysisSnapshot: Codable, Sendable, Hashable {
         domainInfo: DomainInfo? = nil,
         reputation: [ReputationLookup] = [],
         page: PagePrecheckResult? = nil,
+        vision: VisionSignals? = nil,
         coverage: AnalysisCoverage = .offlineOnly,
         analyzedAt: Date = .now
     ) {
@@ -75,6 +79,7 @@ public struct AnalysisSnapshot: Codable, Sendable, Hashable {
         self.domainInfo = domainInfo
         self.reputation = reputation
         self.page = page
+        self.vision = vision
         self.coverage = coverage
         self.analyzedAt = analyzedAt
     }

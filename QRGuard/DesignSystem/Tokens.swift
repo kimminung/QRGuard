@@ -11,14 +11,25 @@ nonisolated enum Palette {
     static let card = dynamic(light: 0xFFFFFF, dark: 0x182033)
     static let line = dynamic(light: 0xE3E7EF, dark: 0x273049)
 
-    static let safe = dynamic(light: 0x12925A, dark: 0x3DD68C)
+    // 등급 텍스트 색은 Light에서 작은 글자(caption·footnote) 기준 WCAG 4.5:1을 넘도록 조정했다 (T-7.1).
+    // safe: 0x12925A→0x0E7A4B (safeBg 3.56→4.82), caution: 0xB76A00→0x9A5600 (cautionBg 3.76→5.16),
+    // danger: 0xD92D20→0xC9281C (dangerBg 4.22→4.83). Dark 값은 모두 5.9:1 이상이라 그대로 둔다.
+    static let safe = dynamic(light: 0x0E7A4B, dark: 0x3DD68C)
     static let safeBg = dynamic(light: 0xE7F6EE, dark: 0x0F2A1F)
-    static let caution = dynamic(light: 0xB76A00, dark: 0xFFB547)
+    static let caution = dynamic(light: 0x9A5600, dark: 0xFFB547)
     static let cautionBg = dynamic(light: 0xFFF3DC, dark: 0x2E2410)
-    static let danger = dynamic(light: 0xD92D20, dark: 0xFF6B5E)
+    static let danger = dynamic(light: 0xC9281C, dark: 0xFF6B5E)
     static let dangerBg = dynamic(light: 0xFDECEA, dark: 0x33161A)
 
-    /// 히어로 카드 등 브랜드 배경 위의 반투명 흰색
+    /// 흰 글자를 올리는 **채움** 배경용 브랜드색. Dark의 `brand`(0x5B8CFF)는 글자색으로는 충분하지만
+    /// 흰 글자 배경으로는 3.16:1이라 더 진한 값을 쓴다 (흰색 6.07:1, 82% 흰색 4.64:1).
+    static let brandFill = dynamic(light: 0x1D5BD8, dark: 0x2A5BCB)
+    /// 흰 글자를 올리는 채움 배경용 위험색. Dark `danger`는 흰 글자와 2.79:1이라 별도 값 (4.64:1).
+    static let dangerFill = dynamic(light: 0xC9281C, dark: 0xD63B2E)
+    /// `ink` 배경(중립 버튼·선택된 칩) 위의 글자색. Dark에서 `ink`는 거의 흰색이므로 흰 글자를 쓰면 보이지 않는다.
+    static let onInk = dynamic(light: 0xFFFFFF, dark: 0x0E1320)
+
+    /// 히어로 카드 등 브랜드 채움 배경 위의 반투명 흰색 (brandFill 기준 Light 4.52:1 · Dark 4.64:1)
     static let onBrandSecondary = Color.white.opacity(0.82)
 
     static func dynamic(light: UInt32, dark: UInt32) -> Color {

@@ -5,6 +5,7 @@ import QRGuardCore
 /// 루트: NavigationStack + 경로 열거형. 스캐너는 fullScreenCover.
 struct RootView: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         @Bindable var app = app
@@ -29,6 +30,16 @@ struct RootView: View {
         }
         .fullScreenCover(isPresented: $app.showOnboarding) {
             OnboardingView()
+        }
+        // 위젯·제어 센터(`qrguard://scan`)와 공유 확장(`qrguard://analyze`) 딥링크
+        .onOpenURL { url in
+            app.handleDeepLink(url)
+        }
+        // 공유 확장이 남긴 결과는 앱이 앞으로 올 때 기록으로 가져온다(방금 공유한 것이면 바로 연다).
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                app.importSharedInbox(openRecent: true)
+            }
         }
     }
 

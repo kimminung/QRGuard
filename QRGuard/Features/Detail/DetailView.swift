@@ -5,10 +5,16 @@ import QRGuardCore
 struct DetailView: View {
     let report: RiskReport
     let session: AnalysisSession
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    /// 이동 경로 단계 번호 원 — 글자와 함께 커진다
+    @ScaledMetric(relativeTo: .caption2) private var hopBadgeSize: CGFloat = 20
 
     @State private var expanded: Set<RuleID> = []
     @State private var showPassed = false
     @State private var copied = false
+
+    private var isAX: Bool { dynamicTypeSize.isAccessibilitySize }
 
     var body: some View {
         ScrollView {
@@ -44,21 +50,27 @@ struct DetailView: View {
     // MARK: - 헤더
 
     private var header: some View {
-        HStack(spacing: Spacing.m) {
-            Image(systemName: report.blocksOpening ? "nosign" : report.tier.symbol)
-                .font(.title3)
-                .foregroundStyle(report.tier.color)
-                .frame(width: 44, height: 44)
-                .background(report.tier.background, in: Circle())
-            VStack(alignment: .leading, spacing: 2) {
-                Text(report.blocksOpening ? String(localized: "차단") : report.tier.label)
-                    .font(.headline)
+        let layout = isAX
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.m))
+            : AnyLayout(HStackLayout(spacing: Spacing.m))
+        return layout {
+            HStack(spacing: Spacing.m) {
+                Image(systemName: report.blocksOpening ? "nosign" : report.tier.symbol)
+                    .font(.title3)
                     .foregroundStyle(report.tier.color)
-                Text("확인 범위: \(report.coverage.summaryText)")
-                    .font(.caption)
-                    .foregroundStyle(Palette.inkSecondary)
+                    .frame(width: 44, height: 44)
+                    .background(report.tier.background, in: Circle())
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(report.blocksOpening ? String(localized: "차단") : report.tier.label)
+                        .font(.headline)
+                        .foregroundStyle(report.tier.color)
+                    Text("확인 범위: \(report.coverage.summaryText)")
+                        .font(.caption)
+                        .foregroundStyle(Palette.inkSecondary)
+                }
             }
-            Spacer()
+            if !isAX { Spacer() }
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(report.score)")
                     .font(.system(.title, design: .rounded).weight(.bold))
@@ -68,8 +80,10 @@ struct DetailView: View {
                     .font(.caption)
                     .foregroundStyle(Palette.inkSecondary)
             }
-            .accessibilityLabel("위험 점수 \(report.score)점")
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("위험 점수 \(report.score)점, 100점 만점"))
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .card()
         .accessibilityElement(children: .combine)
     }
@@ -111,7 +125,7 @@ struct DetailView: View {
         let isOpen = expanded.contains(finding.id)
         return VStack(alignment: .leading, spacing: Spacing.m) {
             Button {
-                withAnimation(.easeInOut(duration: 0.2)) {
+                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) {
                     if isOpen { expanded.remove(finding.id) } else { expanded.insert(finding.id) }
                 }
             } label: {
@@ -121,10 +135,12 @@ struct DetailView: View {
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(Palette.inkSecondary)
                         .rotationEffect(.degrees(isOpen ? 90 : 0))
+                        .accessibilityHidden(true)
                 }
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
+            .accessibilityValue(isOpen ? Text("펼침") : Text("접힘"))
             .accessibilityHint(isOpen ? "접기" : "이유와 권장 행동 보기")
 
             if isOpen {
@@ -136,14 +152,16 @@ struct DetailView: View {
                             .font(.caption)
                             .foregroundStyle(Palette.inkSecondary)
                     }
+                    // 70% 불투명 inkSecondary는 Light 카드 위 3.1:1 → 불투명 그대로 사용 (5.9:1)
                     Text(finding.id.rawValue)
                         .font(.caption2.monospaced())
-                        .foregroundStyle(Palette.inkSecondary.opacity(0.7))
+                        .foregroundStyle(Palette.inkSecondary)
+                        .accessibilityLabel(Text("규칙 번호 \(finding.id.rawValue)"))
                 }
                 .padding(Spacing.m)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Palette.surface, in: RoundedRectangle(cornerRadius: Radius.row, style: .continuous))
-                .transition(.opacity.combined(with: .move(edge: .top)))
+                .transition(reduceMotion ? .opacity : .opacity.combined(with: .move(edge: .top)))
             }
         }
         .padding(Spacing.m)
@@ -166,14 +184,16 @@ struct DetailView: View {
                         Image(systemName: "checkmark")
                             .font(.caption.weight(.bold))
                             .foregroundStyle(Palette.safe)
+                            .accessibilityHidden(true)
                         Text(RuleText.passed(id))
                             .font(.footnote)
                             .foregroundStyle(Palette.ink)
                         Spacer()
                         Text(id.rawValue)
                             .font(.caption2.monospaced())
-                            .foregroundStyle(Palette.inkSecondary.opacity(0.7))
+                            .foregroundStyle(Palette.inkSecondary)
                     }
+                    .accessibilityElement(children: .combine)
                 }
             }
             .padding(.top, Spacing.s)
@@ -193,15 +213,17 @@ struct DetailView: View {
                 ForEach(Array(report.redirectChain.enumerated()), id: \.element.id) { index, hop in
                     HStack(alignment: .top, spacing: Spacing.m) {
                         VStack(spacing: 0) {
+                            // Dark에서 ink는 밝은색이라 흰 글자는 보이지 않는다 → onInk.
                             Text("\(index + 1)")
                                 .font(.caption2.bold())
-                                .foregroundStyle(index == report.redirectChain.count - 1 ? Color.white : Palette.inkSecondary)
-                                .frame(width: 20, height: 20)
+                                .foregroundStyle(index == report.redirectChain.count - 1 ? Palette.onInk : Palette.ink)
+                                .frame(width: hopBadgeSize, height: hopBadgeSize)
                                 .background(index == report.redirectChain.count - 1 ? Palette.ink : Palette.line, in: Circle())
                             if index < report.redirectChain.count - 1 {
                                 Rectangle().fill(Palette.line).frame(width: 2).frame(minHeight: 20)
                             }
                         }
+                        .accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(hop.url.absoluteString)
                                 .font(.footnote)
@@ -214,6 +236,8 @@ struct DetailView: View {
                                 .foregroundStyle(Palette.inkSecondary)
                         }
                         .padding(.bottom, Spacing.m)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel(Text("\(index + 1)단계, \(hopDescription(hop, index: index)), \(hop.url.absoluteString)"))
                     }
                 }
             }
@@ -284,13 +308,16 @@ struct DetailView: View {
     }
 
     private func infoRow(_ title: String, _ value: String) -> some View {
-        HStack(alignment: .firstTextBaseline) {
+        let layout = isAX
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2))
+            : AnyLayout(HStackLayout(alignment: .firstTextBaseline))
+        return layout {
             Text(title).font(.footnote).foregroundStyle(Palette.inkSecondary)
-            Spacer()
+            if !isAX { Spacer() }
             Text(value)
                 .font(.footnote.weight(.medium))
                 .foregroundStyle(Palette.ink)
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(isAX ? .leading : .trailing)
                 .textSelection(.enabled)
         }
         .accessibilityElement(children: .combine)
@@ -302,10 +329,13 @@ struct DetailView: View {
         VStack(alignment: .leading, spacing: Spacing.m) {
             SectionHeader(title: String(localized: "확인 범위"), trailing: report.coverage.summaryText)
             ForEach(CheckID.allCases, id: \.self) { check in
-                HStack {
+                let status = coverageStatus(check)
+                let layout = isAX
+                    ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2))
+                    : AnyLayout(HStackLayout())
+                layout {
                     Text(check.title).font(.footnote).foregroundStyle(Palette.ink)
-                    Spacer()
-                    let status = coverageStatus(check)
+                    if !isAX { Spacer() }
                     Label(status.0, systemImage: status.1)
                         .font(.caption)
                         .foregroundStyle(status.2)
@@ -344,14 +374,17 @@ struct DetailView: View {
                 SectionHeader(title: String(localized: "원본 데이터"))
                 Button {
                     UIPasteboard.general.string = report.rawPayload
-                    withAnimation { copied = true }
+                    let animation: Animation? = reduceMotion ? nil : .default
+                    withAnimation(animation) { copied = true }
+                    UIAccessibility.post(notification: .announcement, argument: String(localized: "복사했어요"))
                     Task {
                         try? await Task.sleep(for: .seconds(1.5))
-                        withAnimation { copied = false }
+                        withAnimation(animation) { copied = false }
                     }
                 } label: {
                     Label("복사", systemImage: "doc.on.doc").font(.footnote)
                 }
+                .accessibilityLabel("원본 데이터 복사")
             }
             Text(report.rawPayload)
                 .font(.footnote.monospaced())

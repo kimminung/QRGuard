@@ -66,6 +66,10 @@ QR Guard는 이 수법들을 하나씩 판정 규칙으로 옮겨, **열기 전�
 |---|---|---|---|
 | <img src="docs/assets/screens/11-result-blocked.png" width="200"> | <img src="docs/assets/screens/12-hold-to-open.png" width="200"> | <img src="docs/assets/screens/13-onboarding.png" width="200"> | <img src="docs/assets/screens/14-scanner-empty.png" width="200"> |
 
+| 사진 속 중첩 QR (V02) | 공유 확장 | 문자(ASCII) QR 붙여넣기 (V03) | 제어 센터·위젯 딥링크 |
+|---|---|---|---|
+| <img src="docs/assets/screens/15-photo-nested-qr.png" width="200"> | <img src="docs/assets/screens/16-share-extension.png" width="200"> | <img src="docs/assets/screens/17-paste-ascii-qr.png" width="200"> | <img src="docs/assets/screens/18-deeplink-scan.png" width="200"> |
+
 ## 동작 방식
 
 ```mermaid
@@ -217,11 +221,14 @@ cd Packages/QRGuardKit && swift test        # Core 124 · Network 66
 │  ├─ Features/                 # Onboarding · Home · Scanner · Import · Analysis · Result · Detail · History · Settings · IncidentGuide
 │  ├─ Persistence/              # ScanRecord(@Model) · HistoryStore
 │  └─ Resources/                # Localizable.xcstrings · PrivacyInfo.xcprivacy
+├─ QRGuardShare/                # 공유 확장: 사진·URL·텍스트 → 분석 요약, App Group 받은편지함으로 기록 공유
+├─ QRGuardWidgets/              # 제어 센터 컨트롤(OpenScannerIntent) · 잠금화면 위젯 → qrguard://scan
 ├─ Packages/QRGuardKit/         # 로컬 Swift 패키지 (Swift 6 언어 모드)
-│  ├─ Sources/QRGuardCore/      # Payload · URL(Punycode) · Domain(PSL) · Rules(41개) · Scoring · Data(JSON) · Text
-│  ├─ Sources/QRGuardNetwork/   # RedirectResolver · SafeBrowsingV5 · URLhaus · RDAP · PagePrecheck · AnalysisPipeline
-│  └─ Tests/                    # Core 124 (픽스처 106) · Network 66 (URLProtocol 스텁)
-├─ Config/                      # Base.xcconfig (+ Secrets.xcconfig, gitignore)
+│  ├─ Sources/QRGuardCore/      # Payload · URL(Punycode) · Domain(PSL) · Rules(45개: P/U/B/C/R/T/D/H/V) · Scoring · Data(JSON+서명 검증) · Text(정제기·조사)
+│  ├─ Sources/QRGuardNetwork/   # RedirectResolver · SafeBrowsingV5 · URLhaus · RDAP · PagePrecheck · SecurityDataUpdater · AnalysisPipeline
+│  └─ Tests/                    # Core 173 (픽스처 121) · Network 78 (URLProtocol 스텁)
+├─ tools/security-data/         # 보안 데이터 번들 생성·Ed25519 서명·검증, KISA 블록리스트 병합 스크립트
+├─ Config/                      # Base.xcconfig (SAFE_BROWSING_API_KEY · SECURITY_DATA_URL, + Secrets.xcconfig gitignore)
 ├─ docs/                        # TECH_PRD · TASKS · RISK_RULES · diagrams · assets(실제 캡처)
 ├─ CLAUDE.md · README.md · LICENSE · NOTICE
 ```
@@ -234,8 +241,9 @@ cd Packages/QRGuardKit && swift test        # Core 124 · Network 66
 - [x] **Phase 3** 결과 UI (디자인 시스템 · 결과 · 상세)
 - [x] **Phase 4** 온라인 검사 (리다이렉트 · Safe Browsing · RDAP · 페이지 사전 검사) — 실제 키로 Safe Browsing 수동 확인 남음
 - [x] **Phase 5** 기록 · 설정 · 피해 대응 가이드
-- [ ] **Phase 6** 공유 확장 · 제어 센터 컨트롤 · 보안 데이터 업데이트
-- [ ] **Phase 7** 접근성 · 성능 · 출시 준비 (영어 번역: 규칙 문구는 완료, 앱 UI 문구는 한국어만)
+- [x] **Phase 6** 공유 확장(`QRGuardShare`, App Group 받은편지함) · 제어 센터 컨트롤·잠금화면 위젯(`QRGuardWidgets`, `qrguard://scan`) · Ed25519 서명 검증 보안 데이터 업데이트 — KISA 데이터셋은 변환 스크립트만(이용 조건 확인 필요)
+- [x] **Phase 7** 접근성(대비 4.5:1·AX 레이아웃·VoiceOver) · 성능(오프라인 분석 p95 5ms) · 영어 번역(앱·규칙·확장) — TestFlight 내부 테스트와 실기기 Instruments 측정은 남음
+- [ ] **Phase 8** 온디바이스 AI 계층 ([`docs/AI_ONDEVICE_DEFENSE.md`](docs/AI_ONDEVICE_DEFENSE.md)) — T-8.1 완료: 분할·중첩·문자(ASCII) QR 디코딩, 숨김 문자·지시문 정제기(V01–V03·V09, AI 없이 동작). T-8.2 이후(Foundation Models·Core ML 판별기)는 설계만
 
 세부 항목은 [`docs/TASKS.md`](docs/TASKS.md)를 참고하세요.
 

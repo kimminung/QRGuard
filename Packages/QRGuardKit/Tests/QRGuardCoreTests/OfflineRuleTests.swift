@@ -326,14 +326,14 @@ struct OfflineRuleTests {
 
     @Test func catalogContainsEveryRuleOnce() {
         let ids = RuleCatalog.allRules.map(\.id)
-        #expect(ids.count == 41)
+        #expect(ids.count == 45)
         #expect(Set(ids).count == ids.count)
         let expected: [RuleID] = [.P01, .P02, .P03, .P04, .P05, .P05a, .P06, .P07, .P08, .P09, .P10,
                                   .U01, .U02, .U03, .U04, .U05, .U06, .U07, .U08, .U09, .U10, .U11,
                                   .B01, .B02, .B03, .R01, .R02, .R03, .R04, .R05, .T01, .D01, .D02, .D03,
-                                  .H01, .H02, .H03, .H05, .C01, .C02, .C03]
+                                  .H01, .H02, .H03, .H05, .V01, .V02, .V03, .V09, .C01, .C02, .C03]
         #expect(ids == expected)
-        #expect(RuleCatalog.offlineRules.count == 28)   // P 11 + U 11 + B 3 + C 3
+        #expect(RuleCatalog.offlineRules.count == 32)   // P 11 + U 11 + B 3 + V 4 + C 3
         #expect(RuleCatalog.onlineRules.count == 13)    // R 5 + T 1 + D 3 + H 4
     }
 }

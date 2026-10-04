@@ -9,6 +9,11 @@ struct FixtureCase: Decodable, Sendable, CustomTestStringConvertible {
         var place: PlaceContext? = nil
         var distinctCodesInFrame: Int? = nil
     }
+    /// 페이지 사전 검사 결과 중 V09가 읽는 필드만(T-8.1).
+    struct Page: Decodable, Sendable {
+        var hiddenText: String? = nil
+        var invisibleCharacterCount: Int? = nil
+    }
     struct Expect: Decodable, Sendable {
         var rules: [RuleID]? = nil
         var notRules: [RuleID]? = nil
@@ -23,6 +28,10 @@ struct FixtureCase: Decodable, Sendable, CustomTestStringConvertible {
     var name: String? = nil
     var input: String
     var context: Context? = nil
+    /// 비전 신호(V01–V03). 없으면 스냅샷의 `vision`은 nil.
+    var vision: VisionSignals? = nil
+    /// 페이지 숨김 텍스트·불가시 문자 수(V09). 없으면 `page`는 nil.
+    var page: Page? = nil
     var expect: Expect
 
     var testDescription: String { name ?? input }
@@ -47,8 +56,10 @@ struct FixtureTests {
         // 오프라인에서 발동 가능한 규칙(P·U·B·C·T01)이 모두 최소 한 번은 양성으로 등장해야 한다.
         let offlineIDs: [RuleID] = [.P01, .P02, .P03, .P04, .P05, .P05a, .P06, .P07, .P08, .P09, .P10,
                                     .U01, .U02, .U03, .U04, .U05, .U06, .U07, .U08, .U09, .U10, .U11,
-                                    .B01, .B02, .B03, .T01, .C01, .C02, .C03]
+                                    .B01, .B02, .B03, .T01, .C01, .C02, .C03,
+                                    .V01, .V02, .V03, .V09]
         for id in offlineIDs { #expect(covered.contains(id), "no positive fixture for \(id)") }
+        #expect(cases.filter { $0.vision != nil }.count >= 6, "need ≥6 fixtures with a vision object")
     }
 
     @Test(arguments: cases)
@@ -59,7 +70,12 @@ struct FixtureTests {
             distinctCodesInFrame: c.context?.distinctCodesInFrame ?? 1,
             options: .offline
         )
-        let report = TestSupport.engine.offlineReport(for: c.input, context: context)
+        var snapshot = TestSupport.engine.offlineSnapshot(for: c.input)
+        snapshot.vision = c.vision
+        if let page = c.page {
+            snapshot.page = PagePrecheckResult(hiddenText: page.hiddenText ?? "", invisibleCharacterCount: page.invisibleCharacterCount ?? 0)
+        }
+        let report = TestSupport.engine.report(snapshot: snapshot, context: context)
         let ids = TestSupport.ruleIDs(report)
         let summary = Comment(rawValue: "score=\(report.score) tier=\(report.tier) rules=\(report.findings.map(\.id.rawValue).sorted())")
 

@@ -135,6 +135,9 @@ enum HTMLScanner {
         let body = visibleText(in: html)
         let combined = (altTexts + [body]).joined(separator: " ")
         result.leadingText = String(collapseWhitespace(combined).prefix(leadingTextLimit))
+        // V09: 숨김 영역(display:none 등)의 텍스트와 불가시 문자 수 — 탐지 회피·인젝션 신호
+        result.hiddenText = String(InputSanitizer.hiddenText(inHTML: html).prefix(leadingTextLimit))
+        result.invisibleCharacterCount = InputSanitizer.invisibleCharacterCount(in: html)
         return result
     }
 

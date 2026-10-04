@@ -16,13 +16,24 @@ enum AppRoute: Hashable {
     case about
 }
 
-/// 앱 전역 상태: 설정, 파이프라인, 경로, 분석 세션, 기록 저장소.
+/// 보안 데이터 상태 (설정 화면 표시용).
+struct SecurityDataStatus: Equatable {
+    var sourceDescription: String = DataStore.bundledSourceDescription
+    var appliedSequence: Int?
+    var updatedAt: Date?
+    var lastCheckedAt: Date?
+    var isChecking = false
+    var lastMessage: String?
+    var isConfigured = false
+}
+
+/// 앱 전역 상태: 설정, 파이프라인, 경로, 분석 세션, 기록 저장소, 보안 데이터 갱신.
 @Observable
 final class AppModel {
     let settings: AppSettings
     let history: HistoryStore
-    let pipeline: AnalysisPipeline
-    let engine: RiskEngine
+    private(set) var pipeline: AnalysisPipeline
+    private(set) var engine: RiskEngine
 
     var path: [AppRoute] = []
     var showScanner = false
@@ -31,9 +42,12 @@ final class AppModel {
     private(set) var sessions: [UUID: AnalysisSession] = [:]
     /// 홈 상단 피해 대응 배너
     var showIncidentBanner = false
+    private(set) var securityData = SecurityDataStatus()
 
     /// Safe Browsing 키가 Info.plist에 주입됐는지 (설정 화면 안내용)
     let hasSafeBrowsingKey: Bool
+    private let safeBrowsingAPIKey: String?
+    private let securityUpdater: SecurityDataUpdater?
 
     init(settings: AppSettings, history: HistoryStore) {
         self.settings = settings
@@ -42,11 +56,31 @@ final class AppModel {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         let apiKey = (key?.isEmpty == false && key?.hasPrefix("$(") == false) ? key : nil
         hasSafeBrowsingKey = apiKey != nil
-        engine = RiskEngine()
-        pipeline = AnalysisPipeline.live(safeBrowsingAPIKey: apiKey, engine: engine)
+        safeBrowsingAPIKey = apiKey
+
+        // 검증된 원격 보안 데이터가 캐시에 있으면 번들 데이터 위에 덮어쓴다(서명 재검증, 실패 시 번들).
+        let data = DataStore.loadApplyingCachedUpdate()
+        let initialEngine = RiskEngine(data: data)
+        engine = initialEngine
+        pipeline = AnalysisPipeline.live(safeBrowsingAPIKey: apiKey, engine: initialEngine)
+        securityUpdater = SecurityDataConfiguration.makeUpdater(bundle: .main)
+        securityData = SecurityDataStatus(
+            sourceDescription: data.sourceDescription,
+            appliedSequence: data.remoteSequence,
+            updatedAt: data.updatedAt,
+            isConfigured: securityUpdater != nil
+        )
+
         showOnboarding = !settings.hasOnboarded
         history.purgeExpired(retention: settings.retention)
         showIncidentBanner = history.hasRecentDangerOpened()
+        importSharedInbox()
+        Task { [weak self] in
+            await self?.loadSecurityState()
+            if settings.securityAutoUpdate {
+                await self?.refreshSecurityData(force: false)
+            }
+        }
     }
 
     func session(_ id: UUID) -> AnalysisSession? { sessions[id] }
@@ -81,7 +115,7 @@ final class AppModel {
 
     /// 기록에서 "다시 검사".
     func reanalyze(_ session: AnalysisSession) {
-        startAnalysis(ScanInput(raw: session.input.raw, source: session.input.source, distinctCodes: session.input.distinctCodes))
+        startAnalysis(ScanInput(raw: session.input.raw, source: session.input.source, distinctCodes: session.input.distinctCodes, vision: session.snapshot?.vision))
     }
 
     func markOpened(_ session: AnalysisSession) {
@@ -123,6 +157,92 @@ final class AppModel {
         try? history.context.save()
     }
 
+    // MARK: - 딥링크 (위젯 · 제어 센터 · 공유 확장)
+
+    /// `qrguard://scan`, `qrguard://analyze?inbox=…`, `qrguard://analyze?p=…`
+    func handleDeepLink(_ url: URL) {
+        guard let route = QRGuardLinks.route(for: url) else { return }
+        showOnboarding = false
+        showPasteSheet = false
+        switch route {
+        case .scan:
+            path.removeAll()
+            showScanner = true
+        case .inbox(let id):
+            showScanner = false
+            let imported = importSharedInbox()
+            if let record = imported.first(where: { $0.0 == id })?.1 ?? history.record(id: id) {
+                path.removeAll()
+                openRecord(record)
+            }
+        case .analyze(let payload, let source):
+            showScanner = false
+            path.removeAll()
+            startAnalysis(ScanInput(raw: payload, source: source))
+        }
+    }
+
+    /// 공유 확장이 App Group 받은편지함에 남긴 결과를 기록으로 옮긴다. (받은편지함 항목 ID, 저장된 기록) 쌍을 돌려준다.
+    /// - Parameter openRecent: 방금(2분 안에) 공유된 항목이 있으면 그 결과 화면을 바로 연다(포그라운드 복귀 시).
+    @discardableResult
+    func importSharedInbox(openRecent: Bool = false) -> [(UUID, ScanRecord)] {
+        guard let inbox = SharedInbox() else { return [] }
+        var imported: [(UUID, ScanRecord)] = []
+        var latest: (Date, ScanRecord)?
+        for item in inbox.drain() {
+            if let record = history.save(report: item.report, snapshot: item.snapshot, context: item.context, retention: settings.retention, id: item.id) {
+                imported.append((item.id, record))
+                if latest == nil || item.createdAt > latest!.0 { latest = (item.createdAt, record) }
+            }
+        }
+        if !imported.isEmpty {
+            showIncidentBanner = history.hasRecentDangerOpened()
+        }
+        if openRecent, let latest, Date.now.timeIntervalSince(latest.0) < 120 {
+            showScanner = false
+            path.removeAll()
+            openRecord(latest.1)
+        }
+        return imported
+    }
+
+    // MARK: - 보안 데이터 원격 업데이트 (T-6.3)
+
+    private func loadSecurityState() async {
+        guard let securityUpdater else { return }
+        let state = await securityUpdater.currentState()
+        securityData.lastCheckedAt = state.lastCheckedAt
+        if securityData.appliedSequence == nil { securityData.appliedSequence = state.appliedSequence }
+    }
+
+    /// 서명 검증을 통과한 데이터만 적용하고, 적용되면 엔진·파이프라인을 다시 만든다.
+    func refreshSecurityData(force: Bool) async {
+        guard let securityUpdater, !securityData.isChecking else { return }
+        securityData.isChecking = true
+        defer { securityData.isChecking = false }
+        let outcome = await securityUpdater.updateIfNeeded(minimumInterval: force ? .zero : .seconds(86_400))
+        let state = await securityUpdater.currentState()
+        securityData.lastCheckedAt = state.lastCheckedAt ?? securityData.lastCheckedAt
+        switch outcome {
+        case .applied(let sequence):
+            let data = DataStore.loadApplyingCachedUpdate()
+            engine = RiskEngine(data: data)
+            pipeline = AnalysisPipeline.live(safeBrowsingAPIKey: safeBrowsingAPIKey, engine: engine)
+            securityData.sourceDescription = data.sourceDescription
+            securityData.appliedSequence = sequence
+            securityData.updatedAt = data.updatedAt
+            securityData.lastMessage = String(localized: "새 보안 데이터(#\(sequence))를 적용했어요.")
+        case .upToDate:
+            securityData.lastMessage = String(localized: "이미 최신 데이터예요.")
+        case .skippedRecently:
+            securityData.lastMessage = nil
+        case .rejected(let error):
+            securityData.lastMessage = String(localized: "서명 검증에 실패해 적용하지 않았어요. (\(error.code))")
+        case .failed:
+            securityData.lastMessage = String(localized: "서버에 연결하지 못했어요. 앱에 포함된 데이터로 계속 검사해요.")
+        }
+    }
+
     /// 데모·UI 테스트: `-UITestPayload <문자열>` 런치 인자로 분석 화면에 바로 진입.
     func handleLaunchArguments(_ arguments: [String] = CommandLine.arguments) {
         guard let index = arguments.firstIndex(of: "-UITestPayload"), arguments.count > index + 1 else { return }
@@ -141,6 +261,7 @@ enum PreviewSupport {
     static func appModel() -> AppModel {
         let settings = AppSettings(defaults: UserDefaults(suiteName: "preview")!)
         settings.hasOnboarded = true
+        settings.securityAutoUpdate = false
         return AppModel(settings: settings, history: HistoryStore(context: container.mainContext))
     }
 

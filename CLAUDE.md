@@ -9,8 +9,10 @@ QR 코드를 스캔하면 바로 열지 않고, 위험 요소를 분석해 **안
 ## 현재 상태 (2026-10-04)
 
 - MVP(Phase 0–5) 구현 완료. 저장소는 `~/Desktop/QRGuard`, Xcode 프로젝트 `QRGuard.xcodeproj`, 타깃·스킴 `QRGuard`, 번들 `com.coulson.QRGuard`, iOS 18.0+, Swift 6 + 기본 MainActor 격리.
-- 앱 코드는 `QRGuard/`(파일 시스템 동기화 그룹 — 폴더에 파일을 넣으면 자동 포함), 엔진·네트워크는 `Packages/QRGuardKit/`(Swift 6 언어 모드, UIKit 없음).
-- 테스트: `cd Packages/QRGuardKit && swift test` (Core 124 · Network 66). 앱 빌드: `xcodebuild -project QRGuard.xcodeproj -scheme QRGuard -destination 'generic/platform=iOS Simulator' build`.
+- 앱 코드는 `QRGuard/`(파일 시스템 동기화 그룹 — 폴더에 파일을 넣으면 자동 포함), 엔진·네트워크는 `Packages/QRGuardKit/`(Swift 6 언어 모드, UIKit 없음). 확장 타깃: `QRGuardShare/`(공유 확장, QRGuardKit 링크, App Group `group.com.coulson.QRGuard`), `QRGuardWidgets/`(제어 센터 컨트롤·잠금화면 위젯, 패키지 미링크 — 딥링크 문자열 `qrguard://scan` 하드코딩).
+- Phase 6·7·8.1까지 구현(2026-10-04). 남은 것: T-7.4 TestFlight, T-8.2 이후(AI 계층), 실기기 QA. 딥링크·App Group·보안 데이터 갱신 흐름은 `docs/TASKS.md` 진행 기록 참고.
+- 테스트: `cd Packages/QRGuardKit && swift test` (Core 173 · Network 78). 앱 빌드: `xcodebuild -project QRGuard.xcodeproj -scheme QRGuard -destination 'generic/platform=iOS Simulator' build` (확장 2개가 함께 빌드된다).
+- 공유 확장·위젯의 `Localizable.xcstrings`는 Xcode 빌드가 문자열을 자동 추출하지 않은 상태에서 손으로 채웠다. 확장 코드의 사용자 문구를 바꾸면 카탈로그도 같이 고친다(Xcode에서 빌드하면 동기화됨).
 - 폴더 이름을 바꾸면 `INFOPLIST_FILE`(현재 `QRGuard/Info.plist`)도 함께 바꿔야 한다. 2026-10-04 실기기 빌드 실패 원인이 옛 경로 `MyApp/Info.plist`였다.
 - 함정: Xcode의 빌드 설정/Info.plist 도구는 `project.pbxproj`를 재저장하면서 외부에서 넣은 패키지 참조(`C05A…` ID)를 지울 수 있다. 설정을 바꾼 뒤에는 `packageReferences`/`baseConfigurationReference`가 남아 있는지 확인한다.
 - 시뮬레이터에는 카메라가 없어 스캐너 화면이 샘플 QR 버튼으로 대체된다. 런치 인자 `-UITestPayload <문자열>`로 분석 화면에 바로 진입할 수 있다.

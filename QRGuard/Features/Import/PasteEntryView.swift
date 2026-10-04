@@ -7,9 +7,28 @@ struct PasteEntryView: View {
 
     @Environment(\.dismiss) private var dismiss
     @State private var text = ""
+    @State private var decodingTextArt = false
     @FocusState private var focused: Bool
 
     private var trimmed: String { text.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+    /// 문자(█▀▄)로 그린 QR이면 먼저 비트맵으로 디코딩한다 (V03). 아니면 입력 그대로 분석한다.
+    private func submit() {
+        let input = trimmed
+        guard TextArtQR.looksLikeTextArt(input) else {
+            onSubmit(ScanInput(raw: input, source: .paste))
+            return
+        }
+        decodingTextArt = true
+        Task {
+            defer { decodingTextArt = false }
+            if let decoded = await QRImageDecoder.decodeTextArt(input) {
+                onSubmit(ScanInput(raw: decoded, source: .paste, vision: VisionSignals(decodedFromTextArt: true)))
+            } else {
+                onSubmit(ScanInput(raw: input, source: .paste))
+            }
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -20,6 +39,7 @@ struct PasteEntryView: View {
 
                 TextEditor(text: $text)
                     .font(.body)
+                    .accessibilityLabel("링크 또는 문자 내용")
                     .focused($focused)
                     .scrollContentBackground(.hidden)
                     .padding(Spacing.m)
@@ -28,11 +48,13 @@ struct PasteEntryView: View {
                     .overlay(RoundedRectangle(cornerRadius: Radius.card, style: .continuous).strokeBorder(Palette.line))
                     .overlay(alignment: .topLeading) {
                         if text.isEmpty {
+                            // 70% 불투명은 Light 카드 위 3.1:1 → 불투명 inkSecondary(5.9:1). 입력란 라벨이 같은 내용을 읽으므로 VoiceOver에서는 숨긴다.
                             Text("https://… 또는 문자 내용")
-                                .foregroundStyle(Palette.inkSecondary.opacity(0.7))
+                                .foregroundStyle(Palette.inkSecondary)
                                 .padding(Spacing.l)
                                 .padding(.top, 4)
                                 .allowsHitTesting(false)
+                                .accessibilityHidden(true)
                         }
                     }
                     .textInputAutocapitalization(.never)
@@ -50,12 +72,12 @@ struct PasteEntryView: View {
                 Spacer()
 
                 Button {
-                    onSubmit(ScanInput(raw: trimmed, source: .paste))
+                    submit()
                 } label: {
                     Label("분석하기", systemImage: "magnifyingglass")
                 }
                 .buttonStyle(.primary(.brand))
-                .disabled(trimmed.isEmpty)
+                .disabled(trimmed.isEmpty || decodingTextArt)
             }
             .padding(Spacing.l)
             .background(Palette.surface.ignoresSafeArea())

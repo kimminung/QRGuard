@@ -127,6 +127,8 @@ struct HistoryView: View {
                                 Label("삭제", systemImage: "trash")
                             }
                         }
+                        // 스와이프를 할 수 없는 보조 기술 사용자를 위한 로터 동작
+                        .accessibilityAction(named: Text("삭제")) { app.history.delete(record) }
                     }
                 }
             }
@@ -147,10 +149,11 @@ struct HistoryView: View {
                             }
                             Text(item.title)
                             Text("\(count(for: item))")
-                                .foregroundStyle(selected ? Color.white.opacity(0.8) : Palette.inkSecondary)
+                                .foregroundStyle(selected ? Palette.onInk.opacity(0.8) : Palette.inkSecondary)
                         }
                         .font(.subheadline.weight(selected ? .semibold : .regular))
-                        .foregroundStyle(selected ? Color.white : Palette.ink)
+                        // Dark에서 ink는 밝은색이라 흰 글자(1.1:1)는 보이지 않는다 → onInk
+                        .foregroundStyle(selected ? Palette.onInk : Palette.ink)
                         .padding(.horizontal, Spacing.m)
                         .padding(.vertical, Spacing.s)
                         .background(selected ? Palette.ink : Palette.card, in: Capsule())

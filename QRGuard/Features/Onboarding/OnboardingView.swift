@@ -7,13 +7,18 @@ struct OnboardingView: View {
     @State private var requesting = false
 
     var body: some View {
+        // 접근성 글자 크기에서는 한 화면에 들어가지 않으므로 스크롤되게 한다.
+        // 보통 크기에서는 minHeight = 화면 높이로 두어 Spacer가 기존처럼 내용을 가운데 정렬한다.
+        GeometryReader { geo in
+        ScrollView {
         VStack(spacing: Spacing.xl) {
-            Spacer()
+            Spacer(minLength: Spacing.xl)
             BrandMark(size: 96)
             VStack(spacing: Spacing.s) {
                 Text("QR Guard")
                     .font(.largeTitle.bold())
                     .foregroundStyle(Palette.ink)
+                    .accessibilityAddTraits(.isHeader)
                 Text("QR 코드, 열기 전에 먼저 확인하세요")
                     .font(.title3)
                     .foregroundStyle(Palette.inkSecondary)
@@ -25,7 +30,7 @@ struct OnboardingView: View {
                 point("hand.tap", "접속 여부는 직접 결정해요", "주의·위험 등급은 확인 단계를 거친 뒤에만 열 수 있어요.")
             }
             .padding(.horizontal, Spacing.l)
-            Spacer()
+            Spacer(minLength: Spacing.xl)
             VStack(spacing: Spacing.m) {
                 Button {
                     requestCamera()
@@ -46,6 +51,10 @@ struct OnboardingView: View {
                 .padding(.horizontal, Spacing.xl)
                 .padding(.bottom, Spacing.l)
         }
+        .frame(maxWidth: .infinity)
+        .frame(minHeight: geo.size.height)
+        }
+        }
         .background(Palette.surface.ignoresSafeArea())
         .interactiveDismissDisabled()
     }
@@ -56,6 +65,7 @@ struct OnboardingView: View {
                 .font(.title3)
                 .foregroundStyle(Palette.brand)
                 .frame(width: 32)
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.headline).foregroundStyle(Palette.ink)
                 Text(body).font(.subheadline).foregroundStyle(Palette.inkSecondary)

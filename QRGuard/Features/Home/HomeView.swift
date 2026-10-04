@@ -6,6 +6,8 @@ import QRGuardCore
 /// 홈 (TASKS T-2.2): 큰 스캔 버튼, 사진 불러오기, 링크 붙여넣기, 최근 기록 3건, 예방 팁.
 struct HomeView: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Query(sort: \ScanRecord.scannedAt, order: .reverse) private var records: [ScanRecord]
 
     @State private var photoItem: PhotosPickerItem?
@@ -14,13 +16,17 @@ struct HomeView: View {
     @State private var tipIndex = Int.random(in: 0..<PreventionTip.all.count)
 
     var body: some View {
+        // 접근성 글자 크기에서는 빠른 동작 카드 2장을 세로로 쌓는다.
+        let quickActionLayout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: Spacing.m))
+            : AnyLayout(HStackLayout(spacing: Spacing.m))
         ScrollView {
             VStack(spacing: Spacing.l) {
                 if app.showIncidentBanner {
                     incidentBanner
                 }
                 heroCard
-                HStack(spacing: Spacing.m) {
+                quickActionLayout {
                     PhotosPicker(selection: $photoItem, matching: .images, photoLibrary: .shared()) {
                         QuickActionLabel(symbol: "photo", title: "사진에서 불러오기")
                     }
@@ -36,8 +42,10 @@ struct HomeView: View {
                 }
                 recentSection
                 TipCard(title: PreventionTip.all[tipIndex].title, message: PreventionTip.all[tipIndex].body)
-                    .onTapGesture { withAnimation { tipIndex = (tipIndex + 1) % PreventionTip.all.count } }
+                    .onTapGesture { showNextTip() }
+                    .accessibilityAddTraits(.isButton)
                     .accessibilityHint("탭하면 다음 팁을 보여줘요")
+                    .accessibilityAction(named: Text("다음 팁")) { showNextTip() }
             }
             .padding(.horizontal, Spacing.l)
             .padding(.bottom, Spacing.xl)
@@ -76,6 +84,10 @@ struct HomeView: View {
         }
     }
 
+    private func showNextTip() {
+        withAnimation(reduceMotion ? nil : .default) { tipIndex = (tipIndex + 1) % PreventionTip.all.count }
+    }
+
     // MARK: - 섹션
 
     private var heroCard: some View {
@@ -84,6 +96,7 @@ struct HomeView: View {
                 Text("QR 코드, 열기 전에\n먼저 확인하세요")
                     .font(.title2.bold())
                     .foregroundStyle(.white)
+                    .accessibilityAddTraits(.isHeader)
                 Text("스캔해도 바로 열지 않아요.\n위험 요소부터 살펴본 뒤 알려드려요.")
                     .font(.subheadline)
                     .foregroundStyle(Palette.onBrandSecondary)
@@ -93,9 +106,12 @@ struct HomeView: View {
             } label: {
                 Label("QR 코드 스캔하기", systemImage: "camera")
                     .font(.body.weight(.semibold))
+                    .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)
-                    .foregroundStyle(Palette.brand)
+                    .padding(.horizontal, Spacing.m)
+                    // 흰 배경 위 글자: Dark의 brand(0x5B8CFF)는 3.16:1이라 brandFill(6.07:1)을 쓴다
+                    .foregroundStyle(Palette.brandFill)
                     .background(.white, in: RoundedRectangle(cornerRadius: Radius.button, style: .continuous))
             }
             .buttonStyle(.plain)
@@ -103,7 +119,7 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(Spacing.xl)
-        .background(Palette.brand, in: RoundedRectangle(cornerRadius: Radius.hero, style: .continuous))
+        .background(Palette.brandFill, in: RoundedRectangle(cornerRadius: Radius.hero, style: .continuous))
     }
 
     private var recentSection: some View {
@@ -118,6 +134,7 @@ struct HomeView: View {
                     Image(systemName: "clock")
                         .font(.title2)
                         .foregroundStyle(Palette.inkSecondary)
+                        .accessibilityHidden(true)
                     Text("아직 검사한 QR이 없어요")
                         .font(.subheadline)
                         .foregroundStyle(Palette.inkSecondary)
@@ -146,6 +163,7 @@ struct HomeView: View {
             HStack(spacing: Spacing.m) {
                 Image(systemName: "cross.case.fill")
                     .foregroundStyle(Palette.danger)
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text("위험 등급 코드를 여셨나요?")
                         .font(.subheadline.weight(.semibold))
@@ -158,6 +176,7 @@ struct HomeView: View {
                 Image(systemName: "chevron.right")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(Palette.inkSecondary)
+                    .accessibilityHidden(true)
             }
             .padding(Spacing.m)
             .background(Palette.dangerBg, in: RoundedRectangle(cornerRadius: Radius.row, style: .continuous))
@@ -176,12 +195,13 @@ struct HomeView: View {
                     photoError = String(localized: "사진을 읽지 못했어요. 다른 사진을 골라 주세요.")
                     return
                 }
-                let payloads = try await QRImageDecoder.decode(imageData: data)
+                let decoded = try await QRImageDecoder.decodeWithSignals(imageData: data)
+                let payloads = decoded.payloads
                 guard let first = payloads.first else {
                     photoError = String(localized: "이 사진에서는 QR 코드를 찾지 못했어요. QR이 선명하게 보이는 사진을 골라 주세요.")
                     return
                 }
-                app.startAnalysis(ScanInput(raw: first, source: .photo, distinctCodes: payloads.count))
+                app.startAnalysis(ScanInput(raw: first, source: .photo, distinctCodes: payloads.count, vision: decoded.vision))
             } catch {
                 photoError = String(localized: "사진을 분석하지 못했어요. 다시 시도해 주세요.")
             }
@@ -201,6 +221,7 @@ nonisolated struct QuickActionLabel: View {
                 .foregroundStyle(Palette.brand)
                 .frame(width: 36, height: 36)
                 .background(Palette.brand.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+                .accessibilityHidden(true)
             Text(title)
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(Palette.ink)
@@ -215,46 +236,69 @@ nonisolated struct QuickActionLabel: View {
 struct RecordRow: View {
     let record: ScanRecord
     var showsSource: Bool = false
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        HStack(spacing: Spacing.m) {
-            Image(systemName: record.blocksOpening ? "nosign" : record.riskTier.symbol)
-                .font(.body)
-                .foregroundStyle(record.riskTier.color)
-                .frame(width: 36, height: 36)
-                .background(record.riskTier.background, in: Circle())
-                .accessibilityLabel(record.riskTier.label)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(record.displayName)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(Palette.ink)
-                    .lineLimit(1)
-                HStack(spacing: Spacing.xs) {
-                    Text(subtitle)
-                    if record.userOpened {
-                        Text("열었음")
-                            .font(.caption2.weight(.semibold))
-                            .foregroundStyle(Palette.danger)
-                            .padding(.horizontal, 5)
-                            .padding(.vertical, 1)
-                            .background(Palette.dangerBg, in: Capsule())
+        // 접근성 글자 크기에서는 이름 아래에 미니 미터·점수를 내려 이름이 잘리지 않게 한다.
+        let isAX = dynamicTypeSize.isAccessibilitySize
+        let rowLayout = isAX
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.s))
+            : AnyLayout(HStackLayout(spacing: Spacing.m))
+        rowLayout {
+            HStack(spacing: Spacing.m) {
+                Image(systemName: record.blocksOpening ? "nosign" : record.riskTier.symbol)
+                    .font(.body)
+                    .foregroundStyle(record.riskTier.color)
+                    .frame(width: 36, height: 36)
+                    .background(record.riskTier.background, in: Circle())
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(record.displayName)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Palette.ink)
+                        .lineLimit(isAX ? 3 : 1)
+                        .truncationMode(.middle)
+                    HStack(spacing: Spacing.xs) {
+                        Text(subtitle)
+                        if record.userOpened {
+                            Text("열었음")
+                                .font(.caption2.weight(.semibold))
+                                .foregroundStyle(Palette.danger)
+                                .padding(.horizontal, 5)
+                                .padding(.vertical, 1)
+                                .background(Palette.dangerBg, in: Capsule())
+                        }
                     }
+                    .font(.caption)
+                    .foregroundStyle(Palette.inkSecondary)
+                    .lineLimit(isAX ? 2 : 1)
                 }
-                .font(.caption)
-                .foregroundStyle(Palette.inkSecondary)
-                .lineLimit(1)
+                if !isAX { Spacer(minLength: 0) }
             }
-            Spacer()
-            MiniRiskMeter(score: record.score).frame(width: 52)
-            Text("\(record.score)")
-                .font(.subheadline.weight(.bold))
-                .monospacedDigit()
-                .foregroundStyle(record.riskTier.color)
-                .frame(minWidth: 28, alignment: .trailing)
+            HStack(spacing: Spacing.m) {
+                if !isAX { Spacer(minLength: 0) }
+                MiniRiskMeter(score: record.score).frame(width: 52)
+                Text("\(record.score)")
+                    .font(.subheadline.weight(.bold))
+                    .monospacedDigit()
+                    .foregroundStyle(record.riskTier.color)
+                    .frame(minWidth: 28, alignment: .trailing)
+            }
         }
         .padding(Spacing.m)
         .contentShape(Rectangle())
-        .accessibilityElement(children: .combine)
+        // 아이콘 라벨·미터 라벨·점수 숫자가 중복되지 않도록 행 전체를 한 문장으로 읽어 준다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(accessibilityText))
+    }
+
+    private var accessibilityText: String {
+        var parts: [String] = []
+        parts.append(record.blocksOpening ? String(localized: "차단") : record.riskTier.label)
+        parts.append(record.displayName)
+        parts.append(subtitle)
+        if record.userOpened { parts.append(String(localized: "열었음")) }
+        parts.append(String(localized: "위험 점수 \(record.score)점"))
+        return parts.joined(separator: ", ")
     }
 
     private var subtitle: String {

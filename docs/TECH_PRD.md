@@ -389,9 +389,12 @@ flowchart LR
 | `surface` | `#F3F5F9` | `#0E1320` | 화면 배경 |
 | `card` | `#FFFFFF` | `#182033` | 카드 |
 | `line` | `#E3E7EF` | `#273049` | 구분선 |
-| `safe` / `safeBg` | `#12925A` / `#E7F6EE` | `#3DD68C` / `#0F2A1F` | 안전 |
-| `caution` / `cautionBg` | `#B76A00` / `#FFF3DC` | `#FFB547` / `#2E2410` | 주의 (텍스트는 대비 4.5:1 이상인 진한 주황) |
-| `danger` / `dangerBg` | `#D92D20` / `#FDECEA` | `#FF6B5E` / `#33161A` | 위험 |
+| `safe` / `safeBg` | `#0E7A4B` / `#E7F6EE` | `#3DD68C` / `#0F2A1F` | 안전 (T-7.1 대비 감사로 Light 값을 어둡게: safeBg 위 4.82:1) |
+| `caution` / `cautionBg` | `#9A5600` / `#FFF3DC` | `#FFB547` / `#2E2410` | 주의 (텍스트는 대비 4.5:1 이상인 진한 주황, cautionBg 위 5.16:1) |
+| `danger` / `dangerBg` | `#C9281C` / `#FDECEA` | `#FF6B5E` / `#33161A` | 위험 (dangerBg 위 4.83:1) |
+| `brandFill` | `#1D5BD8` | `#2A5BCB` | 흰 글자를 올리는 브랜드 배경(히어로·주 버튼). Dark `brand`는 흰 글자 대비 3.16:1이라 분리 |
+| `dangerFill` | `#C9281C` | `#D63B2E` | 흰 글자를 올리는 위험 배경("열지 않고 닫기") |
+| `onInk` | `#FFFFFF` | `#0E1320` | `ink` 배경(중립 버튼·선택 칩) 위 글자색 |
 
 - 글꼴: 시스템 글꼴(SF Pro / Apple SD Gothic Neo), Dynamic Type 텍스트 스타일만 사용. 점수 숫자는 `.system(.largeTitle, design: .rounded).weight(.bold)` + `monospacedDigit()`.
 - 모서리: 히어로 카드 22pt, 일반 카드 16pt, 버튼 14pt, 목록 행 12pt — 위계에 따라 다르게.

@@ -1,0 +1,20 @@
+##############################################################################
+#  !!!  TEST KEY ONLY — DO NOT USE FOR A RELEASE BUILD  !!!
+#
+#  This Ed25519 private key is committed to the repository as a test fixture
+#  so that the signed fixtures under
+#  Packages/QRGuardKit/Tests/QRGuardNetworkTests/Fixtures/ can be regenerated.
+#  Anyone with this file can sign data that the current app build accepts.
+#
+#  BEFORE RELEASE:
+#    1. Generate a new keypair:  python3 tools/security-data/sign.py keygen
+#       (or: swift tools/security-data/sign.swift keygen)
+#    2. Put the new PUBLIC key into
+#       Packages/QRGuardKit/Sources/QRGuardCore/Resources/security_data_pubkey.txt
+#    3. Keep the new PRIVATE key OUT of the repository (CI secret / Keychain).
+#    4. Re-sign the test fixtures with the new key or keep a separate test key
+#       and inject it via SecurityDataVerifier(publicKey:) in tests.
+#
+#  Format: raw 32-byte Ed25519 seed, base64. Lines starting with # are ignored.
+##############################################################################
+SJSVQoQOZXs3VLuUmrturEcsa8dQTVMomS/lD/LWz1k=

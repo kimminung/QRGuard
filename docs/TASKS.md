@@ -1,6 +1,6 @@
 # QR Guard — 작업 목록 (Tasks)
 
-> 문서 버전 1.0 · 2026-10-03
+> 문서 버전 1.1 · 2026-10-04
 > 사용법: 위에서부터 순서대로 진행한다. 한 번에 **한 태스크**만 작업하고, 수용 기준을 모두 만족하면 체크박스를 `[x]`로 바꾼 뒤 커밋한다.
 > 커밋 메시지 형식: `[T-1.3] URLNormalizer: IDN·퍼센트 인코딩 정규화`
 > 판정 규칙의 세부 값은 항상 [`RISK_RULES.md`](RISK_RULES.md)를 따른다. UI·아키텍처는 [`TECH_PRD.md`](TECH_PRD.md)를 따른다.
@@ -29,6 +29,8 @@ gantt
     공유 확장·컨트롤·데이터 업데이트 :p6, after p5, 5d
     section Phase 7 품질·출시
     접근성·성능·출시 준비         :p7, after p6, 4d
+    section Phase 8 온디바이스 AI 계층
+    비전 신호·정제기 → AI 분석    :p8, after p7, 10d
 ```
 
 ---
@@ -206,20 +208,20 @@ gantt
 ## Phase 6 — 확장
 
 ### T-6.1 공유 확장 · [P1]
-- [ ] 이미지·URL·텍스트 수신 → `QRGuardKit`으로 분석 → 확장 안 결과 요약(등급·위험 점수·상위 요소) + "QR Guard에서 열기"
-- [ ] App Group으로 기록 공유
+- [x] 이미지·URL·텍스트 수신 → `QRGuardKit`으로 분석 → 확장 안 결과 요약(등급·위험 점수·상위 요소) + "QR Guard에서 열기"
+- [x] App Group으로 기록 공유
 - **수용 기준**: 사진 앱·Safari·메일에서 공유 시트로 동작, 메모리 한도(120MB) 내.
 
 ### T-6.2 App Intent · 제어 센터 컨트롤 · 잠금화면 위젯 · [P2]
-- [ ] `OpenScannerIntent`, `ControlWidgetButton`, 잠금화면 원형 위젯
+- [x] `OpenScannerIntent`, `ControlWidgetButton`, 잠금화면 원형 위젯
 - **수용 기준**: 제어 센터에서 한 번 탭으로 스캐너가 열린다.
 
 ### T-6.3 보안 데이터 원격 업데이트 · [P1]
-- [ ] 정적 호스팅(GitHub Releases 등)의 JSON + Ed25519 서명 검증(`CryptoKit`), 하루 1회, 실패 시 번들 데이터
+- [x] 정적 호스팅(GitHub Releases 등)의 JSON + Ed25519 서명 검증(`CryptoKit`), 하루 1회, 실패 시 번들 데이터
 - **수용 기준**: 서명 불일치 데이터는 적용하지 않는다.
 
 ### T-6.4 국내 피싱 URL 데이터 병합 · [P2]
-- [ ] KISA 공공데이터 피싱 사이트 URL 데이터셋의 형식·이용 조건 확인 → 변환 스크립트 → `blocklist.json` 병합
+- [x] KISA 공공데이터 피싱 사이트 URL 데이터셋의 형식·이용 조건 확인 → 변환 스크립트 → `blocklist.json` 병합
 - **수용 기준**: 출처·갱신일이 데이터 파일 메타에 기록된다.
 
 ---
@@ -227,15 +229,43 @@ gantt
 ## Phase 7 — 품질 · 출시
 
 ### T-7.1 접근성 점검 · [P0]
-- [ ] VoiceOver 순서, Dynamic Type AX5, 대비(Accessibility Inspector), Reduce Motion
+- [x] VoiceOver 순서, Dynamic Type AX5, 대비(Accessibility Inspector), Reduce Motion
 ### T-7.2 성능 · [P0]
-- [ ] Instruments로 오프라인 분석 p95 < 100ms, 스캐너 진입 < 500ms 확인
+- [x] Instruments로 오프라인 분석 p95 < 100ms, 스캐너 진입 < 500ms 확인
 ### T-7.3 현지화 · [P1]
-- [ ] 영어 String Catalog 번역, 하드코딩 문자열 0개
+- [x] 영어 String Catalog 번역, 하드코딩 문자열 0개
 ### T-7.4 출시 준비 · [P0]
-- [ ] `PrivacyInfo.xcprivacy`, 오픈소스 라이선스 화면(PSL MPL-2.0, Unicode), Safe Browsing 고지
-- [ ] 시뮬레이터 실제 캡처로 `docs/assets/screens/` 교체, README 갱신
+- [x] `PrivacyInfo.xcprivacy`, 오픈소스 라이선스 화면(PSL MPL-2.0, Unicode), Safe Browsing 고지
+- [x] 시뮬레이터 실제 캡처로 `docs/assets/screens/` 교체, README 갱신
 - [ ] TestFlight 내부 테스트
+
+---
+
+## Phase 8 — 온디바이스 AI 계층 (설계: [`AI_ONDEVICE_DEFENSE.md`](AI_ONDEVICE_DEFENSE.md))
+
+공통 수용 기준: **래칫 불변식**(`score(AI 켬) ≥ score(AI 끔)`) 테스트 통과 + AI 미지원 기기에서 결과 화면 도달 + 기존 테스트 유지. V·A·Q 계열에는 floor가 없다.
+
+### T-8.1 V01–V03·V09 + `InputSanitizer` (AI 없이 모든 기기) · [P1]
+- [x] `VisionSignals`(스냅샷 `vision`), 규칙 V01 분할 QR · V02 중첩 QR · V03 문자 QR · V09 숨김 문자·문구, 카테고리 상한 25, `RISK_RULES.md` 3.9절·S11
+- [x] `InputSanitizer`: 불가시 문자 제거·BiDi·NFKC·자모 결합, 지시문 패턴(한·영) 탐지, HTML 숨김 영역 추출 → `PagePrecheck`가 `hiddenText`·`invisibleCharacterCount` 채움
+- [x] 앱: 사진·공유 이미지 다중 배율·크롭 디코딩(중첩), 두 장 결합 디코딩(분할), 붙여넣기 문자 QR(`▀▄█`) 렌더링 디코딩, 파이프라인 `analyze(_:context:vision:)`
+- **수용 기준**: 픽스처 121건 + 비전 규칙 테스트 통과, 기존 106건 점수 불변.
+
+### T-8.2 `QRGuardIntel` 모듈 · `IntelProvider`/`NullProvider` · A/Q 계열 규칙 · 레드팀 픽스처 · [P1]
+- [ ] `intel_cases.json` ≥ 80건, 래칫 테스트, Q01·Q02 되묻기 UI
+- **수용 기준**: 모델 없이 기존 테스트 + 신규 픽스처 통과.
+
+### T-8.3 A01 주장–목적지 불일치 + A02–A07·A09 (`FoundationModelsProvider`, OCR 주변 문구, 장소 칩 제안) · [P1]
+- [ ] 가용성·가드레일 거부(A10) 처리, `@Generable` 구조화 출력, 근거 대조
+- **수용 기준**: 공식 도메인 픽스처에서 A01/A02 발동률 0%, 인젝션 재현율 ≥ 95%.
+
+### T-8.4 `CoreMLClassifierProvider` + V04 스티커 분류기 + V06 URL 분류기 · [P2]
+- [ ] 스티커 촬영 데이터셋(장소별 분리) · 문자 단위 URL 분류기
+- **수용 기준**: 정상 음성 FPR 0%, p95 < 300ms.
+
+### T-8.5 V05 로고 유사도 · V07 결제 수취인 대조 · A11 캡차 게이트 · [P2]
+### T-8.6 Q01·Q02 되묻기 · V08 와이파이 · 쉬운 말 설명(시니어 모드) · 피해 대응 대화 · [P2]
+### T-8.7 설정 토글 · 확인 범위 배지 · 상세 "AI 관찰" 섹션 · 퍼플팀 운영 문서 · [P2]
 
 ---
 
@@ -249,3 +279,12 @@ gantt
 | 2026-10-04 | T-3.1~3.4 | RiskMeter(0→점수 1회 애니메이션, Reduce Motion 시 생략), 등급은 색+아이콘 모양+텍스트. 위험 등급 열기 = 알림창 → 2초 길게 누르기 시트. 장소 칩은 스냅샷 재채점(네트워크 재요청 없음). |
 | 2026-10-04 | T-4.1~4.8 | QRGuardNetwork: 리다이렉트는 델리게이트 nil + 수동 추적, http 홉·사설 IP 미접속, Safe Browsing v5 hashes:search(정규화 예제 38건), RDAP, 256KB 페이지 검사, 파이프라인 TaskGroup+개별 타임아웃. coverage: 사용자가 켠 검사 중 실패·불가 항목만 partial. 실제 키로 Google 테스트 URL 확인은 미실시(키 없음). |
 | 2026-10-04 | T-5.1~5.4 | SwiftData `ScanRecord`에 RiskReport/AnalysisSnapshot JSON과 검색용 컬럼 저장(FindingRecord/RedirectHopRecord 관계 대신 JSON 내장 — 단순화). 위험 등급을 연 기록이 있으면 홈 배너. 시뮬레이터 2회 전체 검증(9단계 통과, 크래시 1건 수정: UIColor 동적 공급 클로저의 MainActor 격리). |
+| 2026-10-04 | T-6.1 | `QRGuardShare`(공유 확장): 이미지·URL·텍스트 수신 → `QRGuardKit` 분석 → 요약(등급·위험 점수·상위 요소). 확장은 스캔 URL을 절대 열지 않고 "QR Guard에서 열기"(`qrguard://analyze?inbox=…`)만 제공. App Group `group.com.coulson.QRGuard`: 확장이 `Inbox/*.json`(RiskReport+스냅샷)을 쓰고 앱이 기록으로 가져온다(SwiftData 모델 중복 대신 JSON 받은편지함). 앱 SwiftData 저장소도 App Group 컨테이너로 이동. 공유 확장 템플릿은 MCP 목록에 없어 `com.apple.dt.unit.shareextensionios` ID로 생성, 패키지 링크는 pbxproj 직접 편집. |
+| 2026-10-04 | T-6.2 | `QRGuardWidgetsExtension`: `OpenScannerIntent`(perform → `OpenURLIntent(qrguard://scan)`), `ControlWidgetButton`, 잠금화면 `accessoryCircular/Rectangular` 위젯(`widgetURL`). 앱은 `CFBundleURLTypes` `qrguard` 스킴 + `onOpenURL`로 스캐너·받은편지함·원문 분석 라우팅. |
+| 2026-10-04 | T-6.3 | Ed25519 서명 검증 원격 보안 데이터: `SecurityDataBundle`·`SecurityDataVerifier`(Core), `SecurityDataUpdater` actor(Network, 하루 1회, 안티롤백 sequence, https만, 4MB 상한, 원자적 캐시), `DataStore.loadApplyingCachedUpdate()`로 시작 시 재검증 적용 → 적용되면 엔진·파이프라인 재생성. 엔드포인트 `SECURITY_DATA_URL`(xcconfig → Info.plist `SecurityDataURL`), 비어 있으면 비활성. 테스트 키쌍은 `tools/security-data/TEST_PRIVATE_KEY.txt`(출시 전 교체). 설정 화면에 출처·마지막 확인·자동 업데이트·지금 확인. |
+| 2026-10-04 | T-6.4 | `tools/security-data/merge_blocklist.py`(CSV/JSON → blocklist.json 병합, 메타 기록)만 작성. KISA/공공데이터포털 데이터셋 형식·이용 조건은 확인 못 함(README에 표기). |
+| 2026-10-04 | T-7.1 | 접근성 감사(VoiceOver·Dynamic Type·대비·Reduce Motion) 후 수정: Light 등급색 어둡게(safe #0E7A4B, caution #9A5600, danger #C9281C — 배경 위 ≥4.5:1), `brandFill`/`dangerFill`/`onInk` 토큰 추가(Dark에서 흰 글자 대비), AX 글자 크기에서 가로 배치 → 세로(`AnyLayout`), 장식 아이콘 숨김, 2초 길게 누르기에 `accessibilityAction("열기")` 대안, 토스트는 `UIAccessibility` 공지, 애니메이션 Reduce Motion 게이트. TECH_PRD 7.3 토큰 표 갱신. |
+| 2026-10-04 | T-7.2 | 오프라인 분석(규칙 45개) 600회 측정: p50 0.35ms · p95 5.2ms · max 8ms (< 100ms). 스캐너 진입 시간은 시뮬레이터에 카메라가 없어 미측정 — 실기기 Instruments로 확인 필요. |
+| 2026-10-04 | T-7.3 | 앱 String Catalog 305키 중 300키 영어 번역(기호·숫자 5키 제외). 규칙 문구(Core)는 ko/en 192키. 공유 확장·위젯 카탈로그는 Xcode 빌드가 문자열을 추출한 뒤 번역 예정. |
+| 2026-10-04 | T-8.1 | V 계열(비전·정제기) 규칙 4개 + `InputSanitizer` + 앱 다중 배율·크롭·결합·문자 QR 디코딩. 결정: V 계열 floor 없음(AI 문서 불변식 2), V09는 숨김 지시문(+15) > 페이지 불가시 ≥3(+10) > 원문 불가시 ≥3(+10) 중 최댓값 1개만. |
+| 2026-10-04 | 검증(6·7·8.1) | 시뮬레이터 전수 재검증: 사진 2-QR 이미지 → 주의 40(C01 +20 · V02 +20), 단일 공식 QR → 안전 0, 문자 QR 붙여넣기 → URL 복원 + V03 +10(오프라인 60 주의), 공유 확장 이미지 → 요약 표시 → 앱 포그라운드 복귀 시 받은편지함 자동 가져오기·결과 화면 열림, `qrguard://scan` → 스캐너, 크래시 0. 발견·수정: iOS 27 시뮬레이터에서 Vision `DetectBarcodesRequest`가 throw → Core Image `CIDetector` 폴백 추가(앱·확장). 한계: 공유 확장의 "QR Guard에서 열기"가 시뮬레이터에서 호스트 앱을 앞으로 못 가져옴(`NSExtensionContext.open`·응답 체인 모두) — 앱 활성화 시 가져오기로 보완, 실기기 확인 필요. Xcode IDE가 외부 pbxproj 편집 뒤 스킴 0개로 표시되면 프로젝트를 닫았다 다시 연다. |

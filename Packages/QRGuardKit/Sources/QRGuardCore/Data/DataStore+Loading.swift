@@ -20,10 +20,10 @@ extension DataStore {
         }
 
         let brands = decode([BrandEntry].self, "brands", fallback: [])
-        let shorteners = Set(decode([String].self, "shorteners", fallback: []).map { $0.lowercased() })
-        let tlds = Set(decode([String].self, "suspicious_tlds", fallback: []).map { $0.lowercased().trimmingCharacters(in: CharacterSet(charactersIn: ".")) })
+        let shorteners = normalizeDomains(decode([String].self, "shorteners", fallback: []))
+        let tlds = normalizeTLDs(decode([String].self, "suspicious_tlds", fallback: []))
         let schemes = decode([AppSchemeEntry].self, "app_schemes", fallback: [])
-        let payment = Set(decode([String].self, "payment_mobility", fallback: []).map { $0.lowercased() })
+        let payment = normalizeDomains(decode([String].self, "payment_mobility", fallback: []))
         let blocklist = decode(Blocklist.self, "blocklist", fallback: .empty)
         let bait = decode([String].self, "bait_keywords", fallback: DataStore.defaultBaitKeywords)
 
@@ -54,6 +54,19 @@ extension DataStore {
             publicSuffixRules: psl,
             baitKeywords: bait
         )
+    }
+
+    /// 도메인 목록 정규화: 소문자, 앞뒤 공백·점 제거, 빈 항목 제외. 번들·원격 데이터에 같은 규칙을 적용한다.
+    static func normalizeDomains(_ list: [String]) -> Set<String> {
+        Set(list.compactMap { raw in
+            let d = raw.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().trimmingCharacters(in: CharacterSet(charactersIn: "."))
+            return d.isEmpty ? nil : d
+        })
+    }
+
+    /// TLD 목록 정규화: 소문자, 점 제거(".xyz" → "xyz").
+    static func normalizeTLDs(_ list: [String]) -> Set<String> {
+        normalizeDomains(list)
     }
 
     /// `confusables_subset.txt` 형식: UTS #39와 같은 `XXXX ; YYYY [YYYY…] ; MA # comment` (16진 코드포인트),

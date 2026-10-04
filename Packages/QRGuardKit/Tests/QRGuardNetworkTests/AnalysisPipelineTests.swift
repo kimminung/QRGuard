@@ -428,7 +428,8 @@ struct AnalysisPipelineTests {
 
         #expect(MockURLProtocol.registry.requests(host: "pipe-insecure.example.test").isEmpty)
         #expect(result.snapshot?.chain?.outcome == .stoppedAtInsecureHop)
-        #expect(result.outcome(of: .redirect) == .flagged(1))
+        // 이동이 하나도 기록되지 않았으므로 "N번 이동"이 아니라 "확인 못 함"으로 보고한다.
+        #expect(result.outcome(of: .redirect) == .failed)
         #expect(result.outcome(of: .pagePrecheck) == .skipped)
         #expect(page.calls.count == 0)
         #expect(reputation.calls.count == 1)

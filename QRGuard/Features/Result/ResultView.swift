@@ -6,6 +6,14 @@ struct ResultView: View {
     @Bindable var session: AnalysisSession
     @Environment(AppModel.self) private var app
     @Environment(\.openURL) private var openURL
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    /// 접근성 글자 크기에서는 나란히 놓인 두 보조 버튼·문구를 세로로 쌓는다.
+    private var isAX: Bool { dynamicTypeSize.isAccessibilitySize }
+    private var pairLayout: AnyLayout {
+        isAX ? AnyLayout(VStackLayout(spacing: Spacing.m)) : AnyLayout(HStackLayout(spacing: Spacing.m))
+    }
 
     @State private var showChecklist = false
     @State private var showDangerConfirm = false
@@ -64,7 +72,7 @@ struct ResultView: View {
                     .padding(.vertical, Spacing.s)
                     .background(.regularMaterial, in: Capsule())
                     .padding(.bottom, Spacing.xl)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
             }
         }
     }
@@ -75,13 +83,16 @@ struct ResultView: View {
         ScrollView {
             VStack(spacing: Spacing.l) {
                 VStack(spacing: Spacing.l) {
+                    // VoiceOver 읽기 순서: 등급(11) → 제목(10) → 위험 점수(9) → 실제 주소(8) → 행동 버튼(7) → 나머지
                     StatusEmblem(tier: report.tier, blocked: report.blocksOpening)
+                        .accessibilitySortPriority(11)
                     Text(report.blocksOpening ? String(localized: "이 코드는 열 수 없어요") : report.tier.resultTitle)
                         .font(.title2.bold())
                         .multilineTextAlignment(.center)
                         .foregroundStyle(Palette.ink)
+                        .accessibilityAddTraits(.isHeader)
                         .accessibilitySortPriority(10)
-                    HStack(spacing: Spacing.s) {
+                    pairLayout {
                         CoverageBadge(coverage: report.coverage)
                         if session.userOpened {
                             Label("이 코드를 여셨어요", systemImage: "arrow.up.forward.app")
@@ -136,6 +147,7 @@ struct ResultView: View {
                         Image(systemName: "chevron.right")
                             .font(.caption.weight(.semibold))
                             .foregroundStyle(Palette.inkSecondary)
+                            .accessibilityHidden(true)
                     }
                 } else {
                     ForEach(report.topFindings) { finding in
@@ -156,17 +168,21 @@ struct ResultView: View {
     }
 
     private var placeSection: some View {
-        VStack(alignment: .leading, spacing: Spacing.s) {
-            HStack(alignment: .firstTextBaseline, spacing: Spacing.s) {
+        let headerLayout = isAX
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.xs))
+            : AnyLayout(HStackLayout(alignment: .firstTextBaseline, spacing: Spacing.s))
+        return VStack(alignment: .leading, spacing: Spacing.s) {
+            headerLayout {
                 Text("어디서 찍은 QR인가요?")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(Palette.ink)
+                    .accessibilityAddTraits(.isHeader)
                 Text("선택하면 바로 다시 판단해요")
                     .font(.caption)
                     .foregroundStyle(Palette.inkSecondary)
             }
             PlaceChipGrid(selection: session.place) { place in
-                withAnimation(.easeInOut(duration: 0.2)) {
+                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) {
                     session.setPlace(session.place == place ? nil : place)
                 }
                 app.placeChanged(session)
@@ -183,7 +199,7 @@ struct ResultView: View {
             if report.blocksOpening {
                 Button("닫기") { app.goHome() }
                     .buttonStyle(.primary(.neutral))
-                HStack(spacing: Spacing.m) {
+                pairLayout {
                     Button("원본 복사") { copyRaw(report.rawPayload) }
                         .buttonStyle(.primary(.secondary))
                     Button("신고하기") { app.path.append(.incidentGuide) }
@@ -197,7 +213,7 @@ struct ResultView: View {
                             .buttonStyle(.primary(.brand))
                             .accessibilityIdentifier("openButton")
                     }
-                    HStack(spacing: Spacing.m) {
+                    pairLayout {
                         Button("상세 분석 보기") { app.path.append(.detail(session.id)) }
                             .buttonStyle(.primary(.secondary))
                         Button(openable ? "주소 복사" : "내용 복사") { openable ? copyAddress() : copyRaw(report.rawPayload) }
@@ -209,7 +225,7 @@ struct ResultView: View {
                             .buttonStyle(.primary(.neutral))
                             .accessibilityIdentifier("openWithChecklistButton")
                     }
-                    HStack(spacing: Spacing.m) {
+                    pairLayout {
                         Button("상세 분석 보기") { app.path.append(.detail(session.id)) }
                             .buttonStyle(.primary(.secondary))
                         Button(openable ? "열지 않기" : "닫기") { app.goHome() }
@@ -219,7 +235,7 @@ struct ResultView: View {
                     Button(openable ? "열지 않고 닫기" : "닫기") { app.goHome() }
                         .buttonStyle(.primary(.danger))
                         .accessibilityIdentifier("closeDangerButton")
-                    HStack(spacing: Spacing.m) {
+                    pairLayout {
                         Button("상세 분석 보기") { app.path.append(.detail(session.id)) }
                             .buttonStyle(.primary(.secondary))
                         Button("신고하기") { app.path.append(.incidentGuide) }
@@ -250,10 +266,13 @@ struct ResultView: View {
     private func footer(_ report: RiskReport) -> some View {
         VStack(spacing: Spacing.s) {
             if report.tier == .danger, !report.blocksOpening, session.openTarget != nil {
-                HStack(spacing: Spacing.m) {
+                pairLayout {
                     Button("위험을 감수하고 열기") { showDangerConfirm = true }
                         .accessibilityIdentifier("riskyOpenButton")
-                    Text("·").foregroundStyle(Palette.inkSecondary)
+                    if !isAX {
+                        Text("·").foregroundStyle(Palette.inkSecondary)
+                            .accessibilityHidden(true)
+                    }
                     Button("이미 열었다면?") { app.path.append(.incidentGuide) }
                 }
                 .font(.footnote)
@@ -314,10 +333,12 @@ struct ResultView: View {
     }
 
     private func flashCopied() {
-        withAnimation { copied = true }
+        let animation: Animation? = reduceMotion ? nil : .default
+        withAnimation(animation) { copied = true }
+        UIAccessibility.post(notification: .announcement, argument: String(localized: "주소를 복사했어요"))
         Task {
             try? await Task.sleep(for: .seconds(1.5))
-            withAnimation { copied = false }
+            withAnimation(animation) { copied = false }
         }
     }
 
@@ -342,17 +363,27 @@ struct ResultView: View {
 struct PayloadCard: View {
     let raw: String
     let kind: QRPayload.Kind
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
+        // 접근성 글자 크기에서는 64pt 라벨 열에 "받는 사람" 같은 제목이 들어가지 않으므로 세로로 쌓는다.
+        let isAX = dynamicTypeSize.isAccessibilitySize
+        let rowLayout = isAX
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2))
+            : AnyLayout(HStackLayout(alignment: .firstTextBaseline))
         VStack(alignment: .leading, spacing: Spacing.s) {
             Text(kindTitle)
                 .font(.caption)
                 .foregroundStyle(Palette.inkSecondary)
             ForEach(details, id: \.0) { item in
-                HStack(alignment: .firstTextBaseline) {
-                    Text(item.0).font(.subheadline).foregroundStyle(Palette.inkSecondary).frame(width: 64, alignment: .leading)
+                rowLayout {
+                    Text(item.0)
+                        .font(.subheadline)
+                        .foregroundStyle(Palette.inkSecondary)
+                        .frame(width: isAX ? nil : 64, alignment: .leading)
                     Text(item.1).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink).textSelection(.enabled)
                 }
+                .accessibilityElement(children: .combine)
             }
             if details.isEmpty {
                 Text(raw)
@@ -468,6 +499,7 @@ struct CheckToggleStyle: ToggleStyle {
                 Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
                     .foregroundStyle(configuration.isOn ? Palette.brand : Palette.inkSecondary)
+                    .accessibilityHidden(true)
                 configuration.label
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -475,6 +507,7 @@ struct CheckToggleStyle: ToggleStyle {
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(configuration.isOn ? .isSelected : [])
+        .accessibilityValue(configuration.isOn ? Text("확인함") : Text("확인 안 함"))
     }
 }
 
@@ -497,49 +530,66 @@ struct HoldToOpenSheet: View {
                     Image(systemName: "exclamationmark.octagon.fill")
                         .font(.system(size: 40))
                         .foregroundStyle(Palette.danger)
+                        .accessibilityHidden(true)
                     Text("2초간 길게 눌러 열기")
                         .font(.title3.bold())
                         .foregroundStyle(Palette.ink)
+                        .accessibilityAddTraits(.isHeader)
                     Text("접속하지 않는 것을 권장해요. 열리더라도 어떤 정보도 입력하지 마세요.")
                         .font(.subheadline)
                         .foregroundStyle(Palette.inkSecondary)
                         .multilineTextAlignment(.center)
                 }
-                ZStack {
-                    RoundedRectangle(cornerRadius: Radius.button, style: .continuous)
-                        .fill(Palette.dangerBg)
-                    GeometryReader { geo in
-                        RoundedRectangle(cornerRadius: Radius.button, style: .continuous)
-                            .fill(Palette.danger)
-                            .frame(width: geo.size.width * progress)
+                // 글자가 커져도 잘리지 않도록 텍스트가 높이를 정하고(최소 56pt), 진행 막대는 배경으로 깐다.
+                Text(completed ? "열고 있어요…" : "길게 눌러 열기")
+                    .font(.body.weight(.semibold))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(progress > 0.5 ? .white : Palette.danger)
+                    .padding(.horizontal, Spacing.l)
+                    .padding(.vertical, Spacing.m)
+                    .frame(maxWidth: .infinity, minHeight: 56)
+                    .background {
+                        ZStack(alignment: .leading) {
+                            Palette.dangerBg
+                            GeometryReader { geo in
+                                Palette.dangerFill.frame(width: geo.size.width * progress)
+                            }
+                        }
                     }
-                    Text(completed ? "열고 있어요…" : "길게 눌러 열기")
-                        .font(.body.weight(.semibold))
-                        .foregroundStyle(progress > 0.5 ? .white : Palette.danger)
-                }
-                .frame(height: 56)
-                .clipShape(RoundedRectangle(cornerRadius: Radius.button, style: .continuous))
-                .onLongPressGesture(minimumDuration: duration, maximumDistance: 40) {
-                    guard !completed else { return }
-                    completed = true
-                    progress = 1
-                    onComplete()
-                } onPressingChanged: { pressing in
-                    holding = pressing
-                    if pressing {
-                        withAnimation(reduceMotion ? nil : .linear(duration: duration)) { progress = 1 }
-                    } else if !completed {
-                        withAnimation(.easeOut(duration: 0.2)) { progress = 0 }
+                    .clipShape(RoundedRectangle(cornerRadius: Radius.button, style: .continuous))
+                    .contentShape(RoundedRectangle(cornerRadius: Radius.button, style: .continuous))
+                    .onLongPressGesture(minimumDuration: duration, maximumDistance: 40) {
+                        complete()
+                    } onPressingChanged: { pressing in
+                        holding = pressing
+                        if pressing {
+                            // 채워지는 진행 표시는 "2초를 채우고 있다"는 필수 피드백이라 Reduce Motion에서도 유지한다
+                            // (즉시 100%로 채우면 완료된 것처럼 오해할 수 있다).
+                            withAnimation(.linear(duration: duration)) { progress = 1 }
+                        } else if !completed {
+                            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { progress = 0 }
+                        }
                     }
-                }
-                .accessibilityLabel("위험을 감수하고 열기. 2초간 길게 누르세요")
-                .accessibilityIdentifier("holdToOpenButton")
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text("위험을 감수하고 열기"))
+                    .accessibilityHint(Text("터치로는 2초간 길게 누르세요. VoiceOver·스위치 제어에서는 '열기' 동작을 사용하세요"))
+                    .accessibilityAddTraits(.isButton)
+                    // 2초 길게 누르기를 할 수 없는 보조 기술 사용자를 위한 대체 동작 (CLAUDE.md: 명시적 사용자 동작 이후에만 열기).
+                    .accessibilityAction(named: Text("열기")) { complete() }
+                    .accessibilityIdentifier("holdToOpenButton")
                 Button("취소") { dismiss() }
                     .buttonStyle(.primary(.secondary))
             }
             .padding(Spacing.l)
             .background(Palette.surface.ignoresSafeArea())
         }
+    }
+
+    private func complete() {
+        guard !completed else { return }
+        completed = true
+        progress = 1
+        onComplete()
     }
 }
 

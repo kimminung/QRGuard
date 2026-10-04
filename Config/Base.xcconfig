@@ -2,4 +2,9 @@
 // 기본값은 빈 키이며, Secrets.xcconfig가 있으면 그 값으로 덮어씁니다(없어도 빌드 가능).
 SAFE_BROWSING_API_KEY =
 
+// 원격 보안 데이터(T-6.3) 엔드포인트: 서명된 security-data.json의 https URL. 비어 있으면 원격 갱신이 꺼진다.
+// Info.plist의 SecurityDataURL 키로 주입된다. xcconfig에서 //는 주석이므로 URL은 /$()/ 로 쓴다.
+// 예: SECURITY_DATA_URL = https:/$()/github.com/<org>/QRGuard/releases/latest/download/security-data.json
+SECURITY_DATA_URL =
+
 #include? "Secrets.xcconfig"

@@ -55,6 +55,8 @@ final class AppSettings {
     var urlhausLookup: Bool { didSet { defaults.set(urlhausLookup, forKey: "opt.urlhaus") } }
     var domainAgeLookup: Bool { didSet { defaults.set(domainAgeLookup, forKey: "opt.domainAge") } }
     var pagePrecheck: Bool { didSet { defaults.set(pagePrecheck, forKey: "opt.page") } }
+    /// 보안 데이터(블록리스트·브랜드 목록 등) 자동 업데이트 (하루 1회, 서명 검증)
+    var securityAutoUpdate: Bool { didSet { defaults.set(securityAutoUpdate, forKey: "security.autoUpdate") } }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -69,6 +71,7 @@ final class AppSettings {
         urlhausLookup = defaults.object(forKey: "opt.urlhaus") as? Bool ?? false
         domainAgeLookup = defaults.object(forKey: "opt.domainAge") as? Bool ?? true
         pagePrecheck = defaults.object(forKey: "opt.page") as? Bool ?? false
+        securityAutoUpdate = defaults.object(forKey: "security.autoUpdate") as? Bool ?? true
     }
 
     /// 현재 토글의 스냅샷. 분석 시작 시점에 고정된다.

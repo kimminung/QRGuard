@@ -1,0 +1,69 @@
+{
+  "sourceLanguage": "ko",
+  "strings": {
+    "QR 코드를 열기 전에 QR Guard로 먼저 검사해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check a QR code with QR Guard before opening it."
+          }
+        }
+      }
+    },
+    "QR Guard로 스캔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan with QR Guard"
+          }
+        }
+      }
+    },
+    "QR 코드를 열기 전에 먼저 검사해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check QR codes before opening them."
+          }
+        }
+      }
+    },
+    "QR Guard 스캔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "QR Guard Scan"
+          }
+        }
+      }
+    },
+    "탭하면 QR Guard 스캐너가 바로 열려요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to open the QR Guard scanner."
+          }
+        }
+      }
+    },
+    "QR Guard": {
+      "shouldTranslate": false
+    },
+    "열기 전에 먼저 검사": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check before opening"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

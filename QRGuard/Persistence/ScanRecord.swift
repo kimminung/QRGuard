@@ -29,9 +29,9 @@ final class ScanRecord {
     /// `AnalysisSnapshot` JSON — 장소 재채점·다시 보기용 (없을 수 있음)
     var snapshotData: Data?
 
-    init(report: RiskReport, snapshot: AnalysisSnapshot?, context: AnalysisContext) {
+    init(report: RiskReport, snapshot: AnalysisSnapshot?, context: AnalysisContext, id: UUID = UUID()) {
         let encoder = JSONEncoder()
-        id = UUID()
+        self.id = id
         scannedAt = report.analyzedAt
         rawPayload = report.rawPayload
         payloadKind = report.payloadKind.rawValue
@@ -106,9 +106,10 @@ final class HistoryStore {
 
     /// "저장 안 함"이면 디스크에 쓰지 않고 nil을 돌려준다.
     @discardableResult
-    func save(report: RiskReport, snapshot: AnalysisSnapshot?, context analysisContext: AnalysisContext, retention: AppSettings.Retention) -> ScanRecord? {
+    func save(report: RiskReport, snapshot: AnalysisSnapshot?, context analysisContext: AnalysisContext, retention: AppSettings.Retention, id: UUID = UUID()) -> ScanRecord? {
         guard retention != .none else { return nil }
-        let record = ScanRecord(report: report, snapshot: snapshot, context: analysisContext)
+        if let existing = record(id: id) { return existing }
+        let record = ScanRecord(report: report, snapshot: snapshot, context: analysisContext, id: id)
         context.insert(record)
         try? context.save()
         return record

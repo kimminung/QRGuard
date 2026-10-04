@@ -9,6 +9,10 @@ struct ScannerView: View {
 
     @Environment(AppModel.self) private var app
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    /// 겹친 QR 선택 목록의 번호 원 — 글자와 함께 커진다
+    @ScaledMetric(relativeTo: .caption) private var codeBadgeSize: CGFloat = 22
 
     @State private var permission: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
     @State private var visiblePayloads: [String] = []
@@ -135,7 +139,7 @@ struct ScannerView: View {
             }
             bottomBar
         }
-        .animation(.easeInOut(duration: 0.25), value: visiblePayloads.count)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: visiblePayloads.count)
     }
 
     private var topBar: some View {
@@ -150,6 +154,7 @@ struct ScannerView: View {
             Spacer()
             Text("QR 코드 스캔")
                 .font(.headline)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             Button { toggleTorch() } label: {
                 Image(systemName: torchOn ? "bolt.fill" : "bolt.slash")
@@ -179,6 +184,7 @@ struct ScannerView: View {
         HStack(alignment: .top, spacing: Spacing.m) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundStyle(Palette.caution)
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 Text("QR 코드가 \(visiblePayloads.count)개 보여요")
                     .font(.subheadline.weight(.semibold))
@@ -190,12 +196,15 @@ struct ScannerView: View {
         .padding(Spacing.m)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color(uiColor: UIColor(hex: 0xFFF3DC)), in: RoundedRectangle(cornerRadius: Radius.row, style: .continuous))
+        // 화면은 다크 고정이지만 배너 배경은 밝은색이므로 등급색도 Light 값으로 해석되게 한다 (Dark caution은 1.6:1).
+        .environment(\.colorScheme, .light)
         .accessibilityElement(children: .combine)
     }
 
     private var coachmark: some View {
         HStack(spacing: Spacing.m) {
             Image(systemName: "hand.raised.fingers.spread")
+                .accessibilityHidden(true)
             Text("스티커가 덧붙여져 있지 않은지 QR 주변을 확인하세요")
                 .font(.footnote)
             Spacer()
@@ -217,8 +226,9 @@ struct ScannerView: View {
                         Text("\(index + 1)")
                             .font(.caption.bold())
                             .foregroundStyle(.white)
-                            .frame(width: 22, height: 22)
-                            .background(index == 0 ? Palette.brand : Palette.caution, in: Circle())
+                            .frame(width: codeBadgeSize, height: codeBadgeSize)
+                            .background(index == 0 ? Palette.brandFill : Palette.caution, in: Circle())
+                            .accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(index == 0 ? "먼저 인식된 코드" : "추가로 보이는 코드")
                                 .font(.caption)
@@ -226,13 +236,14 @@ struct ScannerView: View {
                             Text(displayHost(payload))
                                 .font(.subheadline.weight(.semibold))
                                 .foregroundStyle(Palette.ink)
-                                .lineLimit(1)
+                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? 3 : 1)
                                 .truncationMode(.middle)
                         }
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(.caption.weight(.semibold))
                             .foregroundStyle(Palette.inkSecondary)
+                            .accessibilityHidden(true)
                     }
                     .padding(Spacing.m)
                     .background(Palette.card, in: RoundedRectangle(cornerRadius: Radius.row, style: .continuous))
@@ -288,7 +299,7 @@ struct ScannerView: View {
         paused = true
         Feedback.impact(settings: app.settings)
         setTorch(false)
-        onSelect(ScanInput(raw: payload, source: .camera, distinctCodes: count))
+        onSelect(ScanInput(raw: payload, source: .camera, distinctCodes: count, vision: VisionSignals(decodedCodeCount: count)))
     }
 
     private func displayHost(_ payload: String) -> String {
